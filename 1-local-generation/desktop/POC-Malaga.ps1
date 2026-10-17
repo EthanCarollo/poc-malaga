@@ -1,4 +1,4 @@
-param([switch]$ServerOwned)
+﻿param([switch]$ServerOwned)
 
 $ErrorActionPreference = 'Stop'
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
@@ -23,12 +23,23 @@ function Start-LocalApi {
   if ($health) { return $false }
 
   $wsl = Join-Path $env:SystemRoot 'System32\wsl.exe'
-  if (-not (Test-Path $wsl)) { throw 'WSL2 est introuvable. Installe WSL2 et configure les moteurs avant de lancer l’atelier.' }
-  $linuxProject = (& $wsl wslpath -a $ProjectRoot 2>$null | Out-String).Trim()
-  if (-not $linuxProject) { throw 'Aucune distribution WSL par défaut n’est disponible. Ouvre Ubuntu une première fois, puis réessaie.' }
+  if (-not (Test-Path $wsl)) { throw "WSL2 est introuvable. Installe WSL2 et configure les moteurs avant de lancer l’atelier." }
+  $distributions = @(& $wsl --list --quiet 2>$null | ForEach-Object {
+    ([string]$_).Replace([string][char]0, '').Trim()
+  } | Where-Object { $_ -and $_ -notlike 'docker-desktop*' })
+  $distribution = $distributions | Where-Object { $_ -match '^Ubuntu' } | Select-Object -First 1
+  if (-not $distribution) { $distribution = $distributions | Select-Object -First 1 }
+  if (-not $distribution) { throw "Aucune distribution Linux WSL n’est installée. Installe Ubuntu, puis réessaie." }
 
-  $arguments = "--cd `"$linuxProject`" --exec python3 server.py"
-  $script:ServerProcess = Start-Process -FilePath $wsl -ArgumentList $arguments -WindowStyle Hidden -PassThru
+  $linuxProject = (& $wsl --distribution $distribution --exec wslpath -a $ProjectRoot 2>$null | Out-String).Trim()
+  if (-not $linuxProject) { throw "Impossible de résoudre le chemin du projet dans WSL ($distribution). Vérifie que sa distribution démarre correctement." }
+
+  $arguments = "--distribution $distribution --cd $linuxProject --exec python3 server.py"
+  $logDirectory = Join-Path $ProjectRoot 'outputs'
+  if (-not (Test-Path $logDirectory)) { New-Item -ItemType Directory -Path $logDirectory -Force | Out-Null }
+  $stdoutPath = Join-Path $logDirectory 'native-api.stdout.log'
+  $stderrPath = Join-Path $logDirectory 'native-api.stderr.log'
+  $script:ServerProcess = Start-Process -FilePath $wsl -ArgumentList $arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
   $deadline = [DateTime]::UtcNow.AddSeconds(18)
   do {
     Start-Sleep -Milliseconds 350
@@ -37,7 +48,11 @@ function Start-LocalApi {
     if ($script:ServerProcess.HasExited) { break }
   } while ([DateTime]::UtcNow -lt $deadline)
 
-  throw "L’API locale n’a pas démarré. Vérifie que Python 3 est disponible dans WSL et que le port 7860 est libre."
+  $details = @()
+  if ($script:ServerProcess.HasExited) { $details += "wsl.exe a terminé avec le code $($script:ServerProcess.ExitCode)." }
+  if (Test-Path $stderrPath) { $details += (Get-Content -LiteralPath $stderrPath -Raw -ErrorAction SilentlyContinue).Trim() }
+  if (Test-Path $stdoutPath) { $details += (Get-Content -LiteralPath $stdoutPath -Raw -ErrorAction SilentlyContinue).Trim() }
+  throw "L’API locale n’a pas démarré. Vérifie Python 3 et le port 7860. $($details -join ' ')"
 }
 
 try {
@@ -137,7 +152,7 @@ function Update-History {
     $script:HistoryCache = @($response.items)
   } catch {
     $script:HistoryCache = @()
-    $script:HistoryItems.Children.Add((New-Object System.Windows.Controls.TextBlock -Property @{ Text = 'Impossible de charger l’historique local.'; Foreground = '#DB8B8B'; Margin = '8,8,8,0' })) | Out-Null
+    $script:HistoryItems.Children.Add((New-Object System.Windows.Controls.TextBlock -Property @{ Text = "Impossible de charger l’historique local."; Foreground = '#DB8B8B'; Margin = '8,8,8,0' })) | Out-Null
     return
   }
 
@@ -198,7 +213,7 @@ $script:Generator.add_DoWork({
 $script:Generator.add_RunWorkerCompleted({
   param($sender, $eventArgs)
   $script:GenerateButton.IsEnabled = $true
-  $script:GenerateButton.Content = '✦   Générer l’image'
+  $script:GenerateButton.Content = "✦   Générer l’image"
   if ($eventArgs.Error) {
     $script:GenerationStatus.Text = $eventArgs.Error.Exception.Message
     $script:GenerationStatus.Foreground = '#E58A8A'
@@ -249,7 +264,7 @@ $script:ReferenceButton.Add_Click({
     if (-not $mime) { return }
     $bytes = [IO.File]::ReadAllBytes($dialog.FileName)
     if ($bytes.Length -gt 20MB) {
-      [System.Windows.MessageBox]::Show('L’image de référence doit faire 20 Mo ou moins.', 'Image trop volumineuse', [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning) | Out-Null
+      [System.Windows.MessageBox]::Show("L’image de référence doit faire 20 Mo ou moins.", 'Image trop volumineuse', [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning) | Out-Null
       return
     }
     $script:ReferenceData = "data:$mime;base64,$([Convert]::ToBase64String($bytes))"
