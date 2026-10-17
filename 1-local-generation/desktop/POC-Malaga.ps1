@@ -58,7 +58,7 @@ function Start-LocalApi {
 try {
   $ServerOwned = Start-LocalApi
 } catch {
-  [System.Windows.MessageBox]::Show($_.Exception.Message, 'POC Malaga · démarrage impossible', [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Error) | Out-Null
+  [System.Windows.MessageBox]::Show($_.Exception.Message, 'Tests · démarrage impossible', [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Error) | Out-Null
   exit 1
 }
 

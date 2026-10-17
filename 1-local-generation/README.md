@@ -42,7 +42,7 @@ Après l’installation des dépendances et le téléchargement des modèles, la
 launch-native.bat
 ```
 
-Le premier démarrage vérifie WSL2 et Python 3. Si une API POC Malaga est déjà lancée sur le port local 7860, l’application la réutilise sans l’arrêter à la fermeture.
+Le premier démarrage vérifie WSL2 et Python 3. Si une API de génération est déjà à l’écoute sur le port local 7860, l’application la réutilise sans l’arrêter à la fermeture.
 
 Les premiers téléchargements sont volumineux et le premier lancement de chaque modèle charge ses poids en mémoire. Si le serveur ne trouve pas les interpréteurs, adapte les chemins dans `runtime-config.json` à partir de `runtime-config.example.json`.
 

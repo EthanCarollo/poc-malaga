@@ -198,7 +198,7 @@ def save_history(entries: list[dict[str, Any]]) -> None:
 
 
 class AppHandler(BaseHTTPRequestHandler):
-    server_version = "POC-Malaga/0.1"
+    server_version = "Tests/0.1"
 
     def log_message(self, fmt: str, *args: Any) -> None:
         print(f"[{self.log_date_time_string()}] {fmt % args}")
@@ -355,11 +355,11 @@ class LocalServer(ThreadingHTTPServer):
 
 def main() -> None:
     server = LocalServer(("127.0.0.1", 7860), AppHandler)
-    print("POC Malaga — API locale prête sur 127.0.0.1:7860")
+    print("Tests — API locale prête sur 127.0.0.1:7860")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\nArrêt du POC.")
+        print("\nArrêt de l’application Tests.")
     finally:
         server.server_close()
         WORKERS.stop()

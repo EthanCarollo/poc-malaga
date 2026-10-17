@@ -181,7 +181,7 @@ def load_qwen_pipeline() -> Any:
 
 
 class WorkerHandler(BaseHTTPRequestHandler):
-    server_version = "POC-Malaga-Worker/0.1"
+    server_version = "Tests-Worker/0.1"
 
     def log_message(self, fmt: str, *args: Any) -> None:
         print(f"[{self.log_date_time_string()}] {fmt % args}")
