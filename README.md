@@ -4,6 +4,6 @@ Dépôt de preuves de concept autour de solutions locales en IA. Le dépôt accu
 
 ## Projets
 
-- `1-local-generation` — interface locale de génération d’images avec FLUX 3 Image Klein en FP8 et Qwen-Image-2.1.
+- `1-local-generation` — application Windows native de génération locale d’images avec FLUX 3 Image Klein en FP8 et Qwen-Image-2.1.
 
 Chaque projet documentera ses dépendances, son installation et son lancement dans son propre dossier.

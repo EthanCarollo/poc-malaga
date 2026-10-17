@@ -1,13 +1,13 @@
 # 1 — Génération locale
 
-Petit atelier local de génération d’images, inspiré de la capture fournie : prompt et modèle à gauche, résultat à droite, avec les pages **Créer**, **Historique** et **Réglages**.
+Application Windows native de génération locale d’images, inspirée de la capture fournie : prompt et modèle à gauche, résultat à droite, avec les pages **Créer**, **Historique** et **Réglages**. L’interface est une fenêtre WPF avec des contrôles Windows ; aucun navigateur n’est lancé. Le moteur Python tourne dans WSL2 et communique avec cette fenêtre sur le loopback de la machine.
 
 ## Modèles
 
 - **FLUX 3 Image Klein** — transformer 5,6B, variante FP8, 16 étapes. L’agrandisseur de prompt local est optionnel dans l’interface et désactivé par défaut pour limiter la mémoire.
 - **Qwen-Image-2.1** — modèle image 7B, BF16, 40 étapes. Le moteur active le déchargement vers le CPU sur les GPU de moins de 20 Go.
 
-Les moteurs tournent dans deux environnements Python distincts, car les versions de `transformers` demandées par les implémentations officielles diffèrent. Le petit serveur d’interface utilise seulement la bibliothèque standard Python. Les images produites et l’historique restent dans `outputs/`.
+Les moteurs tournent dans deux environnements Python distincts, car les versions de `transformers` demandées par les implémentations officielles diffèrent. L’API locale utilise seulement la bibliothèque standard Python. Les images produites et l’historique restent dans `outputs/`.
 
 ## Matériel à connaître
 
@@ -25,7 +25,7 @@ Dans un terminal WSL, depuis le dossier du projet :
 
 ```bash
 cd /mnt/c/Users/eth/Documents/GitHub/poc/1-local-generation
-chmod +x setup-wsl.sh download-models.sh launch-wsl.sh
+chmod +x setup-wsl.sh download-models.sh
 ./setup-wsl.sh
 ```
 
@@ -36,13 +36,13 @@ hf auth login
 ./download-models.sh
 ```
 
-Lance l’interface :
+Après l’installation des dépendances et le téléchargement des modèles, lance l’application Windows avec `launch-native.bat` (double-clic depuis l’Explorateur). Elle démarre l’API WSL en arrière-plan et l’arrête à la fermeture de la fenêtre :
 
-```bash
-./launch-wsl.sh
+```text
+launch-native.bat
 ```
 
-Ouvre ensuite <http://127.0.0.1:7860>. Depuis PowerShell, `.launch-wsl.ps1` démarre le serveur si WSL2 et les dépendances sont prêts.
+Le premier démarrage vérifie WSL2 et Python 3. Si une API POC Malaga est déjà lancée sur le port local 7860, l’application la réutilise sans l’arrêter à la fermeture.
 
 Les premiers téléchargements sont volumineux et le premier lancement de chaque modèle charge ses poids en mémoire. Si le serveur ne trouve pas les interpréteurs, adapte les chemins dans `runtime-config.json` à partir de `runtime-config.example.json`.
 
@@ -57,5 +57,5 @@ Les premiers téléchargements sont volumineux et le premier lancement de chaque
 - Un moteur est chargé à la fois ; choisir l’autre modèle arrête le worker courant pour libérer le GPU.
 - FLUX séquence maintenant encodeur, DiT et VAE, mais conserve le DiT FP8 sur GPU durant les 16 étapes ; ce mode expérimental ne promet pas une exécution sur toutes les cartes 8 Go.
 - Génération texte-image et édition par une image de référence sont exposées dans une interface locale.
-- Les dimensions disponibles sont volontairement limitées à trois formats de démonstration.
+- Les dimensions disponibles sont volontairement limitées à quatre formats de démonstration.
 - L’interface ne démarre pas elle-même les téléchargements des poids : ils sont déclenchés explicitement par `download-models.sh`.

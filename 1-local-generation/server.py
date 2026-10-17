@@ -3,7 +3,6 @@ from __future__ import annotations
 import atexit
 import base64
 import json
-import mimetypes
 import os
 import random
 import shutil
@@ -43,7 +42,7 @@ RESOLUTIONS = {
     "832x1216": (832, 1216),
     "1216x832": (1216, 832),
 }
-MAX_REQUEST_BYTES = 24 * 1024 * 1024
+MAX_REQUEST_BYTES = 32 * 1024 * 1024
 MAX_REFERENCE_BYTES = 20 * 1024 * 1024
 
 
@@ -215,7 +214,7 @@ class AppHandler(BaseHTTPRequestHandler):
 
     def send_file(self, path: Path) -> None:
         raw = path.read_bytes()
-        mime = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        mime = "image/png" if path.suffix.lower() == ".png" else "application/octet-stream"
         self.send_response(200)
         self.send_header("Content-Type", mime)
         self.send_header("Content-Length", str(len(raw)))
@@ -228,6 +227,7 @@ class AppHandler(BaseHTTPRequestHandler):
         if path == "/api/health":
             devices = gpu_info()
             self.send_json(200, {
+                "application": "poc-malaga",
                 "ok": True,
                 "gpu": devices,
                 "runtimes": {model: configured_python(model) is not None for model in MODEL_INFO},
@@ -246,15 +246,15 @@ class AppHandler(BaseHTTPRequestHandler):
             else:
                 self.send_error(404)
             return
-        assets = {"/": "index.html", "/index.html": "index.html", "/styles.css": "styles.css", "/app.js": "app.js"}
-        asset = assets.get(path)
-        if asset:
-            self.send_file(PROJECT_DIR / "web" / asset)
-        else:
-            self.send_error(404)
+        self.send_error(404)
 
     def do_POST(self) -> None:
-        if urllib.parse.urlsplit(self.path).path != "/api/generate":
+        path = urllib.parse.urlsplit(self.path).path
+        if path == "/api/shutdown":
+            self.send_json(200, {"ok": True})
+            threading.Thread(target=self.server.shutdown, daemon=True).start()
+            return
+        if path != "/api/generate":
             self.send_error(404)
             return
         try:
@@ -355,7 +355,7 @@ class LocalServer(ThreadingHTTPServer):
 
 def main() -> None:
     server = LocalServer(("127.0.0.1", 7860), AppHandler)
-    print("POC Malaga — génération locale : http://127.0.0.1:7860")
+    print("POC Malaga — API locale prête sur 127.0.0.1:7860")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
