@@ -1,0 +1,8 @@
+.venv*/
+.runtime/
+weights/
+outputs/
+runtime-config.json
+__pycache__/
+*.py[cod]
+*.log

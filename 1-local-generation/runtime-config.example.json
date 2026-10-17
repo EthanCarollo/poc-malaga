@@ -1,0 +1,8 @@
+{
+  "runtimes": {
+    "flux3": ".venv-flux3/bin/python",
+    "qwen21": ".venv-qwen/bin/python"
+  },
+  "weights_dir": "weights",
+  "outputs_dir": "outputs"
+}
