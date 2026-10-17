@@ -1,6 +1,6 @@
 const state = { model: 'flux3', reference: null, toastTimer: null };
 const modelNames = {
-  flux3: { tag: 'FLUX 3 · FP8', summary: '16 étapes', flavor: 'Génération rapide', precision: 'FP8', parameter: '5,6B' },
+  flux3: { tag: 'FLUX 3 · FP8', summary: '16 étapes', flavor: 'Mémoire séquencée', precision: 'FP8', parameter: '5,6B' },
   qwen21: { tag: 'QWEN IMAGE 2.1', summary: '40 étapes', flavor: 'Texte & détails', precision: 'BF16', parameter: '7B' },
 };
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import gc
 import json
 import os
 import threading
@@ -20,30 +21,145 @@ MODEL_LOCK = threading.Lock()
 OUTPUT_DIR = Path("outputs")
 
 
-def load_flux_pipeline(prompt_upsampling: bool) -> Any:
-    from flux3.generate import generate
-    from flux3.pipeline import MODELS, WEIGHTS, Pipeline, dit_path
+class SequentialFluxPipeline:
+    """Load the FLUX text encoder, DiT, and autoencoder in separate stages."""
 
-    model_name = "distilled"
-    dit = dit_path(model_name, "fp8")
-    if not dit.exists():
-        raise FileNotFoundError(f"Variante FP8 introuvable : {dit}")
-    shared = WEIGHTS / MODELS[model_name]["dit"]
-    upsampler = None
-    if prompt_upsampling:
-        from flux3.pup import Upsampler
+    def __init__(self) -> None:
+        from flux3.pipeline import MODELS, WEIGHTS, dit_path
 
-        pup_path = WEIGHTS / "pup"
-        if not pup_path.exists():
-            raise FileNotFoundError(f"Agrandisseur de prompt absent : {pup_path}")
-        upsampler = Upsampler(str(pup_path), memory=0.35)
-    pipeline = Pipeline(
-        {model_name: str(dit)},
-        str(shared / "text_encoder"),
-        str(shared / "ae.safetensors"),
-        offload=True,
-    )
-    return SimpleNamespace(generate=generate, models=SimpleNamespace(upsampler=upsampler, pipeline=pipeline))
+        self.model_name = "distilled"
+        self.dit_path = dit_path(self.model_name, "fp8")
+        if not self.dit_path.exists():
+            raise FileNotFoundError(f"Variante FP8 introuvable : {self.dit_path}")
+        shared = WEIGHTS / MODELS[self.model_name]["dit"]
+        self.text_encoder_path = shared / "text_encoder"
+        self.autoencoder_path = shared / "ae.safetensors"
+
+    def _load_autoencoder(self) -> Any:
+        import torch
+        from flux3.autoencoder import AutoEncoder
+        from flux3.checkpoint import load_checkpoint
+
+        return load_checkpoint(AutoEncoder(), str(self.autoencoder_path), "cpu", torch.float32)
+
+    def _encode_references(self, references: list[Image.Image]) -> Any:
+        if not references:
+            return None
+        import torch
+        from flux3.pipeline import scaled_ids, to_tensor
+
+        autoencoder = self._load_autoencoder()
+        tokens, ids = [], []
+        with torch.inference_mode():
+            for index, reference in enumerate(references):
+                encoded, positions = autoencoder.encode(to_tensor(reference).to("cpu"))
+                positions = scaled_ids(positions)
+                positions[:, 3] = -(1 + index)
+                tokens.append(encoded.to(torch.bfloat16))
+                ids.append(positions)
+        result = (torch.cat(tokens), torch.cat(ids))
+        del autoencoder, tokens, ids
+        gc.collect()
+        return result
+
+    def generate(
+        self,
+        model: str,
+        prompt: str,
+        references: list[Image.Image],
+        width: int,
+        height: int,
+        steps: int,
+        guidance: float | None,
+        seed: int,
+        alpha: float = 6.93,
+    ) -> Image.Image:
+        import torch
+        from flux3.autoencoder import latent_ids, latent_shape
+        from flux3.dit import DiT, IN_CHANNELS, Packed
+        from flux3.pipeline import MODELS, pack, scaled_ids, to_pil
+        from flux3.sampling import denoise, denoise_flow_map, timesteps
+        from flux3.text_encoder import TextEncoder
+        from flux3.checkpoint import load_checkpoint
+
+        if not torch.cuda.is_available():
+            raise RuntimeError("FLUX 3 FP8 nécessite un GPU CUDA. Qwen reste disponible sur CPU/GPU.")
+
+        # Encode the prompt on CPU, then release the large text encoder before touching VRAM.
+        text_encoder = TextEncoder(str(self.text_encoder_path), "cpu")
+        flow_map = MODELS[model]["guidance"] is None
+        with torch.inference_mode():
+            if flow_map:
+                text = text_encoder.encode(prompt)
+                text_samples = [text]
+            else:
+                text_samples = [text_encoder.encode(""), text_encoder.encode(prompt)]
+        del text_encoder
+        gc.collect()
+
+        condition = self._encode_references(references)
+        latent_height, latent_width = latent_shape(height, width)
+        noise = torch.randn(
+            (latent_height * latent_width, IN_CHANNELS["image"]),
+            generator=torch.Generator().manual_seed(seed),
+        )
+        noise = noise.to(torch.bfloat16).float()
+        image_tokens = (noise, scaled_ids(latent_ids(latent_height, latent_width, "cpu")))
+        samples = [[text_samples[-1], condition, image_tokens]] if flow_map else [
+            [text_samples[0], condition, image_tokens],
+            [text_samples[1], condition, image_tokens],
+        ]
+        packed = pack(samples)
+        schedule = timesteps(steps, alpha)
+
+        # Keep the text encoder and VAE on CPU. Only the quantized DiT and working tensors
+        # are moved to the GPU for the repeated denoising pass.
+        with torch.device("meta"):
+            dit = DiT(flow_map)
+        dit = load_checkpoint(dit, str(self.dit_path), "cpu", torch.bfloat16)
+        gpu_packed = None
+        tokens = None
+        try:
+            dit.to("cuda")
+            gpu_packed = Packed(
+                data={name: tensor.to("cuda") for name, tensor in packed.data.items()},
+                ids={name: tensor.to("cuda") for name, tensor in packed.ids.items()},
+                timesteps={name: tensor.to("cuda") for name, tensor in packed.timesteps.items()},
+                mode_indices=packed.mode_indices,
+            )
+            if flow_map:
+                tokens = denoise_flow_map(dit, gpu_packed, schedule)
+            else:
+                if guidance is None:
+                    raise ValueError("Le modèle FLUX Base nécessite un niveau de guidance.")
+                tokens = denoise(dit, gpu_packed, schedule, guidance)
+            tokens = tokens.to("cpu")
+        finally:
+            if gpu_packed is not None:
+                del gpu_packed
+            try:
+                dit.to("cpu")
+            except RuntimeError:
+                pass
+            del dit
+            gc.collect()
+            torch.cuda.empty_cache()
+
+        # Decode after the DiT has left VRAM.
+        autoencoder = self._load_autoencoder()
+        with torch.inference_mode():
+            decoded = autoencoder.decode(tokens, image_tokens[1])
+        image = to_pil(decoded)
+        del autoencoder, packed, condition, text_samples, samples, noise, tokens, decoded
+        gc.collect()
+        return image
+
+
+def load_flux_pipeline() -> Any:
+    from flux3.generate import generate as generate_image
+
+    pipeline = SequentialFluxPipeline()
+    return SimpleNamespace(generate=generate_image, models=SimpleNamespace(upsampler=None, pipeline=pipeline))
 
 
 def load_qwen_pipeline() -> Any:
@@ -95,13 +211,15 @@ class WorkerHandler(BaseHTTPRequestHandler):
             prompt = str(payload["prompt"]).strip()
             width, height = int(payload["width"]), int(payload["height"])
             seed = int(payload["seed"])
+            if self.server.model == "flux3" and payload.get("prompt_upsampling"):
+                raise ValueError("L’agrandisseur de prompt n’est pas disponible dans le mode mémoire séquentiel.")
             reference_path = payload.get("reference")
             references = [Image.open(reference_path).convert("RGB")] if reference_path else []
             with MODEL_LOCK:
                 if PIPELINE is None:
                     print("Chargement des poids du modèle…", flush=True)
                     if self.server.model == "flux3":
-                        PIPELINE = load_flux_pipeline(bool(payload.get("prompt_upsampling")))
+                        PIPELINE = load_flux_pipeline()
                     else:
                         PIPELINE = load_qwen_pipeline()
                 if self.server.model == "flux3":

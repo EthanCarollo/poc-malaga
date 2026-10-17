@@ -11,7 +11,9 @@ Les moteurs tournent dans deux environnements Python distincts, car les versions
 
 ## Matériel à connaître
 
-Le pipeline FLUX 3 de référence mesurait **26 Go de VRAM à 1024 × 1024 en FP8, sans l’agrandisseur de prompt**, sur le matériel de test B200 de Black Forest Labs. L’interface avertit quand elle détecte moins de 24 Go. Une RTX 5060 Laptop de 8 Go, par exemple, ne peut pas charger cette configuration de référence ; la documentation BFL conseille la variante INT8 dans ComfyUI pour les cartes de 8 Go. Le mode Qwen avec déchargement CPU est prévu pour les cartes plus modestes, mais il peut être lent.
+Le worker FLUX charge séparément l’encodeur de texte et le VAE sur CPU, puis ne place le DiT FP8 et ses tenseurs de travail sur le GPU pendant le débruitage. Le VAE revient ensuite sur CPU pour décoder l’image. L’agrandisseur PUP est désactivé dans ce mode mémoire.
+
+Le pipeline FLUX 3 de référence mesurait **26 Go de VRAM à 1024 × 1024 en FP8, sans l’agrandisseur de prompt**, sur le matériel de test B200 de Black Forest Labs. L’interface avertit sous ce seuil et propose un format compact 512 × 512 pour essayer le chargement séquentiel. Cela ne garantit pas que le DiT FP8 et ses activations tiennent dans 8 Go ; la génération peut échouer ou être très lente selon la carte, la RAM système et le pilote. La documentation BFL conseille la variante INT8 dans ComfyUI pour les cartes de 8 Go. Qwen utilise le déchargement CPU fourni par Diffusers.
 
 Les poids FLUX sont sous licence FLUX Kommunity. Il faut accepter les conditions sur Hugging Face avant le téléchargement. Les poids Qwen ont également leurs propres conditions. Ce projet ne télécharge rien automatiquement au lancement.
 
@@ -53,6 +55,7 @@ Les premiers téléchargements sont volumineux et le premier lancement de chaque
 ## Limites de ce POC
 
 - Un moteur est chargé à la fois ; choisir l’autre modèle arrête le worker courant pour libérer le GPU.
+- FLUX séquence maintenant encodeur, DiT et VAE, mais conserve le DiT FP8 sur GPU durant les 16 étapes ; ce mode expérimental ne promet pas une exécution sur toutes les cartes 8 Go.
 - Génération texte-image et édition par une image de référence sont exposées dans une interface locale.
 - Les dimensions disponibles sont volontairement limitées à trois formats de démonstration.
 - L’interface ne démarre pas elle-même les téléchargements des poids : ils sont déclenchés explicitement par `download-models.sh`.
