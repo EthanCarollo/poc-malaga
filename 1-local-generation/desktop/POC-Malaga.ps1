@@ -68,6 +68,7 @@ $window = [Windows.Markup.XamlReader]::Load($reader)
 
 foreach ($name in @(
   'NavCreate','NavHistory','NavSettings','PageTitle','PageSubtitle','StatusDot','StatusLabel','GpuBadge',
+  'MinimizeWindowButton','ToggleMaximizeWindowButton','CloseWindowButton',
   'CreatePage','HistoryPage','SettingsPage','PromptBox','CharacterCount','ModelBox','ResolutionBox',
   'UpsamplingBox','ReferenceButton','ReferenceLabel','GenerateButton','GenerationStatus','ResultImage',
   'ResultPlaceholder','ResultMeta','HistoryItems','RefreshHistoryButton','HealthDetails','RefreshHealthButton'
@@ -122,7 +123,7 @@ function Update-Health {
   if (-not $health) {
     $script:HealthDetails.Text = 'Le serveur local ne répond pas.'
     $script:GpuBadge.Text = 'API locale · hors ligne'
-    $script:StatusLabel.Text = 'API locale indisponible'
+    $script:StatusLabel.Text = 'API hors ligne'
     $script:StatusDot.Fill = '#DB6B6B'
     return
   }
@@ -141,7 +142,7 @@ function Update-Health {
   )
   if ($health.flux_vram_warning) { $lines += 'Attention : FLUX utilise beaucoup de mémoire GPU. Le mode FP8 séquentiel ne garantit pas une génération sur une carte de 8 Go.' }
   $script:HealthDetails.Text = $lines -join "`n"
-  $script:StatusLabel.Text = 'API locale prête'
+  $script:StatusLabel.Text = 'API prête'
   $script:StatusDot.Fill = '#4CCB91'
 }
 
@@ -244,6 +245,24 @@ $script:ModelBox.Add_SelectionChanged({
 $script:NavCreate.Add_Click({ param($sender, $eventArgs) Set-Page 'create' })
 $script:NavHistory.Add_Click({ param($sender, $eventArgs) Set-Page 'history' })
 $script:NavSettings.Add_Click({ param($sender, $eventArgs) Set-Page 'settings' })
+$script:MinimizeWindowButton.Add_Click({ $script:window.WindowState = [System.Windows.WindowState]::Minimized })
+$script:ToggleMaximizeWindowButton.Add_Click({
+  if ($script:window.WindowState -eq [System.Windows.WindowState]::Maximized) {
+    $script:window.WindowState = [System.Windows.WindowState]::Normal
+    $script:ToggleMaximizeWindowButton.Content = '□'
+  } else {
+    $script:window.WindowState = [System.Windows.WindowState]::Maximized
+    $script:ToggleMaximizeWindowButton.Content = '❐'
+  }
+})
+$script:CloseWindowButton.Add_Click({ $script:window.Close() })
+$window.Add_StateChanged({
+  if ($script:window.WindowState -eq [System.Windows.WindowState]::Maximized) {
+    $script:ToggleMaximizeWindowButton.Content = '❐'
+  } else {
+    $script:ToggleMaximizeWindowButton.Content = '□'
+  }
+})
 $script:RefreshHistoryButton.Add_Click({ param($sender, $eventArgs) Update-History })
 $script:RefreshHealthButton.Add_Click({ param($sender, $eventArgs) Update-Health })
 
