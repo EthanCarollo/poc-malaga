@@ -98,6 +98,9 @@ def main():
     (lora_dir / "README.md").write_text(lora_card(packaged_lora, packaged_encoder, footprint), encoding="utf-8")
     for filename in ("LICENSE", "LICENSE.encoder", "NOTICE", "requirements-inference.txt"):
         (lora_dir / filename).write_bytes((base / filename).read_bytes())
+    notice = lora_dir / "NOTICE"
+    notice.write_text(notice.read_text(encoding="utf-8") +
+                      "Sharm Sprites 128 adds trained LoRA adapters to the diffusion transformer.\n", encoding="utf-8")
     print(json.dumps(report, indent=2), flush=True)
 
 

@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import time
 
 
 def main():
@@ -13,6 +14,7 @@ def main():
     parser.add_argument("--lora", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    started = time.monotonic()
     # No import from the development package: exercise exactly the shipped code.
     sys.path.insert(0, str(args.base.resolve()))
     import torch
@@ -38,6 +40,9 @@ def main():
     report = {"passed": True, "prompt": case["prompt"], "seed": case["seed"],
               "sha256": hashlib.sha256(output.read_bytes()).hexdigest(),
               "base": str(args.base), "lora": str(args.lora), "loader": str(shipped.__file__),
+              "seconds": time.monotonic() - started, "gpu": torch.cuda.get_device_name(),
+              "gpu_peak_allocated_gib": torch.cuda.max_memory_allocated() / 2**30,
+              "gpu_peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30,
               "scope": "shipped loader and verified private HF mirrors, 4B FP8, projector and LoRA"}
     (args.output / "published-inference.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report), flush=True)

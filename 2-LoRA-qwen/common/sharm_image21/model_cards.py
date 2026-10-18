@@ -325,6 +325,8 @@ def base_card(manifest: dict, footprint: dict, validation: dict) -> str:
         "Le corpus d’alignement comprend des prompts "
         "[DiffusionDB](https://huggingface.co/datasets/poloclub/diffusiondb) sous CC0-1.0, "
         "des compositions rédigées par templates et des légendes sprites. "
+        f"[Code d’entraînement et d’évaluation](https://github.com/EthanCarollo/poc-malaga/tree/"
+        f"{manifest['provenance']['source_commit']}/2-LoRA-qwen). "
         "Les révisions sources et le projecteur sont identifiés dans `sharm_config.json` "
         "et `training_manifest.json`. Qwen Research s’applique au modèle combiné ; "
         "les notices et la licence Apache-2.0 de l’encodeur sont conservées.\n"
@@ -378,4 +380,6 @@ def lora_card(lora: dict, encoder: dict, footprint: dict) -> str:
         "`#A5EBFF` a été retiré du dataset, y compris les îlots déconnectés. Les deux variantes "
         "d’une espèce restent dans le même ensemble. Qwen Research et les attributions de la base "
         "sont conservées dans `LICENSE`, `LICENSE.encoder` et `NOTICE`.\n"
+        f"[Code d’entraînement et d’évaluation](https://github.com/EthanCarollo/poc-malaga/tree/"
+        f"{lora['provenance']['source_commit']}/2-LoRA-qwen).\n"
     )
