@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import fcntl
 import sys
 import time
 from pathlib import Path
@@ -19,6 +20,10 @@ def main():
     parser.add_argument("--gpu-memory", default="11GiB")
     parser.add_argument("--limit", type=int)
     args = parser.parse_args()
+    lock_dir = CACHE / args.kind
+    lock_dir.mkdir(parents=True, exist_ok=True)
+    writer_lock = (lock_dir / ".writer.lock").open("a")
+    fcntl.flock(writer_lock.fileno(), fcntl.LOCK_EX)
     corpus = read_jsonl(args.corpus)
     rows = corpus[:args.limit] if args.limit else corpus
     identity = {"encoder": model_identity(args.kind), "corpus": digest(corpus)}

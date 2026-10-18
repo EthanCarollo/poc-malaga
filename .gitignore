@@ -12,3 +12,4 @@ __pycache__/
 .env
 .env.*
 *:Zone.Identifier
+2-LoRA-qwen/*.png

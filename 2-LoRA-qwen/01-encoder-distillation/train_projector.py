@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import itertools
 import json
 import random
 import sys
@@ -59,15 +58,21 @@ def main():
     parser.add_argument("--tokens-per-caption", type=int, default=96)
     parser.add_argument("--eval-every", type=int, default=250)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--output-root", type=Path, default=ARTIFACTS)
     args = parser.parse_args()
+    if min(args.linear_steps, args.mlp_steps, args.batch_size, args.tokens_per_caption, args.eval_every) < 1:
+        raise ValueError("Les tailles de lots et durées d'entraînement doivent être positives.")
     seed_all(args.seed)
     torch.set_num_threads(4)
-    rows = read_jsonl(args.corpus)
+    corpus = read_jsonl(args.corpus)
+    rows = corpus[:args.limit] if args.limit else corpus
+    args.output_root.mkdir(parents=True, exist_ok=True)
     student, teacher = FeatureCache(CACHE / "student"), FeatureCache(CACHE / "teacher")
     student.require(rows)
     teacher.require(rows)
     for cache in (student, teacher):
-        if cache.index["identity"]["corpus"] != digest(rows):
+        if cache.index["identity"]["corpus"] != digest(corpus):
             raise ValueError("Le cache ne correspond pas au corpus d'entraînement.")
     train = [row for row in rows if row["split"] == "train"]
     valid = [row for row in rows if row["split"] == "validation"]
@@ -76,24 +81,26 @@ def main():
     random.Random(args.seed).shuffle(valid)
     monitor = valid[:256]
     metadata = {"teacher": teacher.index["identity"], "student": student.index["identity"],
-                "corpus_sha256": digest(rows), "scope": "experimental text-to-image alignment; editing not validated"}
-    destination = ARTIFACTS / "projector"
-    linear_destination = ARTIFACTS / "projector-linear"
+                "corpus_sha256": digest(corpus), "training_subset_sha256": digest(rows),
+                "scope": "experimental text-to-image alignment; editing not validated"}
+    destination = args.output_root / "projector"
+    linear_destination = args.output_root / "projector-linear"
     if (destination / "training-complete.json").is_file():
         previous = json.loads((destination / "training-complete.json").read_text())
-        if previous["corpus_sha256"] != metadata["corpus_sha256"]:
+        if (previous["corpus_sha256"] != metadata["corpus_sha256"]
+                or previous.get("training_subset_sha256") != metadata["training_subset_sha256"]):
             raise ValueError("Le projecteur existant correspond à un autre corpus.")
         print("Entraînement du projecteur déjà terminé.", flush=True)
         return
     model = Projector().cuda()
-    checkpoint = ARTIFACTS / "projector-checkpoint.pt"
+    checkpoint = args.output_root / "projector-checkpoint.pt"
     state = torch.load(checkpoint, weights_only=True, map_location="cpu") if checkpoint.exists() else None
     if state and state["metadata"] != metadata:
         raise ValueError("Checkpoint projecteur incompatible.")
     if state:
         model.load_state_dict(state["model"])
     global_best = state["global_best"] if state else float("inf")
-    history = ARTIFACTS / "projector-history.jsonl"
+    history = args.output_root / "projector-history.jsonl"
     started = time.monotonic()
     for phase, steps in (("linear", args.linear_steps), ("mlp", args.mlp_steps)):
         if state and state["phase"] == "mlp" and phase == "linear":
@@ -136,10 +143,10 @@ def main():
                           "metrics": metrics, "seconds": time.monotonic()-started, "updated_at": time.time()}
                 with history.open("a", encoding="utf-8") as output:
                     output.write(json.dumps(report)+"\n")
-                atomic_json(ARTIFACTS / "projector-status.json", report)
+                atomic_json(args.output_root / "projector-status.json", report)
                 if metrics["relative_mse"] < phase_best:
                     phase_best = metrics["relative_mse"]
-                    model.save(linear_destination if phase == "linear" else ARTIFACTS / "projector-mlp", metadata)
+                    model.save(linear_destination if phase == "linear" else args.output_root / "projector-mlp", metadata)
                 if metrics["relative_mse"] < global_best:
                     global_best = metrics["relative_mse"]
                     model.save(destination, {**metadata, "selected_phase": phase, "validation": metrics})
@@ -151,11 +158,15 @@ def main():
                 print(json.dumps(report), flush=True)
         state = None
     best = Projector.load(destination, "cuda")
+    selected_config = json.loads((destination / "config.json").read_text())
+    best.save(destination, selected_config, storage_dtype=torch.bfloat16)
+    best = Projector.load(destination, "cuda")
     final_scores = evaluate(best, valid, student, teacher)
     linear = Projector.load(linear_destination, "cuda")
     baseline_scores = evaluate(linear, valid, student, teacher)
     complete = {**metadata, "validation": final_scores, "linear_baseline": baseline_scores,
-                "finished_at": time.time(), "config": vars(args) | {"corpus": str(args.corpus)}}
+                "finished_at": time.time(), "config": {key: str(value) if isinstance(value, Path) else value
+                                                         for key, value in vars(args).items()}}
     atomic_json(destination / "training-complete.json", complete)
     print(json.dumps(complete, indent=2), flush=True)
 

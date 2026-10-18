@@ -85,11 +85,12 @@ class Projector(nn.Module):
     def forward(self, hidden):
         return self.skip(hidden) + self.down(F.gelu(self.up(self.norm(hidden))))
 
-    def save(self, path: Path, metadata: dict | None = None):
+    def save(self, path: Path, metadata: dict | None = None, storage_dtype=None):
         path.mkdir(parents=True, exist_ok=True)
         atomic_json(path / "config.json", {**self.settings, "convention": FEATURE_CONVENTION, **(metadata or {})})
         temporary = path / "model.tmp.safetensors"
-        save_file({key: val.detach().cpu().contiguous() for key, val in self.state_dict().items()}, temporary)
+        save_file({key: val.detach().to(device="cpu", dtype=storage_dtype or val.dtype).contiguous()
+                   for key, val in self.state_dict().items()}, temporary)
         os.replace(temporary, path / "model.safetensors")
 
     @classmethod
@@ -97,22 +98,24 @@ class Projector(nn.Module):
         config = json.loads((path / "config.json").read_text())
         if config.get("convention") != FEATURE_CONVENTION:
             raise ValueError("Convention d'embeddings du projecteur incompatible.")
-        model = cls(**{key: config[key] for key in ("input_dim", "output_dim", "bottleneck")})
-        model.load_state_dict(load_file(path / "model.safetensors"))
+        state = load_file(path / "model.safetensors")
+        model = cls(**{key: config[key] for key in ("input_dim", "output_dim", "bottleneck")}).to(state["skip.weight"].dtype)
+        model.load_state_dict(state)
         return model.to(device)
 
 
 class FrozenEncoder:
     """Extract the norm INPUT without LM logits, past-key-values or all-layer captures."""
 
-    def __init__(self, kind: str, gpu_memory: str = "11GiB", model_dir: Path | None = None):
+    def __init__(self, kind: str, gpu_memory: str = "11GiB", model_dir: Path | None = None,
+                 processor_dir: Path | None = None):
         from transformers import Qwen3VLForConditionalGeneration, Qwen3VLProcessor
 
         if kind not in ("teacher", "student"):
             raise ValueError(kind)
         self.kind = kind
         self.model_dir = model_dir or (STUDENT if kind == "student" else ORIGINAL / "text_encoder")
-        processor_dir = self.model_dir if kind == "student" else ORIGINAL / "processor"
+        processor_dir = processor_dir or (self.model_dir if kind == "student" else ORIGINAL / "processor")
         self.processor = Qwen3VLProcessor.from_pretrained(processor_dir, local_files_only=True)
         self.identity = model_identity(kind, self.model_dir)
         sys_message = [{"role": "system", "content": [{"type": "text", "text": SYS_PROMPT}]}]
