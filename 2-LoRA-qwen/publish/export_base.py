@@ -28,6 +28,7 @@ def write_presentation(destination, validation, fingerprint):
     footprint = measure_footprint(ORIGINAL, STUDENT, ARTIFACTS / "projector")
     atomic_json(destination / "footprint.json", footprint)
     atomic_json(destination / "base-validation.json", validation)
+    shutil.copy2(ROOT / "requirements-inference.txt", destination / "requirements-inference.txt")
     (destination / "README.md").write_text(base_card(comparison, footprint, validation), encoding="utf-8")
 
 

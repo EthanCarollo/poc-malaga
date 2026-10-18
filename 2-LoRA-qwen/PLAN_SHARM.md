@@ -1,6 +1,6 @@
 # Plan Sharm : encodeur VL 4B FP8, projecteur et LoRA sprites
 
-Date de l'analyse : 19 octobre 2026. Statut : plan de réalisation, entraînements et publication des poids à venir.
+Date de l'analyse : 19 octobre 2026. Statut : entraînements lancés ; publication privée autorisée après validation et revue des comparatifs.
 
 ## 1. Décisions fixées avec l'utilisateur
 
@@ -208,7 +208,7 @@ L'export est autonome : il ne demande pas de télécharger l'encodeur 8B. Après
 
 ## 10. Étape G — publication HF privée sous ethanzxv
 
-Utiliser une authentification locale via `HF_TOKEN` ou le gestionnaire HF, sans secret dans le code, les configs, les URLs Git ou les logs. La clé collée dans la conversation doit être révoquée et remplacée avant la publication.
+Utiliser une authentification locale via `HF_TOKEN` ou le gestionnaire HF, sans secret dans le code, les configs, les URLs Git ou les logs. Le runtime est authentifié sur `ethanzxv` ; les dépôts cibles ont été créés en privé et leur confidentialité a été contrôlée.
 
 Vérifier le compte authentifié, créer `ethanzxv/Sharm-Image-2.1-VL4B-FP8` avec `private=True`, et vérifier la confidentialité aussi si le dépôt existe déjà. Le [client HF](https://huggingface.co/docs/huggingface_hub/guides/upload) envoie uniquement la liste des fichiers d'export. Les caches, datasets, checkpoints d'optimiseur et fichiers d'authentification sont exclus.
 
@@ -233,7 +233,7 @@ Publier ensuite le LoRA validé dans `ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA`
 
 La fiche du LoRA présente les six premières espèces distinctes de validation, chacune **sans puis avec LoRA**, avec les mêmes embeddings Sharm, prompt, graine, réglages et réduction nearest-neighbor 512 → 128. Le LoRA est chargé après toute la passe sans adaptateur, à un poids de 1.0. Les PNG RGBA 128 px et 512 px sont conservés, avec un aperçu séparé sur damier pour montrer l’alpha. Les réglages, versions du runtime et empreintes des images sont joints à `comparisons/lora/comparison.json`.
 
-La galerie VL 8B / VL 4B de la base est également copiée dans `comparisons/encoder/` du LoRA. Les deux fiches expliquent l’objectif de **compacter la base** et chiffrent les tailles réelles des poids de l’encodeur avec projecteur et de la base complète. Les comparaisons visuelles restent distinctes d’une mesure de vitesse ou de VRAM. La préparation des fiches et images est locale ; la publication HF privée est différée selon la demande actuelle de l’utilisateur.
+La galerie VL 8B / VL 4B de la base est également copiée dans `comparisons/encoder/` du LoRA. Les deux fiches expliquent l’objectif de **compacter la base** et chiffrent les tailles réelles des poids de l’encodeur avec projecteur et de la base complète. Les comparaisons visuelles restent distinctes d’une mesure de vitesse ou de VRAM. La demande actuelle autorise la publication HF privée après entraînement, validation et revue visuelle, suivie d’une vérification des fichiers distants et d’une génération avec le loader publié.
 
 ## 12. Ressources et ordre d'exécution
 

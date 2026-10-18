@@ -50,6 +50,10 @@ def main():
                   "student_identity": base_config["student_identity"], "same_conditioning_embeddings": True,
                   "text_cache_index_sha256": file_hash(cache.path), "dataset_identity": data["identity"],
                   "lora_sha256": lora_fingerprint, "lora_weight": 1.0,
+                  "training": {key: training["config"][key] for key in
+                               ("steps", "resolution", "rank", "learning_rate", "accumulation")},
+                  "training_image_count": sum(row["split"] == "train" for row in data["rows"]),
+                  "validation_image_count": len(rows),
                   "left_adapter": "absent", "right_adapter": "sharm_sprites"},
         selection={"split": "LoRA validation by species", "method": "first six distinct species in metadata order",
                    "selected_before_generation": True, "count": len(samples)},
@@ -84,6 +88,7 @@ def main():
                                             "scope": "automatic checks verify file and numerical integrity, not identity quality"})
     atomic_json(lora_dir / "sharm_lora_config.json", {"projector_sha256": fingerprint,
         "base_model": "ethanzxv/Sharm-Image-2.1-VL4B-FP8", "private": True, "published": False,
+        "base_diffusion_revision": base_config["base_revision"],
         "lora_sha256": lora_fingerprint, "comparison_sha256": file_hash(output / "comparison.json")})
     packaged_lora = package_comparisons(output, lora_dir / "comparisons/lora", "lora", fingerprint, lora_fingerprint)
     packaged_encoder = package_comparisons(base / "comparisons/encoder", lora_dir / "comparisons/encoder", "encoder", fingerprint)
@@ -91,7 +96,7 @@ def main():
     atomic_json(lora_dir / "footprint.json", footprint)
     atomic_json(lora_dir / "evaluation.json", json.loads((output / "evaluation.json").read_text()))
     (lora_dir / "README.md").write_text(lora_card(packaged_lora, packaged_encoder, footprint), encoding="utf-8")
-    for filename in ("LICENSE", "LICENSE.encoder", "NOTICE"):
+    for filename in ("LICENSE", "LICENSE.encoder", "NOTICE", "requirements-inference.txt"):
         (lora_dir / filename).write_bytes((base / filename).read_bytes())
     print(json.dumps(report, indent=2), flush=True)
 

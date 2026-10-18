@@ -20,7 +20,7 @@ from sharm_image21.core import ARTIFACTS, PROJECT, atomic_json, model_identity
 
 def status():
     for name in ("run-status.json", "cache-teacher-status.json", "cache-student-status.json",
-                 "projector-status.json", "lora-status.json"):
+                 "projector-status.json", "lora-status.json", "publication-request.json", "publication-status.json"):
         path = ARTIFACTS / name
         if path.exists():
             print(name, path.read_text(), flush=True)

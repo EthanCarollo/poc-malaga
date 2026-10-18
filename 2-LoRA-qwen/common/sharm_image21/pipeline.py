@@ -68,6 +68,10 @@ class SharmImage21Pipeline:
             metadata = json.loads((lora_dir / "sharm_lora_config.json").read_text())
             if metadata["projector_sha256"] != self.config["projector_sha256"]:
                 raise ValueError("Ce LoRA a été entraîné avec un autre projecteur.")
+            if file_hash(lora_dir / "pytorch_lora_weights.safetensors") != metadata["lora_sha256"]:
+                raise ValueError("Empreinte des poids LoRA incorrecte.")
+            if metadata.get("base_diffusion_revision", self.config["base_revision"]) != self.config["base_revision"]:
+                raise ValueError("Ce LoRA vise une autre révision du diffuseur.")
             pipeline.load_lora_weights(lora_dir, adapter_name="sharm_sprites")
         try:
             return pipeline(prompt_embeds=embeddings.cuda(), prompt_embeds_mask=mask.cuda(), **kwargs)

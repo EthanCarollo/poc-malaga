@@ -1,0 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cu130
+torch==2.14.1+cu130
+transformers==5.20.1
+accelerate==1.15.0
+bitsandbytes==0.50.2
+kernels==0.17.2
+safetensors==0.8.0
+huggingface-hub==2.2.0
+pillow==13.0.0
+peft==0.21.2
+numpy==2.5.4
+diffusers @ git+https://github.com/huggingface/diffusers.git@b800f828f3951c4d206e154411bcbfa693cd322e

@@ -249,6 +249,50 @@ def compact_objective(footprint: dict) -> str:
     )
 
 
+def loading_example(with_lora: bool = False) -> str:
+    setup = (
+        "## Charger le modèle\n\n"
+        "Le runtime de référence est Linux/WSL, CUDA 13.0 et une RTX 5060 Ti de 16 Gio. "
+        "Les versions et la révision Diffusers sont figées dans "
+        "[requirements-inference.txt](requirements-inference.txt). Installer ces dépendances dans "
+        "un environnement Python séparé, puis authentifier localement un compte ayant accès "
+        "aux dépôts privés avec `hf auth login`.\n\n"
+        "```python\nimport json\nimport sys\nfrom pathlib import Path\nimport torch\n"
+        "from PIL import Image\nfrom huggingface_hub import snapshot_download\n\n"
+    )
+    if with_lora:
+        setup += (
+            'lora = Path(snapshot_download("ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA", token=True))\n'
+            'metadata = json.loads((lora / "sharm_lora_config.json").read_text())\n'
+            'base = Path(snapshot_download(metadata["base_model"],\n'
+            '                              revision=metadata.get("base_hf_revision"), token=True))\n'
+        )
+    else:
+        setup += 'base = Path(snapshot_download("ethanzxv/Sharm-Image-2.1-VL4B-FP8", token=True))\n'
+    setup += (
+        'sys.path.insert(0, str(base))\n'
+        'from sharm_image21.pipeline import SharmImage21Pipeline\n\n'
+        'pipeline = SharmImage21Pipeline.from_pretrained(base)\n'
+    )
+    if with_lora:
+        setup += (
+            'case = json.loads((lora / "comparisons/lora/comparison.json").read_text())["pairs"][0]\n'
+            'image = pipeline(case["prompt"], lora_dir=lora, width=512, height=512,\n'
+            '                 output_resolution=512, num_inference_steps=30, true_cfg_scale=1.0,\n'
+            '                 generator=torch.Generator("cuda").manual_seed(case["seed"])).images[0]\n'
+            'image.resize((128, 128), Image.Resampling.NEAREST).save("sharm-sprite-128.png")\n'
+        )
+    else:
+        setup += (
+            'case = json.loads((base / "comparisons/encoder/comparison.json").read_text())["pairs"][0]\n'
+            'image = pipeline(case["prompt"], width=512, height=512, output_resolution=512,\n'
+            '                 num_inference_steps=20, true_cfg_scale=1.0,\n'
+            '                 generator=torch.Generator("cuda").manual_seed(case["seed"])).images[0]\n'
+            'image.save("sharm-image.png")\n'
+        )
+    return setup + "```\n\n"
+
+
 def base_card(manifest: dict, footprint: dict, validation: dict) -> str:
     metrics = validation["embedding_metrics"]
     return (
@@ -274,7 +318,8 @@ def base_card(manifest: dict, footprint: dict, validation: dict) -> str:
         "Il encode le texte avec le 4B FP8 et le projecteur, puis libère l’encodeur avant de charger "
         "le diffuseur en NF4. L’encodeur 8B sert à la distillation et aux références en cache. "
         "Cette version est expérimentale en texte vers image ; l’édition par image reste à valider.\n\n"
-        "## Sources et licence\n\n"
+        + loading_example()
+        + "## Sources et licence\n\n"
         "Base : [Qwen-Image-2.1](https://huggingface.co/Qwen/Qwen-Image-2.1). "
         "Encodeur : [Qwen3-VL-4B-Instruct-FP8](https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct-FP8). "
         "Le corpus d’alignement comprend des prompts "
@@ -287,9 +332,10 @@ def base_card(manifest: dict, footprint: dict, validation: dict) -> str:
 
 
 def lora_card(lora: dict, encoder: dict, footprint: dict) -> str:
+    training = lora["controls"]["training"]
     return (
         "---\nlicense: other\nlicense_name: qwen-research\nlicense_link: LICENSE\n"
-        "pipeline_tag: text-to-image\nbase_model: ethanzxv/Sharm-Image-2.1-VL4B-FP8\n"
+        "pipeline_tag: text-to-image\nbase_model: ethanzxv/Sharm-Image-2.1-VL4B-FP8\nbase_model_relation: adapter\n"
         "tags:\n- lora\n- pixel-art\nlanguage:\n- fr\n- en\n---\n\n"
         "# Sharm Image 2.1 Sprites 128 LoRA\n\nBuilt with Qwen. Checkpoint de recherche destiné au dépôt privé "
         "`ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA`.\n\n"
@@ -298,6 +344,10 @@ def lora_card(lora: dict, encoder: dict, footprint: dict) -> str:
         "Le 4B FP8 et le projecteur restent gelés pendant cet entraînement. "
         "Les latents d’apprentissage sont en 512 × 512 RGBA ; le livrable sprite est un PNG "
         "128 × 128 après réduction nearest-neighbor.\n\n"
+        f"Entraînement : {training['steps']} pas d’optimiseur, rang/alpha {training['rank']}, "
+        f"batch 1 et accumulation {training['accumulation']}, taux d’apprentissage `{training['learning_rate']:g}`. "
+        f"{lora['controls']['training_image_count']} images sont utilisées pour l’apprentissage du LoRA "
+        f"et {lora['controls']['validation_image_count']} pour sa validation.\n\n"
         "## Avant / après LoRA — même prompt\n\n"
         "Chaque paire utilise exactement le même prompt, la même graine, les mêmes embeddings "
         "du VL 4B FP8 + projecteur et les mêmes réglages du diffuseur. Seul l’adaptateur LoRA "
@@ -323,7 +373,8 @@ def lora_card(lora: dict, encoder: dict, footprint: dict) -> str:
         "enregistrés dans les manifestes de comparaison. La reproductibilité dépend aussi du matériel "
         "et des kernels utilisés. La revue visuelle de l’identité, du pixel art et de la transparence "
         "reste nécessaire ; ces exemples ne constituent pas une garantie de qualité générale.\n\n"
-        "Le dataset local comprend 770 sprites RGBA issus de 385 espèces. Le fond exact "
+        + loading_example(with_lora=True)
+        + "Le dataset local comprend 770 sprites RGBA issus de 385 espèces. Le fond exact "
         "`#A5EBFF` a été retiré du dataset, y compris les îlots déconnectés. Les deux variantes "
         "d’une espèce restent dans le même ensemble. Qwen Research et les attributions de la base "
         "sont conservées dans `LICENSE`, `LICENSE.encoder` et `NOTICE`.\n"

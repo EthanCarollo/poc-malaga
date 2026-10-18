@@ -37,7 +37,7 @@ La première base est expérimentale et validée uniquement pour le texte vers i
 
 ## Confidentialité et sorties
 
-Les modèles, caches et données sont hors Git. Cette exécution conserve tous les poids localement : **l’envoi HF est différé à la demande de l’utilisateur**. Les destinations prévues restent privées :
+Les modèles, caches et données sont hors Git. La demande actuelle autorise la publication HF après les deux entraînements, leurs évaluations et la revue visuelle. Les destinations sont privées :
 
 - `ethanzxv/Sharm-Image-2.1-VL4B-FP8` ;
 - `ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA`.
@@ -57,7 +57,19 @@ Chaque paire partage exactement le prompt, la graine CUDA réinitialisée, la r�
 
 Les images réelles, leurs empreintes, prompts, graines, réglages complets et versions du runtime sont copiés dans `comparisons/lora/` et `comparisons/encoder/` des exports. Une galerie absente, altérée ou incompatible avec les empreintes du projecteur ou du LoRA bloque l’assemblage de la fiche.
 
-Les fiches expliquent que le **remplacement du VL vise à compacter le modèle de base**. Elles chiffrent la taille réelle des poids safetensors de l’encodeur avec projecteur et de la base complète dans `footprint.json`. Les gains de VRAM, de vitesse et la conservation de la qualité doivent être évalués séparément. La génération et l’export de ces fiches s’intègrent aux étapes déjà prévues ; l’envoi HF reste différé.
+Les fiches expliquent que le **remplacement du VL vise à compacter le modèle de base**. Elles chiffrent la taille réelle des poids safetensors de l’encodeur avec projecteur et de la base complète dans `footprint.json`. Les gains de VRAM, de vitesse et la conservation de la qualité doivent être évalués séparément. La génération et l’export de ces fiches s’intègrent aux étapes déjà prévues.
+
+## Publication privée et rechargement
+
+`publish/publish_private.py` attend la fin de la chaîne et une revue visuelle liée aux empreintes exactes des galeries. Il compose une liste explicite des fichiers à envoyer : poids finaux, loader, dépendances figées, notices, rapports et comparatifs. Les checkpoints d’optimiseur, caches et données source sont exclus.
+
+```bash
+./1-local-generation/.venv-qwen/bin/python ./2-LoRA-qwen/publish/publish_private.py --verify-inference
+```
+
+L’authentification est lue dans le gestionnaire local HF. Le compte `ethanzxv` et la confidentialité sont contrôlés avant chaque envoi. La base est publiée en premier ; le LoRA référence ensuite sa révision HF immuable. Les tailles et empreintes distantes sont comparées aux fichiers locaux, les fiches et manifestes sont relus via HF et l’accès anonyme doit échouer. Une génération finale utilise le loader livré dans le miroir de ces révisions vérifiées.
+
+`artifacts/publication-request.json` conserve la demande actuelle ; `publication-status.json` contient les révisions publiées et la progression. L’ancien processus d’entraînement conserve son état de publication initial jusqu’à sa fin ; le rapport de publication fait foi pour la nouvelle demande et met à jour l’état final.
 
 ## Dataset sprites
 
