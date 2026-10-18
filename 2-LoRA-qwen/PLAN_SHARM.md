@@ -162,6 +162,8 @@ La perte combine une erreur quadratique rapportée à l'énergie de la cible et 
 
 Comparer le pipeline original et le pipeline Sharm avec mêmes prompts, graines, résolution, sampler et nombre de pas. Réserver des prompts absents du corpus : composition, comptage, couleurs, texte, transparence, scènes longues et édition.
 
+Pour la première exécution texte vers image, quatre prompts de validation du projecteur sont choisis avant génération, par catégories fixées. Le diffuseur est chargé en NF4 et le VAE en BF16 des deux côtés ; seuls les embeddings du VL 8B BF16 et du VL 4B FP8 + projecteur diffèrent. Les références en cache conservent leurs identités d’encodeur et empreintes. Les évaluations plus larges sur des prompts entièrement nouveaux et l’édition restent à réaliser.
+
 Mesurer le suivi des consignes, les erreurs de contenu et la qualité de l'alpha ; conserver les images comparatives et les chiffres. Fixer la tolérance de régression sur cette référence avant le run principal. L'égalité pixel à pixel entre deux encodeurs différents n'est pas un objectif réaliste.
 
 Si l'alignement des features est correct mais que les images se dégradent, ajouter une phase d'affinage du MLP guidée par le **diffuseur gelé** : mêmes latents bruités et timesteps, prédiction avec les embeddings enseignant comme cible, puis prédiction avec les embeddings projetés. L'erreur entre prédictions fournit un signal adapté à la tâche.
@@ -195,6 +197,9 @@ NOTICE
 LICENSE.encoder
 training_manifest.json
 checksums.json
+footprint.json         # tailles réelles des poids et réduction de la base
+base-validation.json
+comparisons/encoder/   # références 8B / 4B, PNG RGBA, damier et manifeste
 ```
 
 Le paquet Python Sharm et sa version sont documentés et figés dans la model card ; le code nécessaire au chargement est livré ou référencé à une révision immuable. Le chargement stock `QwenImage21Pipeline.from_pretrained` ne sera pas annoncé suffisant tant qu'il ne sait pas appliquer le projecteur.
@@ -225,6 +230,10 @@ La [licence Qwen-Image-2.1](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main
 8. Évaluer silhouette, identité demandée, cadrage, netteté, grille de pixels et alpha sur des espèces et descriptions réservées. La réduction nearest-neighbor, seule, ne garantit pas que tous les pixels générés suivent une grille parfaite.
 
 Publier ensuite le LoRA validé dans `ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA`, **privé**. Sa model card et ses métadonnées indiquent l'identifiant de base, la révision HF et l'empreinte du couple VL/projecteur. Le loader contrôle cette compatibilité avant application.
+
+La fiche du LoRA présente les six premières espèces distinctes de validation, chacune **sans puis avec LoRA**, avec les mêmes embeddings Sharm, prompt, graine, réglages et réduction nearest-neighbor 512 → 128. Le LoRA est chargé après toute la passe sans adaptateur, à un poids de 1.0. Les PNG RGBA 128 px et 512 px sont conservés, avec un aperçu séparé sur damier pour montrer l’alpha. Les réglages, versions du runtime et empreintes des images sont joints à `comparisons/lora/comparison.json`.
+
+La galerie VL 8B / VL 4B de la base est également copiée dans `comparisons/encoder/` du LoRA. Les deux fiches expliquent l’objectif de **compacter la base** et chiffrent les tailles réelles des poids de l’encodeur avec projecteur et de la base complète. Les comparaisons visuelles restent distinctes d’une mesure de vitesse ou de VRAM. La préparation des fiches et images est locale ; la publication HF privée est différée selon la demande actuelle de l’utilisateur.
 
 ## 12. Ressources et ordre d'exécution
 

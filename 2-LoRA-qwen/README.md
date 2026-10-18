@@ -46,6 +46,19 @@ Les exports locaux sont `1-local-generation/weights/sharm-image-2.1-vl4b-fp8/` e
 
 La licence Qwen Research et les attributions d’origine sont conservées. Aucun jeton HF n’est nécessaire pour entraîner depuis les poids publics. Une authentification locale du compte `ethanzxv` sera nécessaire pour envoyer ultérieurement les exports en privé.
 
+## Comparaisons sur les fiches HF
+
+La fiche du LoRA contiendra deux galeries générées par la chaîne après les entraînements :
+
+- **Avant / après LoRA** : six espèces réservées à la validation, même base Sharm avec le VL 4B FP8 et son projecteur. Tous les rendus sans adaptateur sont calculés avant de charger le LoRA, puis les mêmes prompts sont rejoués avec l’adaptateur à 1.0.
+- **VL 8B d’origine / VL 4B FP8 + projecteur** : quatre prompts de validation générale, sans LoRA des deux côtés. Cette galerie figure aussi sur la fiche de la base Sharm.
+
+Chaque paire partage exactement le prompt, la graine CUDA réinitialisée, la résolution, le scheduler, le nombre de pas et le CFG. Le diffuseur est chargé en NF4 avec calcul BF16 et le VAE en BF16 des deux côtés. Les sprites sont générés en 512 px puis réduits de la même façon en 128 px, en nearest-neighbor. Les aperçus utilisent un damier ; les PNG à télécharger conservent leur alpha et aucune retouche n’est appliquée aux générations.
+
+Les images réelles, leurs empreintes, prompts, graines, réglages complets et versions du runtime sont copiés dans `comparisons/lora/` et `comparisons/encoder/` des exports. Une galerie absente, altérée ou incompatible avec les empreintes du projecteur ou du LoRA bloque l’assemblage de la fiche.
+
+Les fiches expliquent que le **remplacement du VL vise à compacter le modèle de base**. Elles chiffrent la taille réelle des poids safetensors de l’encodeur avec projecteur et de la base complète dans `footprint.json`. Les gains de VRAM, de vitesse et la conservation de la qualité doivent être évalués séparément. La génération et l’export de ces fiches s’intègrent aux étapes déjà prévues ; l’envoi HF reste différé.
+
 ## Dataset sprites
 
 Les trois planches locales `21228.png`, `21229.png`, `21230.png` fournissent 770 sprites non vides de 64 × 64 : 385 espèces, avec deux variantes chacune. Les deux cases Celebi sont vides. La préparation enlève tous les pixels exacts `#A5EBFF`, y compris les îlots de fond isolés, et conserve le RGBA. Les copies 512 px sont agrandies en nearest-neighbor.

@@ -10,6 +10,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
 from sharm_image21.core import (ARTIFACTS, ORIGINAL, ROOT, STUDENT, WEIGHTS,
                                 atomic_json, file_hash, model_identity)
+from sharm_image21.model_cards import base_card, measure_footprint, package_comparisons
 
 
 def link_or_copy(source, destination):
@@ -17,6 +18,23 @@ def link_or_copy(source, destination):
         os.link(source, destination)
     except OSError:
         shutil.copy2(source, destination)
+
+
+def write_presentation(destination, validation, fingerprint):
+    source = ARTIFACTS / "base-comparisons"
+    if validation.get("comparison_sha256") != file_hash(source / "comparison.json"):
+        raise ValueError("La galerie VL ne correspond pas au rapport de validation.")
+    comparison = package_comparisons(source, destination / "comparisons/encoder", "encoder", fingerprint)
+    footprint = measure_footprint(ORIGINAL, STUDENT, ARTIFACTS / "projector")
+    atomic_json(destination / "footprint.json", footprint)
+    atomic_json(destination / "base-validation.json", validation)
+    (destination / "README.md").write_text(base_card(comparison, footprint, validation), encoding="utf-8")
+
+
+def write_checksums(destination):
+    checksums = {str(path.relative_to(destination)): file_hash(path) for path in destination.rglob("*")
+                 if path.is_file() and path != destination / "checksums.json"}
+    atomic_json(destination / "checksums.json", checksums)
 
 
 def main():
@@ -30,7 +48,9 @@ def main():
         previous = json.loads((destination / "sharm_config.json").read_text())
         if previous["projector_sha256"] != fingerprint:
             raise ValueError("Une base d'une autre révision existe dans le dossier de sortie.")
-        print(f"Base déjà exportée : {destination}", flush=True)
+        write_presentation(destination, validation, fingerprint)
+        write_checksums(destination)
+        print(f"Base déjà exportée, fiche et comparaisons actualisées : {destination}", flush=True)
         return
     staging = destination.with_name(destination.name + ".staging")
     staging.mkdir(mode=0o700, parents=True, exist_ok=True)
@@ -66,17 +86,8 @@ def main():
     atomic_json(staging / "sharm_config.json", config)
     atomic_json(staging / "model_index.json", {"_class_name": "SharmImage21Pipeline", "_module": "sharm_image21.pipeline"})
     atomic_json(staging / "training_manifest.json", json.loads((projector_dir / "training-complete.json").read_text()))
-    (staging / "README.md").write_text(
-        "---\nlicense: other\nlicense_name: qwen-research\nlicense_link: LICENSE\npipeline_tag: text-to-image\n"
-        "base_model:\n- Qwen/Qwen-Image-2.1\n- Qwen/Qwen3-VL-4B-Instruct-FP8\n---\n\n"
-        "# Sharm Image 2.1 VL4B FP8\n\nBuilt with Qwen. Private research checkpoint.\n\n"
-        "Frozen Qwen3-VL 4B FP8 decoder, declared BF16 exceptions, trained BF16 projector and original diffusion weights. "
-        "Experimental text-to-image alignment; image editing has not been validated.\n\n"
-        "Use the bundled `sharm_image21.pipeline.SharmImage21Pipeline.from_pretrained` loader. "
-        "The loader uses sequential FP8 conditioning and NF4 diffusion for the 16 GiB reference GPU.\n\n"
-        "Qwen Research License applies to this combined model. Source and modification notices are retained.\n", encoding="utf-8")
-    checksums = {str(path.relative_to(staging)): file_hash(path) for path in staging.rglob("*") if path.is_file()}
-    atomic_json(staging / "checksums.json", checksums)
+    write_presentation(staging, validation, fingerprint)
+    write_checksums(staging)
     staging.replace(destination)
     print(f"Base Sharm exportée localement, publication différée : {destination}", flush=True)
 

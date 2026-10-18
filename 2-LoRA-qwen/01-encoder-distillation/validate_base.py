@@ -8,9 +8,11 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
 import numpy as np
 import torch
-from sharm_image21.core import (ARTIFACTS, CACHE, FeatureCache, Projector, atomic_json,
-                                file_hash, read_jsonl)
+from sharm_image21.core import (ARTIFACTS, CACHE, PROJECT, FeatureCache, Projector, atomic_json,
+                                file_hash, model_identity, read_jsonl)
 from sharm_image21.diffusion import load_transformer, load_diffuser_pipeline, predict_flow
+from sharm_image21.model_cards import (LABELS, comparison_manifest, generation_kwargs,
+                                       load_comparisons, save_member)
 
 
 @torch.no_grad()
@@ -19,14 +21,23 @@ def main():
     parser.add_argument("--samples", type=int, default=4)
     parser.add_argument("--steps", type=int, default=20)
     args = parser.parse_args()
+    if not 1 <= args.samples <= 6 or args.steps < 1:
+        raise ValueError("Prévoir de 1 à 6 comparaisons et un nombre de pas positif.")
     projector_path = ARTIFACTS / "projector"
     fingerprint = file_hash(projector_path / "model.safetensors")
     report_path = ARTIFACTS / "base-validation.json"
+    output = ARTIFACTS / "base-comparisons"
     if report_path.exists():
         previous = json.loads(report_path.read_text())
         if previous.get("projector_sha256") == fingerprint and previous.get("passed"):
-            print("Base déjà validée à cette révision.", flush=True)
-            return
+            try:
+                existing = load_comparisons(output, "encoder", fingerprint)
+            except (OSError, ValueError, KeyError):
+                existing = None
+            if (existing and len(existing["pairs"]) == args.samples
+                    and existing["settings"]["num_inference_steps"] == args.steps):
+                print("Base déjà validée, comparaisons appariées présentes à cette révision.", flush=True)
+                return
     training = json.loads((projector_path / "training-complete.json").read_text())
     metrics = training["validation"]
     if not (metrics["relative_mse"] < 0.5 and metrics["cosine"] > 0.65 and 0.75 < metrics["norm_ratio"] < 1.25):
@@ -70,21 +81,36 @@ def main():
         atomic_json(report_path, {**report, "passed": False, "reason": "denoiser_deviation_above_gate"})
         raise RuntimeError("Déviation du diffuseur trop forte ; arrêt avant le LoRA.")
     pipeline = load_diffuser_pipeline(transformer=transformer)
-    output = ARTIFACTS / "base-comparisons"
     output.mkdir(exist_ok=True)
+    comparison = comparison_manifest(
+        "encoder", pipeline, steps=args.steps, projector_sha256=fingerprint,
+        controls={"base_revision": model_identity("teacher")["revision"],
+                  "teacher_identity": model_identity("teacher"), "student_identity": model_identity("student"),
+                  "teacher_cache_index_sha256": file_hash(teacher.path),
+                  "student_cache_index_sha256": file_hash(student.path),
+                  "lora": "absent on both sides", "shared_diffusion_and_vae": True},
+        selection={"split": "projector validation", "method": "first matching prompt per fixed category, then corpus order",
+                   "markers": ["alpha channel", "exact text", "to the left", "Une illustration", "Exactly", "photograph"],
+                   "selected_before_generation": True, "count": args.samples},
+        script=Path(__file__).resolve(), project=PROJECT)
     samples = []
     for index, (row, pair) in enumerate(zip(chosen[:args.samples], pairs[:args.samples])):
-        for label, embeddings in zip(("teacher", "sharm"), pair):
-            image = pipeline(prompt_embeds=embeddings, prompt_embeds_mask=None, width=512, height=512,
-                             output_resolution=512, num_inference_steps=args.steps, true_cfg_scale=1.0,
+        record = {"id": row["id"], "prompt": row["text"], "seed": 1000+index}
+        for side, label, embeddings in zip(("left", "right"), ("teacher", "sharm"), pair):
+            image = pipeline(prompt_embeds=embeddings, prompt_embeds_mask=None, **generation_kwargs(args.steps),
                              generator=torch.Generator(device="cuda").manual_seed(1000+index)).images[0]
             if image.mode != "RGBA" or np.asarray(image)[..., :3].std() < 1 or np.asarray(image)[..., 3].max() == 0:
                 raise RuntimeError(f"Échantillon {label} vide ou format incorrect.")
-            filename = f"{index:02d}-{label}.png"
-            image.save(output / filename)
-            samples.append({"file": filename, "prompt": row["text"], "seed": 1000+index})
+            member = save_member(image, output, f"{index:02d}-{label}", LABELS["encoder"][0 if side == "left" else 1])
+            record[side] = member
+            samples.append({"file": member["image"]["file"], "prompt": row["text"],
+                            "seed": 1000+index, "conditioner": label})
+        comparison["pairs"].append(record)
+    atomic_json(output / "comparison.json", comparison)
+    load_comparisons(output, "encoder", fingerprint)
     atomic_json(output / "samples.json", samples)
-    atomic_json(report_path, {**report, "passed": True, "samples": samples})
+    atomic_json(report_path, {**report, "passed": True, "samples": samples,
+                             "comparison_sha256": file_hash(output / "comparison.json")})
     print(json.dumps(report, indent=2), flush=True)
 
 
