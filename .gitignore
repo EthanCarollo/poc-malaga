@@ -2,7 +2,13 @@
 .runtime/
 weights/
 outputs/
+2-LoRA-qwen/dataset/
 runtime-config.json
 __pycache__/
 *.py[cod]
 *.log
+2-LoRA-qwen/cache/
+2-LoRA-qwen/artifacts/
+.env
+.env.*
+*:Zone.Identifier
