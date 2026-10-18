@@ -35,6 +35,8 @@ Les journaux sont dans `artifacts/logs/`. `artifacts/run-status.json` contient l
 
 La première base est expérimentale et validée uniquement pour le texte vers image. L’édition par image nécessite encore un alignement et une évaluation multimodaux ; le loader refuse cette fonction dans cette version. Les contrôles automatiques de génération ne remplacent pas la revue visuelle des images et de l’identité des sprites.
 
+Le cache 8B utilise des lots de 16 pour amortir le transfert des couches déportées en RAM. Le 4B FP8 garde son encodage un prompt à la fois. `run_training.py --teacher-batch-size 4` permet de revenir aux petits lots sur une machine disposant de moins de mémoire ; les shards déjà écrits restent réutilisables.
+
 ## Confidentialité et sorties
 
 Les modèles, caches et données sont hors Git. La demande actuelle autorise la publication HF après les deux entraînements, leurs évaluations et la revue visuelle. Les destinations sont privées :

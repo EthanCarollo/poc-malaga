@@ -31,9 +31,10 @@ def main():
     parser.add_argument("--detach", action="store_true")
     parser.add_argument("--status", action="store_true")
     parser.add_argument("--lora-steps", type=int, default=500)
+    parser.add_argument("--teacher-batch-size", type=int, default=16)
     args = parser.parse_args()
-    if args.lora_steps < 1:
-        raise ValueError("Le nombre de pas LoRA doit être positif.")
+    if min(args.lora_steps, args.teacher_batch_size) < 1:
+        raise ValueError("Le nombre de pas LoRA et la taille des lots doivent être positifs.")
     os.umask(0o077)
     ARTIFACTS.mkdir(mode=0o700, parents=True, exist_ok=True)
     logs = ARTIFACTS / "logs"
@@ -55,7 +56,8 @@ def main():
                     return
         with (logs / "runner.log").open("a") as output:
             child = subprocess.Popen([sys.executable, "-u", str(Path(__file__).resolve()),
-                                      "--lora-steps", str(args.lora_steps)], cwd=PROJECT,
+                                      "--lora-steps", str(args.lora_steps),
+                                      "--teacher-batch-size", str(args.teacher_batch_size)], cwd=PROJECT,
                                      stdin=subprocess.DEVNULL, stdout=output, stderr=subprocess.STDOUT,
                                      start_new_session=True)
         print(f"Chaîne Sharm démarrée, PID {child.pid}. Journaux : {logs}", flush=True)
@@ -70,7 +72,7 @@ def main():
         ("prepare_sprites", "02-sprite-lora/prepare_dataset.py", ["--training-size", "512"]),
         ("prepare_corpus", "01-encoder-distillation/prepare_corpus.py", []),
         ("audit_fp8", "01-encoder-distillation/audit_runtime.py", []),
-        ("cache_teacher", "01-encoder-distillation/cache_features.py", ["teacher", "--batch-size", "4"]),
+        ("cache_teacher", "01-encoder-distillation/cache_features.py", ["teacher", "--batch-size", str(args.teacher_batch_size)]),
         ("cache_student", "01-encoder-distillation/cache_features.py", ["student", "--batch-size", "4"]),
         ("train_projector", "01-encoder-distillation/train_projector.py", []),
         ("validate_base", "01-encoder-distillation/validate_base.py", []),
@@ -84,8 +86,13 @@ def main():
     for package in ("torch", "transformers", "diffusers", "accelerate", "bitsandbytes", "kernels", "safetensors", "pyarrow"):
         versions[package] = importlib.metadata.version(package)
     source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=PROJECT, text=True).strip()
+    request_path = ARTIFACTS / "publication-request.json"
+    request = json.loads(request_path.read_text()) if request_path.exists() else {}
+    publish_requested = request.get("authorized") is True and request.get("private") is True and request.get("account") == "ethanzxv"
     state = {"pid": os.getpid(), "started_at": time.time(), "state": "running", "stage": "initializing",
-             "private": True, "publish": False, "publication": "deferred_by_user",
+             "private": True, "publish": publish_requested,
+             "publication": "awaiting_training_validation" if publish_requested else "deferred_by_user",
+             "cache_batch_sizes": {"teacher": args.teacher_batch_size, "student": 1},
              "source_commit": source_commit, "versions": versions, "stages": [name for name, _, _ in steps]}
     child = None
 
@@ -117,9 +124,11 @@ def main():
                 returncode = child.wait()
             if returncode != 0:
                 raise RuntimeError(f"{name} a échoué (code {returncode}). Journal : {logs / (name+'.log')}")
-        state.update(state="complete", stage="finished", updated_at=time.time(), publication="deferred_by_user")
+        state.update(state="complete", stage="finished", updated_at=time.time(),
+                     publication="awaiting_review_and_upload" if publish_requested else "deferred_by_user")
         atomic_json(ARTIFACTS / "run-status.json", state)
-        print("Deux entraînements terminés localement. Publication HF privée différée.", flush=True)
+        print("Deux entraînements terminés localement. " +
+              ("Publication HF privée autorisée après revue." if publish_requested else "Publication HF privée différée."), flush=True)
     except Exception as error:
         state.update(state="failed", error=str(error), updated_at=time.time())
         atomic_json(ARTIFACTS / "run-status.json", state)
