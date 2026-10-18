@@ -71,7 +71,9 @@ Les fiches expliquent que le **remplacement du VL vise à compacter le modèle d
 
 L’authentification est lue dans le gestionnaire local HF. Le compte `ethanzxv` et la confidentialité sont contrôlés avant chaque envoi. La base est publiée en premier ; le LoRA référence ensuite sa révision HF immuable. Les tailles et empreintes distantes sont comparées aux fichiers locaux, les fiches et manifestes sont relus via HF et l’accès anonyme doit échouer. Une génération finale utilise le loader livré dans le miroir de ces révisions vérifiées.
 
-`artifacts/publication-request.json` conserve la demande actuelle ; `publication-status.json` contient les révisions publiées et la progression. L’ancien processus d’entraînement conserve son état de publication initial jusqu’à sa fin ; le rapport de publication fait foi pour la nouvelle demande et met à jour l’état final.
+La base peut être envoyée dès son propre entraînement validé et ses images revues, pendant que le LoRA travaille : utiliser `--component base`, puis `--component lora --verify-inference` une fois le LoRA terminé et revu. Cette seconde invocation vérifie de nouveau la base publiée et réutilise sa révision exacte.
+
+`artifacts/publication-request.json` conserve la demande actuelle ; `publication-status.json` contient les révisions publiées et la progression. Le rapport de publication met à jour l’état final après la vérification du LoRA.
 
 ## Dataset sprites
 

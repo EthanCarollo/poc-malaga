@@ -42,12 +42,12 @@ def hardlink_or_copy(source, destination):
         shutil.copy2(source, destination)
 
 
-def prerequisites():
+def prerequisites(component):
     request = json.loads((ARTIFACTS / "publication-request.json").read_text())
     if request.get("authorized") is not True or request.get("private") is not True or request.get("account") != "ethanzxv":
         raise RuntimeError("Une demande de publication privée pour ethanzxv est requise.")
     run = json.loads((ARTIFACTS / "run-status.json").read_text())
-    if run.get("state") != "complete":
+    if component != "base" and run.get("state") != "complete":
         raise RuntimeError("Les deux entraînements et leurs évaluations doivent être terminés.")
     base, lora = SOURCES["base"], SOURCES["lora"]
     config = json.loads((base / "sharm_config.json").read_text())
@@ -58,22 +58,29 @@ def prerequisites():
         value = json.loads((ARTIFACTS / report).read_text())
         if value.get("passed") is not True or value["projector_sha256"] != fingerprint:
             raise ValueError(f"Validation incompatible ou manquante : {report}")
-    for path in (base / "projector/training-complete.json", lora / "training-complete.json"):
-        if not path.is_file():
-            raise RuntimeError(f"Entraînement non terminé : {path}")
+    if not (base / "projector/training-complete.json").is_file():
+        raise RuntimeError("L’entraînement du projecteur n’est pas terminé.")
+    load_comparisons(base / "comparisons/encoder", "encoder", fingerprint)
+    review = json.loads((ARTIFACTS / "visual-review.json").read_text())
+    if (review.get("encoder_passed") is not True
+            or review.get("encoder_comparison_sha256") != file_hash(base / "comparisons/encoder/comparison.json")):
+        raise ValueError("Une revue visuelle des images exactes du VL est requise.")
+    if component == "base":
+        return config, None, review
+    if not (lora / "training-complete.json").is_file():
+        raise RuntimeError("L’entraînement LoRA n’est pas terminé.")
     lora_config = json.loads((lora / "sharm_lora_config.json").read_text())
     lora_sha = file_hash(lora / "pytorch_lora_weights.safetensors")
     if lora_config["projector_sha256"] != fingerprint or lora_config["lora_sha256"] != lora_sha:
         raise ValueError("Les poids LoRA et leur déclaration sont incompatibles.")
-    load_comparisons(base / "comparisons/encoder", "encoder", fingerprint)
     load_comparisons(lora / "comparisons/encoder", "encoder", fingerprint)
     load_comparisons(lora / "comparisons/lora", "lora", fingerprint, lora_sha)
     if file_hash(base / "comparisons/encoder/comparison.json") != file_hash(lora / "comparisons/encoder/comparison.json"):
         raise ValueError("Les deux fiches ne montrent pas la même référence VL.")
-    review = json.loads((ARTIFACTS / "visual-review.json").read_text())
     expected = {"encoder_comparison_sha256": file_hash(base / "comparisons/encoder/comparison.json"),
                 "lora_comparison_sha256": file_hash(lora / "comparisons/lora/comparison.json")}
-    if review.get("passed") is not True or any(review.get(key) != value for key, value in expected.items()):
+    if (review.get("passed") is not True or review.get("lora_passed") is not True
+            or any(review.get(key) != value for key, value in expected.items())):
         raise ValueError("La revue visuelle doit porter sur les images exactes de cette publication.")
     return config, lora_sha, review
 
@@ -210,17 +217,32 @@ def upload(api, kind, directory):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--component", choices=("base", "lora", "both"), default="both")
     parser.add_argument("--verify-inference", action="store_true")
     args = parser.parse_args()
+    if args.component == "base" and args.verify_inference:
+        parser.error("La vérification d’inférence combinée suit la publication du LoRA.")
     os.umask(0o077)
     api = HfApi()
     if api.whoami().get("name") != "ethanzxv":
         raise RuntimeError("Authentification HF du compte ethanzxv requise.")
-    config, lora_sha, review = prerequisites()
+    config, lora_sha, review = prerequisites(args.component)
     status("preparing", private=True, account="ethanzxv")
-    base_dir = build_release("base", config, lora_sha, review)
-    base = upload(api, "base", base_dir)
-    status("base_published", base=base)
+    if args.component != "lora":
+        base_dir = build_release("base", config, lora_sha, review)
+        base = upload(api, "base", base_dir)
+        status("base_published", base=base)
+        if args.component == "base":
+            return
+    else:
+        previous = json.loads((ARTIFACTS / "publication-status.json").read_text())
+        published = previous["base"]
+        base_dir = ARTIFACTS / "hf-releases/base"
+        manifest = json.loads((base_dir / "release_manifest.json").read_text())
+        if manifest["projector_sha256"] != config["projector_sha256"]:
+            raise ValueError("La base déjà publiée utilise un autre projecteur.")
+        ensure_private(api, REPOS["base"])
+        base = verify_remote(api, REPOS["base"], published["revision"], base_dir)
     lora_dir = build_release("lora", config, lora_sha, review, base_hf_revision=base["revision"])
     lora = upload(api, "lora", lora_dir)
     status("uploads_verified", base=base, lora=lora)
