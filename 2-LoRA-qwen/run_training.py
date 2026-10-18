@@ -99,7 +99,6 @@ def main():
     def interrupted(signum, frame):
         if child is not None and child.poll() is None:
             child.terminate()
-            child.wait(timeout=30)
         state.update(state="interrupted", updated_at=time.time())
         atomic_json(ARTIFACTS / "run-status.json", state)
         raise SystemExit(128+signum)
@@ -133,6 +132,16 @@ def main():
         state.update(state="failed", error=str(error), updated_at=time.time())
         atomic_json(ARTIFACTS / "run-status.json", state)
         raise
+    finally:
+        # Wait outside the signal handler: Popen.wait may already hold its lock
+        # when the signal interrupts the main wait, so a nested wait deadlocks.
+        if child is not None and child.poll() is None:
+            child.terminate()
+            try:
+                child.wait(timeout=30)
+            except subprocess.TimeoutExpired:
+                child.kill()
+                child.wait()
 
 
 if __name__ == "__main__":
