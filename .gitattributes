@@ -1,0 +1,5 @@
+*.sh text eol=lf
+# Preserve dataset hashes on Windows and Linux; no newline conversion.
+2-LoRA-qwen/02-sprite-lora/dataset/** -text
+# The dataset records the SHA-256 of this exact preparation recipe.
+2-LoRA-qwen/02-sprite-lora/prepare_monster_dataset.py -text

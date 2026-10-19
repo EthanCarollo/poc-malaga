@@ -13,3 +13,6 @@ __pycache__/
 .env.*
 *:Zone.Identifier
 2-LoRA-qwen/*.png
+# Monster source sheets and validated datasets are versioned with their docs.
+# Keep downloaded references and preparation drafts local.
+2-LoRA-qwen/02-sprite-lora/dataset/reference/
