@@ -72,18 +72,76 @@ def model_identity(kind: str, model_dir: Path | None = None) -> dict:
 
 
 class Projector(nn.Module):
-    def __init__(self, input_dim: int = 2560, output_dim: int = 4096, bottleneck: int = 1024):
+    def __init__(self, input_dim: int = 2560, output_dim: int = 4096, bottleneck: int = 1024,
+                 context_layers: int = 0, context_heads: int = 8, layout_enabled: bool = False):
         super().__init__()
         self.settings = dict(input_dim=input_dim, output_dim=output_dim, bottleneck=bottleneck)
+        if context_layers < 0 or context_heads < 1 or (context_layers and bottleneck % context_heads):
+            raise ValueError("Largeur d'attention divisible par le nombre de têtes requise.")
+        # Preserve the v1 config and state keys when no spatial extension is used.
+        if context_layers or layout_enabled:
+            self.settings.update(context_layers=context_layers, context_heads=context_heads,
+                                 layout_enabled=layout_enabled)
         self.skip = nn.Linear(input_dim, output_dim)
         self.norm = nn.RMSNorm(input_dim, eps=1e-6)
         self.up = nn.Linear(input_dim, bottleneck)
         self.down = nn.Linear(bottleneck, output_dim)
         nn.init.zeros_(self.down.weight)
         nn.init.zeros_(self.down.bias)
+        self.context = nn.ModuleList([
+            nn.TransformerEncoderLayer(bottleneck, context_heads, 4*bottleneck, dropout=0.0,
+                                       activation="gelu", batch_first=True, norm_first=True)
+            for _ in range(context_layers)])
+        if layout_enabled:
+            self.layout_box = nn.Sequential(nn.Linear(4, bottleneck), nn.GELU(), nn.Linear(bottleneck, bottleneck))
+            self.layout_object = nn.Embedding(16, bottleneck)
 
-    def forward(self, hidden):
-        return self.skip(hidden) + self.down(F.gelu(self.up(self.norm(hidden))))
+    def forward(self, hidden, attention_mask=None, layout=None):
+        """Project ordered tokens; optional normalized xyxy boxes follow object order.
+
+        The legacy token-wise path keeps identical arithmetic. In the contextual
+        path, valid tokens must stay in order (no random token subsampling).
+        """
+        if not self.context and layout is None:
+            return self.skip(hidden) + self.down(F.gelu(self.up(self.norm(hidden))))
+        unbatched = hidden.ndim == 2
+        hidden = hidden.unsqueeze(0) if unbatched else hidden
+        if hidden.ndim != 3:
+            raise ValueError("États attendus : [tokens, dimensions] ou [lot, tokens, dimensions].")
+        values = self.up(self.norm(hidden))
+        text_length = values.shape[1]
+        padding = None
+        if attention_mask is not None:
+            mask = attention_mask.unsqueeze(0) if attention_mask.ndim == 1 else attention_mask
+            if mask.shape != hidden.shape[:2] or not mask.bool().any(dim=1).all():
+                raise ValueError("Masque de tokens invalide ou séquence entièrement masquée.")
+            padding = ~mask.to(device=hidden.device, dtype=torch.bool)
+        if layout is not None:
+            if not self.settings.get("layout_enabled"):
+                raise ValueError("Ce projecteur n'a pas été entraîné avec des boîtes spatiales.")
+            boxes = layout.unsqueeze(0) if layout.ndim == 2 else layout
+            if boxes.ndim != 3 or boxes.shape[0] != hidden.shape[0] or boxes.shape[-1] != 4 or not 1 <= boxes.shape[1] <= 16:
+                raise ValueError("De 1 à 16 boîtes xyxy par prompt sont requises.")
+            if not torch.isfinite(boxes).all() or (boxes < 0).any() or (boxes > 1).any() or (boxes[..., 2:] <= boxes[..., :2]).any():
+                raise ValueError("Boîtes xyxy normalisées non vides requises.")
+            slots = torch.arange(boxes.shape[1], device=hidden.device)
+            layout_values = self.layout_box(boxes.to(device=hidden.device, dtype=values.dtype)) + self.layout_object(slots)[None].to(values.dtype)
+            values = torch.cat((values, layout_values), dim=1)
+            if padding is not None:
+                padding = F.pad(padding, (0, boxes.shape[1]), value=False)
+        width = values.shape[-1]
+        positions = torch.arange(values.shape[1], device=values.device).float()[:, None]
+        frequencies = torch.exp(torch.arange(0, width, 2, device=values.device).float()*(-9.210340372/width))
+        angles = positions*frequencies
+        positional = torch.zeros(values.shape[1], width, device=values.device)
+        positional[:, 0::2], positional[:, 1::2] = angles.sin(), angles[:, :width//2].cos()
+        values = values + positional.to(values.dtype)
+        for layer in self.context:
+            values = layer(values, src_key_padding_mask=padding)
+        text = self.skip(hidden) + self.down(F.gelu(values[:, :text_length]))
+        if values.shape[1] > text_length:
+            text = torch.cat((text, self.down(F.gelu(values[:, text_length:]))), dim=1)
+        return text[0] if unbatched else text
 
     def save(self, path: Path, metadata: dict | None = None, storage_dtype=None):
         path.mkdir(parents=True, exist_ok=True)
@@ -99,7 +157,8 @@ class Projector(nn.Module):
         if config.get("convention") != FEATURE_CONVENTION:
             raise ValueError("Convention d'embeddings du projecteur incompatible.")
         state = load_file(path / "model.safetensors")
-        model = cls(**{key: config[key] for key in ("input_dim", "output_dim", "bottleneck")}).to(state["skip.weight"].dtype)
+        keys = ("input_dim", "output_dim", "bottleneck", "context_layers", "context_heads", "layout_enabled")
+        model = cls(**{key: config[key] for key in keys if key in config}).to(state["skip.weight"].dtype)
         model.load_state_dict(state)
         return model.to(device)
 
@@ -107,7 +166,7 @@ class Projector(nn.Module):
 class FrozenEncoder:
     """Extract the norm INPUT without LM logits, past-key-values or all-layer captures."""
 
-    def __init__(self, kind: str, gpu_memory: str = "11GiB", model_dir: Path | None = None,
+    def __init__(self, kind: str, gpu_memory: str = "auto", model_dir: Path | None = None,
                  processor_dir: Path | None = None):
         from transformers import Qwen3VLForConditionalGeneration, Qwen3VLProcessor
 
@@ -123,9 +182,19 @@ class FrozenEncoder:
         kwargs = dict(dtype=torch.bfloat16, attn_implementation="sdpa", local_files_only=True)
         if kind == "student":
             os.environ.setdefault("TRANSFORMERS_DISABLE_DEEPGEMM_LINEAR", "1")
-            kwargs["device_map"] = "cuda"
+            # This extractor calls model.model with text only: visual and lm_head
+            # are never executed. Keep their weights in RAM to leave room for
+            # FP8 prefill on an 8 GB GPU; all language layers stay on CUDA.
+            kwargs["device_map"] = {"model.language_model": "cuda", "model.visual": "cpu", "lm_head": "cpu"}
         else:
-            kwargs.update(device_map="auto", max_memory={0: gpu_memory, "cpu": "9GiB"})
+            import psutil
+            free_gpu, _ = torch.cuda.mem_get_info()
+            gpu_budget = max(512*2**20, free_gpu-2*2**30) if gpu_memory == "auto" else gpu_memory
+            cpu_budget = max(1*2**30, psutil.virtual_memory().available-2*2**30)
+            offload = CACHE / "teacher-offload"
+            offload.mkdir(parents=True, exist_ok=True)
+            kwargs.update(device_map="auto", max_memory={0: gpu_budget, "cpu": cpu_budget},
+                          offload_folder=str(offload), offload_state_dict=True)
         started = time.monotonic()
         self.model = Qwen3VLForConditionalGeneration.from_pretrained(self.model_dir, **kwargs)
         self.model.eval().requires_grad_(False)
@@ -137,6 +206,8 @@ class FrozenEncoder:
                 if type(module).__name__ == "FP8Linear":
                     if module.weight.dtype != torch.float8_e4m3fn:
                         raise RuntimeError(f"Déquantification inattendue : {name} / {module.weight.dtype}")
+                    if name.startswith("model.language_model.") and module.weight.device.type != "cuda":
+                        raise RuntimeError(f"Couche FP8 textuelle hors CUDA : {name}")
                     self.quantized_linears += 1
             if not self.quantized_linears or getattr(self.model.config.quantization_config, "dequantize", False):
                 raise RuntimeError("Le décodeur étudiant n'est pas chargé en FP8 effectif.")
@@ -167,7 +238,9 @@ class FrozenEncoder:
         hidden = captured.pop()
         result = []
         for row, mask, ids in zip(hidden, inputs.attention_mask.bool(), inputs.input_ids):
-            values = row[mask][self.drop_idx:].to(device="cpu", dtype=torch.bfloat16).contiguous()
+            # With CPU/disk offload, the final hidden states can live on a
+            # different device from the token IDs and their attention mask.
+            values = row[mask.to(row.device)][self.drop_idx:].to(device="cpu", dtype=torch.bfloat16).contiguous()
             token_ids = ids[mask][self.drop_idx:].cpu().tolist()
             if not len(values) or values.shape[-1] != self.hidden_size or not torch.isfinite(values).all():
                 raise RuntimeError("Embeddings vides, de mauvaise taille ou non finis.")

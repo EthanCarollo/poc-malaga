@@ -11,6 +11,7 @@ import torch
 from sharm_image21.core import (ARTIFACTS, CACHE, PROJECT, FeatureCache, Projector, atomic_json,
                                 file_hash, model_identity, read_jsonl)
 from sharm_image21.diffusion import load_transformer, load_diffuser_pipeline, predict_flow
+from sharm_image21.image_io import require_transparent_background
 from sharm_image21.model_cards import (LABELS, comparison_manifest, generation_kwargs,
                                        load_comparisons, save_member)
 
@@ -101,6 +102,9 @@ def main():
                              generator=torch.Generator(device="cuda").manual_seed(1000+index)).images[0]
             if image.mode != "RGBA" or np.asarray(image)[..., :3].std() < 1 or np.asarray(image)[..., 3].max() == 0:
                 raise RuntimeError(f"Échantillon {label} vide ou format incorrect.")
+            if any(marker in row["text"].lower() for marker in
+                   ("alpha channel", "transparent background", "with transparency")):
+                require_transparent_background(image)
             member = save_member(image, output, f"{index:02d}-{label}", LABELS["encoder"][0 if side == "left" else 1])
             record[side] = member
             samples.append({"file": member["image"]["file"], "prompt": row["text"],

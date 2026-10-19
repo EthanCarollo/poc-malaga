@@ -1,10 +1,35 @@
 # Sharm : VL 4B FP8 gelé, projecteur et LoRA sprites
 
+## Sharm Image Monster Pixel Art : nouvelles données
+
+Le [dataset Monster nettoyé](02-sprite-lora/dataset/README.md) contient **4 481 PNG RGBA uniques de 128 × 128, couvrant 649 espèces**, issus des 25 fichiers fournis. Le découpage, les formes, les vues, les palettes, les doublons et les définitions FR/EN sont documentés et audités. Les données prêtes à utiliser sont dans `02-sprite-lora/dataset/prepared/monster-clean-v2/` ; cette préparation n'a pas encore servi à un nouvel entraînement du LoRA Monster. La chaîne spatiale de **Sharm Image Base** conserve son corpus et ses caches actuels sur le serveur SSH.
+
+## Nouveau candidat : positions et compositions RGBA
+
+La chaîne [03-spatial-distillation](03-spatial-distillation/README.md) ajoute un **candidat expérimental** : corpus RGBA avec positions mesurées, projecteur avec attention entre tokens, boîtes de contrôle optionnelles, puis apprentissage guidé par les images et les trajectoires du 8B. Le 4B reste réellement chargé et gelé en FP8 ; les composants entraînables utilisent le calcul BF16 et des poids maîtres FP32. Un LoRA du diffuseur est optionnel.
+
+```mermaid
+flowchart LR
+    A[Assets PNG RGBA et légendes] --> B[Compositions et boîtes mesurées]
+    B --> C[Projecteur contextuel et apprentissage du diffuseur]
+    D[4B FP8 gelé] --> C
+    E[8B enseignant hors ligne] --> C
+    C --> F[Comparaisons avec mêmes graines]
+    F --> G[Revue des identités et positions]
+    G --> H[Score spatial et intervalle de confiance]
+```
+
+Les expériences utilisent `artifacts/spatial/` et `cache/spatial/`. La nouvelle chaîne produit des candidats locaux. La demande actuelle prévoit de publier le candidat terminé sur **`ethanzxv/Sharm-Image-2.1-VL4B-FP8`**, après revue et vérification du loader livré, en conservant la visibilité du dépôt. Voir le [protocole d'export spatial](publish/README.md). **Aucun nouveau résultat de précision spatiale n'est encore établi.** Le profil `8gb.json` vise une RTX 5060 Laptop 8 Go à 256 px ; le profil `16gb.json` propose 512 px. Ces budgets demandent un audit réel du passage arrière avant tout entraînement long.
+
+La reprise actuelle s’exécute sur le serveur SSH de 16 Go avec le profil `remote16gb-256.json`, qui conserve les 3 600 scènes et les pas du profil 8 Go. Voir [la migration et son schéma](03-spatial-distillation/REMOTE.md).
+
+Les explications sont réparties dans les README de [l'alignement initial](01-encoder-distillation/README.md), [la spécialisation sprites](02-sprite-lora/README.md), [la nouvelle chaîne spatiale](03-spatial-distillation/README.md), [l'architecture partagée](common/sharm_image21/README.md) et [la publication](publish/README.md).
+
 Le projet comprend deux entraînements successifs : aligner les représentations du Qwen3-VL 4B FP8 gelé avec le diffuseur Qwen-Image-2.1 grâce à un projecteur entraînable, puis entraîner un LoRA sprites sur cette base figée. Le [plan détaillé](PLAN_SHARM.md) documente les choix et les limites.
 
 ## Première base entraînée et publiée
 
-La base [Sharm Image 2.1 VL4B FP8](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8) est publiée **en privé** sous `ethanzxv`, à la révision `1e912f5a1e5df40bdaf927abf3e4220d73781321`. Les 56 fichiers ont été vérifiés contre leurs tailles et empreintes distantes ; l’accès anonyme est refusé. Le LoRA sprites poursuit son entraînement de 500 pas.
+La première base [Sharm Image 2.1 VL4B FP8](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8) a été publiée **en privé** sous `ethanzxv`, à la révision `1e912f5a1e5df40bdaf927abf3e4220d73781321`. Les 56 fichiers avaient été vérifiés contre leurs tailles et empreintes distantes ; l'accès anonyme était refusé. Les chiffres ci-dessous décrivent cette révision historique, distincte du nouvel entraînement spatial.
 
 Le projecteur a effectué 1 000 pas linéaires puis 5 000 pas MLP. Après export BF16, les 2 049 prompts de validation donnent une erreur relative de `0.13739`, un cosinus de `0.92500` et un ratio de normes de `0.93580`. Le MLP est le candidat retenu. Son empreinte est `a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883`.
 
@@ -49,12 +74,30 @@ Le LoRA recalcule par défaut les activations d’un bloc sur deux (`--checkpoin
 
 ## Confidentialité et sorties
 
-Les modèles, caches et données sont hors Git. La demande actuelle autorise la publication HF après les deux entraînements, leurs évaluations et la revue visuelle. Les destinations sont privées :
+Les modèles, caches et données sont hors Git. La publication spatiale actuelle vise uniquement `ethanzxv/Sharm-Image-2.1-VL4B-FP8`. L'export local est `artifacts/spatial/release/` et sa demande est enregistrée dans `artifacts/spatial/publication-request.json`. Les deux destinations de la chaîne historique étaient :
 
 - `ethanzxv/Sharm-Image-2.1-VL4B-FP8` ;
 - `ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA`.
 
 Les exports locaux sont `1-local-generation/weights/sharm-image-2.1-vl4b-fp8/` et `1-local-generation/weights/sharm-image-2.1-sprites-128-lora/`. Leur révision de projecteur est enregistrée afin de vérifier la compatibilité du LoRA. Le loader fourni est `sharm_image21.pipeline.SharmImage21Pipeline` ; le chargement stock ne suffit pas pour ajouter le projecteur.
+
+Pour enregistrer une génération en PNG RGBA avec un aperçu lisible sur damier, le loader propose `generate_png` :
+
+```python
+image = pipeline.generate_png(
+    "A small pixel-art dragon, centered",
+    "dragon.png",
+    preview_path="dragon-preview.png",
+    transparent_background=True,
+    width=512,
+    height=512,
+    output_resolution=512,
+    num_inference_steps=30,
+    true_cfg_scale=1.0,
+)
+```
+
+Le loader demande un fond transparent et vérifie que l’alpha contient bien des pixels transparents avant d’écrire le fichier. Si l’image générée reste opaque, il signale l’échec au lieu de présenter un PNG opaque comme une image détourée. Le PNG conserve son canal alpha ; l’aperçu damier sert à le visualiser dans un navigateur ou une fiche HF.
 
 La licence Qwen Research et les attributions d’origine sont conservées. Aucun jeton HF n’est nécessaire pour entraîner depuis les poids publics. Une authentification locale du compte `ethanzxv` sera nécessaire pour envoyer ultérieurement les exports en privé.
 
@@ -73,7 +116,7 @@ Les images réelles, leurs empreintes, prompts, graines, réglages complets et v
 
 Les fiches expliquent que le **remplacement du VL vise à compacter le modèle de base**. Elles chiffrent la taille réelle des poids safetensors de l’encodeur avec projecteur et de la base complète dans `footprint.json`. Les gains de VRAM, de vitesse et la conservation de la qualité doivent être évalués séparément. La génération et l’export de ces fiches s’intègrent aux étapes déjà prévues.
 
-## Publication privée et rechargement
+## Publication historique et rechargement
 
 `publish/publish_private.py` attend la fin de la chaîne et une revue visuelle liée aux empreintes exactes des galeries. Il compose une liste explicite des fichiers à envoyer : poids finaux, loader, dépendances figées, notices, rapports et comparatifs. Les checkpoints d’optimiseur, caches et données source sont exclus.
 
@@ -89,7 +132,9 @@ La base peut être envoyée dès son propre entraînement validé et ses images 
 
 ## Dataset sprites
 
-Les trois planches locales `21228.png`, `21229.png`, `21230.png` fournissent 770 sprites non vides de 64 × 64 : 385 espèces, avec deux variantes chacune. Les deux cases Celebi sont vides. La préparation enlève tous les pixels exacts `#A5EBFF`, y compris les îlots de fond isolés, et conserve le RGBA. Les copies 512 px sont agrandies en nearest-neighbor.
+Les six planches locales `21228.png`, `21229.png`, `21230.png`, `21231.png`, `21301.png`, `21650.png` fournissent **1 540 sprites de 64 × 64, couvrant 384 espèces**, palettes normale et shiny. La disposition a été corrigée : Unown et Spinda sont absents, Castform possède quatre cellules par palette et Celebi est présent. Les noms ne sont plus décalés après les espèces manquantes. Voir [les correspondances et la préparation](02-sprite-lora/README.md).
+
+La préparation enlève tous les pixels exacts `#A5EBFF`, y compris les îlots de fond isolés, et conserve le RGBA. Les copies d'entraînement sont agrandies en nearest-neighbor. `dataset/sources.json` conserve les empreintes des six originaux ; les légendes distinguent les palettes shiny et les formes de Castform.
 
 ```bash
 ./1-local-generation/.venv-qwen/bin/python ./2-LoRA-qwen/prepare_dataset.py --training-size 512

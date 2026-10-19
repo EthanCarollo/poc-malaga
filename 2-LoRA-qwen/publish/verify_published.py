@@ -27,18 +27,23 @@ def main():
     case = json.loads((args.lora / "comparisons/lora/comparison.json").read_text())["pairs"][0]
     metadata = json.loads((args.lora / "sharm_lora_config.json").read_text())
     pipeline = shipped.SharmImage21Pipeline.from_pretrained(args.base)
-    image = pipeline(case["prompt"], lora_dir=args.lora, width=512, height=512,
-                     output_resolution=512, num_inference_steps=30, true_cfg_scale=1.0,
-                     attention_kwargs={"scale": metadata.get("recommended_weight", 1.0)},
-                     generator=torch.Generator(device="cuda").manual_seed(case["seed"])).images[0]
+    args.output.mkdir(parents=True, exist_ok=True)
+    image = pipeline.generate_png(
+        case["prompt"], args.output / "published-generation-512.png",
+        preview_path=args.output / "published-generation-512-preview.png",
+        transparent_background=True, lora_dir=args.lora, width=512, height=512,
+        output_resolution=512, num_inference_steps=30, true_cfg_scale=1.0,
+        attention_kwargs={"scale": metadata.get("recommended_weight", 1.0)},
+        generator=torch.Generator(device="cuda").manual_seed(case["seed"]))
     pixels = np.asarray(image)
     if (image.mode != "RGBA" or image.size != (512, 512) or pixels[..., :3].std() < 1
             or image.getchannel("A").getextrema()[1] == 0):
         raise RuntimeError("La génération après relecture HF est vide ou invalide.")
-    args.output.mkdir(parents=True, exist_ok=True)
     output = args.output / "published-generation-512.png"
-    image.save(output)
-    image.resize((128, 128), Image.Resampling.NEAREST).save(args.output / "published-generation-128.png")
+    pipeline.save_png(image.resize((128, 128), Image.Resampling.NEAREST),
+                      args.output / "published-generation-128.png",
+                      preview_path=args.output / "published-generation-128-preview.png",
+                      require_transparency=True)
     report = {"passed": True, "prompt": case["prompt"], "seed": case["seed"],
               "lora_weight": metadata.get("recommended_weight", 1.0),
               "sha256": hashlib.sha256(output.read_bytes()).hexdigest(),

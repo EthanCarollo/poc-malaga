@@ -1,0 +1,9 @@
+{
+  "dataset": {"count": 3600, "resolution": 256, "seed": 42},
+  "warmup": {"steps": 1000, "accumulation": 8, "learning-rate": 0.0001, "context-layers": 2},
+  "flow": {"steps": 1500, "accumulation": 8, "learning-rate": 0.00005, "lora-rank": 0,
+           "distillation-weight": 0.25, "embedding-weight": 0.05, "layout-dropout": 0.5,
+           "checkpointing-mode": "all", "validation-limit": 32},
+  "trajectories": {"steps": 20, "points": 3, "max-scenes": 512},
+  "generation": {"steps": 30, "limit": 24}
+}

@@ -17,17 +17,18 @@ def main():
     parser.add_argument("kind", choices=["teacher", "student"])
     parser.add_argument("--corpus", type=Path, default=ARTIFACTS / "corpus.jsonl")
     parser.add_argument("--batch-size", type=int, default=4)
-    parser.add_argument("--gpu-memory", default="11GiB")
+    parser.add_argument("--gpu-memory", default="auto")
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--cache-root", type=Path, default=CACHE)
     args = parser.parse_args()
-    lock_dir = CACHE / args.kind
+    lock_dir = args.cache_root / args.kind
     lock_dir.mkdir(parents=True, exist_ok=True)
     writer_lock = (lock_dir / ".writer.lock").open("a")
     fcntl.flock(writer_lock.fileno(), fcntl.LOCK_EX)
     corpus = read_jsonl(args.corpus)
     rows = corpus[:args.limit] if args.limit else corpus
     identity = {"encoder": model_identity(args.kind), "corpus": digest(corpus)}
-    cache = FeatureCache(CACHE / args.kind, identity)
+    cache = FeatureCache(lock_dir, identity)
     pending = [row for row in rows if row["id"] not in cache]
     if not pending:
         print(f"Cache {args.kind} complet pour {len(rows)} exemples.", flush=True)
@@ -47,7 +48,8 @@ def main():
             report = {"stage": f"cache_{args.kind}", "completed": completed, "total": len(rows),
                       "seconds": elapsed, "updated_at": time.time(),
                       "examples_per_second": (start+len(batch))/max(elapsed, 1e-6)}
-            atomic_json(ARTIFACTS / f"cache-{args.kind}-status.json", report)
+            status_root = ARTIFACTS if args.cache_root.resolve() == CACHE.resolve() else args.cache_root
+            atomic_json(status_root / f"cache-{args.kind}-status.json", report)
             print(f"{args.kind}: {completed}/{len(rows)} — {elapsed:.1f}s", flush=True)
     cache.require(rows)
 

@@ -5,6 +5,17 @@ import torch
 from .core import ORIGINAL, STUDENT
 
 
+def conditioning_output_dtype(module, args, kwargs, output):
+    """NF4 may return FP32; keep Euler's next latent in conditioning precision."""
+    conditioning = kwargs.get("encoder_hidden_states")
+    if conditioning is None:
+        return output
+    if isinstance(output, tuple):
+        return (output[0].to(conditioning.dtype), *output[1:])
+    output.sample = output.sample.to(conditioning.dtype)
+    return output
+
+
 def load_transformer(base: Path = ORIGINAL, training: bool = False, gradient_checkpointing: bool | str = True):
     from diffusers import BitsAndBytesConfig, QwenImage21Transformer2DModel
     quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
@@ -34,6 +45,10 @@ def load_transformer(base: Path = ORIGINAL, training: bool = False, gradient_che
             model.enable_gradient_checkpointing(gradient_checkpointing_func=checkpoint_some_blocks)
     else:
         model.eval()
+        # bitsandbytes returns the input dtype from the final projection, whose
+        # normalization can upcast to FP32. Euler otherwise keeps FP32 latents
+        # and the next NF4 image projection disagrees with the BF16 text branch.
+        model.register_forward_hook(conditioning_output_dtype, with_kwargs=True)
     return model
 
 
@@ -58,7 +73,7 @@ def predict_flow(transformer, latents, embeddings, timestep):
     batch, channels, frames, height, width = latents.shape
     if frames != 1 or embeddings.shape[0] != batch:
         raise ValueError("Batch ou nombre de frames incompatible avec le trainer sprites.")
-    packed = QwenImage21Pipeline._pack_latents(latents, batch, channels, height, width)
+    packed = QwenImage21Pipeline._pack_latents(latents, batch, channels, height, width).to(embeddings.dtype)
     image_mask = torch.cat([
         torch.zeros(batch, embeddings.shape[1], dtype=torch.bool, device=latents.device),
         torch.ones(batch, height*width//4, dtype=torch.bool, device=latents.device)], dim=1)

@@ -9,6 +9,9 @@ import re
 import shutil
 import subprocess
 import time
+from urllib.parse import quote
+
+from .image_io import checkerboard_preview
 
 
 COMPARISON_SCHEMA = 1
@@ -73,7 +76,7 @@ def comparison_manifest(kind: str, pipeline, *, steps: int, projector_sha256: st
 
 def save_member(image, directory: Path, stem: str, label: str, final_size: int | None = None) -> dict:
     """Keep alpha in downloads; composite a separate checkerboard for the card."""
-    from PIL import Image, ImageDraw
+    from PIL import Image
 
     if image.mode != "RGBA" or image.size != (512, 512):
         raise ValueError("La comparaison attend une génération RGBA 512 × 512.")
@@ -95,13 +98,7 @@ def save_member(image, directory: Path, stem: str, label: str, final_size: int |
         final = save_asset(image, f"{stem}-128.png")
     else:
         final = native
-    background = Image.new("RGBA", image.size, (224, 224, 224, 255))
-    draw = ImageDraw.Draw(background)
-    for y in range(0, image.height, 8):
-        for x in range(0, image.width, 8):
-            if (x // 8 + y // 8) % 2:
-                draw.rectangle((x, y, x + 7, y + 7), fill=(176, 176, 176, 255))
-    preview = Image.alpha_composite(background, image).convert("RGB")
+    preview = checkerboard_preview(image, tile_size=8)
     return {"label": label, "image": final, "source": native,
             "preview": save_asset(preview, f"{stem}-preview.png")}
 
@@ -193,7 +190,13 @@ def _prompt_block(prompt: str) -> str:
     return f"{fence}text\n{prompt}\n{fence}"
 
 
-def gallery_markdown(manifest: dict, prefix: str) -> str:
+def _hf_file_url(repo_id: str, prefix: str, filename: str, *, download: bool = False) -> str:
+    path = "/".join(quote(part, safe="-_.") for part in (*prefix.split("/"), *filename.split("/")))
+    url = f"https://huggingface.co/{quote(repo_id, safe='/-_.')}/resolve/main/{path}"
+    return f"{url}?download=true" if download else url
+
+
+def gallery_markdown(manifest: dict, prefix: str, repo_id: str) -> str:
     lines = []
     left, right = LABELS[manifest["kind"]]
     for index, pair in enumerate(manifest["pairs"], 1):
@@ -202,11 +205,14 @@ def gallery_markdown(manifest: dict, prefix: str) -> str:
         cells, downloads = [], []
         for side, label in zip(("left", "right"), (left, right)):
             member = pair[side]
-            cells.append(f"![{label}]({prefix}/{member['preview']['file']})")
+            preview_url = _hf_file_url(repo_id, prefix, member["preview"]["file"])
+            cells.append(f'<img src="{preview_url}" alt="{label}" width="256" />')
             final, native = member["image"], member["source"]
-            links = f"[PNG RGBA {final['width']} px]({prefix}/{final['file']})"
+            final_url = _hf_file_url(repo_id, prefix, final["file"], download=True)
+            links = f"[Télécharger le PNG RGBA {final['width']} px]({final_url})"
             if native["file"] != final["file"]:
-                links += f" · [source 512 px]({prefix}/{native['file']})"
+                native_url = _hf_file_url(repo_id, prefix, native["file"], download=True)
+                links += f" · [source PNG 512 px]({native_url})"
             downloads.append(links)
         lines.extend(("| " + " | ".join(cells) + " |", "| " + " | ".join(downloads) + " |", ""))
     settings = manifest["settings"]
@@ -277,19 +283,24 @@ def loading_example(with_lora: bool = False) -> str:
     if with_lora:
         setup += (
             'case = json.loads((lora / "comparisons/lora/comparison.json").read_text())["pairs"][0]\n'
-            'image = pipeline(case["prompt"], lora_dir=lora, width=512, height=512,\n'
-            '                 output_resolution=512, num_inference_steps=30, true_cfg_scale=1.0,\n'
-            '                 attention_kwargs={"scale": metadata.get("recommended_weight", 1.0)},\n'
-            '                 generator=torch.Generator("cuda").manual_seed(case["seed"])).images[0]\n'
-            'image.resize((128, 128), Image.Resampling.NEAREST).save("sharm-sprite-128.png")\n'
+            'image = pipeline.generate_png(case["prompt"], "sharm-sprite-512.png",\n'
+            '    preview_path="sharm-sprite-512-preview.png", transparent_background=True,\n'
+            '    lora_dir=lora, width=512, height=512, output_resolution=512,\n'
+            '    num_inference_steps=30, true_cfg_scale=1.0,\n'
+            '    attention_kwargs={"scale": metadata.get("recommended_weight", 1.0)},\n'
+            '    generator=torch.Generator("cuda").manual_seed(case["seed"]))\n'
+            'pipeline.save_png(image.resize((128, 128), Image.Resampling.NEAREST),\n'
+            '    "sharm-sprite-128.png", preview_path="sharm-sprite-128-preview.png",\n'
+            '    require_transparency=True)\n'
         )
     else:
         setup += (
             'case = json.loads((base / "comparisons/encoder/comparison.json").read_text())["pairs"][0]\n'
-            'image = pipeline(case["prompt"], width=512, height=512, output_resolution=512,\n'
-            '                 num_inference_steps=20, true_cfg_scale=1.0,\n'
-            '                 generator=torch.Generator("cuda").manual_seed(case["seed"])).images[0]\n'
-            'image.save("sharm-image.png")\n'
+            'pipeline.generate_png(case["prompt"], "sharm-image.png",\n'
+            '    preview_path="sharm-image-preview.png", transparent_background=True,\n'
+            '    width=512, height=512, output_resolution=512, num_inference_steps=20,\n'
+            '    true_cfg_scale=1.0,\n'
+            '    generator=torch.Generator("cuda").manual_seed(case["seed"]))\n'
         )
     return setup + "```\n\n"
 
@@ -308,7 +319,7 @@ def base_card(manifest: dict, footprint: dict, validation: dict) -> str:
         "Les prompts sont issus de la validation du projecteur. Les exemples sont sélectionnés avant "
         "génération, sans sélection selon leur apparence. Les aperçus compositent l’alpha sur un damier ; "
         "les PNG téléchargeables conservent le canal alpha.\n\n"
-        + gallery_markdown(manifest, "comparisons/encoder")
+        + gallery_markdown(manifest, "comparisons/encoder", "ethanzxv/Sharm-Image-2.1-VL4B-FP8")
         + "## Validation et utilisation\n\n"
         f"Validation des embeddings : erreur quadratique relative `{metrics['relative_mse']:.4f}`, "
         f"cosinus `{metrics['cosine']:.4f}`, ratio de normes `{metrics['norm_ratio']:.4f}`. "
@@ -360,7 +371,7 @@ def lora_card(lora: dict, encoder: dict, footprint: dict) -> str:
         "Les deux côtés subissent la même réduction 512 → 128 en nearest-neighbor, sans détourage "
         "ni retouche après génération. Le damier des aperçus permet de voir l’alpha ; les liens "
         "fournissent les PNG RGBA 128 px et leurs sources 512 px.\n\n"
-        + gallery_markdown(lora, "comparisons/lora")
+        + gallery_markdown(lora, "comparisons/lora", "ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA")
         + compact_objective(footprint)
         + "## VL 8B d’origine / VL 4B FP8 + projecteur — même prompt\n\n"
         "Cette seconde comparaison concerne la compaction de la base avant le LoRA sprites. "
@@ -368,7 +379,7 @@ def lora_card(lora: dict, encoder: dict, footprint: dict) -> str:
         "le prompt, la graine et les réglages sont conservés ; le conditionnement VL change. "
         "Ces images sont les références de validation de la base Sharm, également présentes "
         "sur sa fiche.\n\n"
-        + gallery_markdown(encoder, "comparisons/encoder")
+        + gallery_markdown(encoder, "comparisons/encoder", "ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA")
         + "## Compatibilité et portée\n\n"
         "Charger ce LoRA avec la base `ethanzxv/Sharm-Image-2.1-VL4B-FP8` et son loader fourni. "
         "`sharm_lora_config.json` lie les poids LoRA à l’empreinte du projecteur exact. "

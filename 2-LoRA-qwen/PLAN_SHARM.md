@@ -1,5 +1,7 @@
 # Plan Sharm : encodeur VL 4B FP8, projecteur et LoRA sprites
 
+> Évolution actuelle : la nouvelle expérience [03-spatial-distillation](03-spatial-distillation/README.md) prépare un projecteur contextuel, des compositions RGBA annotées, une supervision du flow et une évaluation des positions. Ses résultats ne sont pas encore mesurés. Les sections ci-dessous décrivent le plan et l'exécution historiques ; leurs mentions de matériel et d'entraînements en cours ne décrivent pas nécessairement la machine locale actuelle.
+
 Date de l'analyse : 19 octobre 2026. Statut : entraînements lancés ; publication privée autorisée après validation et revue des comparatifs.
 
 ## 1. Décisions fixées avec l'utilisateur
@@ -117,7 +119,7 @@ Pour l'édition d'image, contrôler aussi les grilles visuelles, le nombre et la
 
 ## 6. Étape C — corpus général et caches persistants
 
-Le dataset de sprites contient 770 images et 385 légendes distinctes. Il servira au LoRA de style ; il est trop étroit pour aligner un encodeur général.
+Le corpus historique utilisait 770 images et 385 légendes distinctes. L'audit des six planches locales a depuis corrigé des décalages de noms (Unown et Spinda absents, quatre cellules Castform) : le nouveau corpus contient 1 540 images, 384 espèces et des légendes séparant les palettes shiny et les formes. Voir `02-sprite-lora/README.md`. Ce corpus reste trop étroit pour aligner un encodeur général.
 
 Construire un corpus distinct avec provenance et conditions d'utilisation documentées : descriptions courtes et longues, objets, personnes, positions, nombres, couleurs, relations spatiales, texte à afficher, styles, transparence et instructions en français et en anglais. Ajouter des exemples image + instruction pour conserver l'édition. Les catégories et les sources sont réparties entre entraînement, validation et évaluation avant l'extraction ; les variantes proches restent dans le même groupe.
 
