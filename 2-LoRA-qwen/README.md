@@ -74,7 +74,7 @@ Le LoRA recalcule par défaut les activations d’un bloc sur deux (`--checkpoin
 
 ## Confidentialité et sorties
 
-Les modèles, caches et données sont hors Git. La publication spatiale actuelle vise uniquement `ethanzxv/Sharm-Image-2.1-VL4B-FP8`. L'export local est `artifacts/spatial/release/` et sa demande est enregistrée dans `artifacts/spatial/publication-request.json`. Les deux destinations de la chaîne historique étaient :
+Les poids de modèles, caches et artefacts d'exécution locaux sont hors Git. Les PNG sources et le dataset Monster validé sont versionnés sous `02-sprite-lora/dataset/`, avec leurs définitions, rapports et galerie. La publication spatiale actuelle vise uniquement `ethanzxv/Sharm-Image-2.1-VL4B-FP8`. L'export local est `artifacts/spatial/release/` et sa demande est enregistrée dans `artifacts/spatial/publication-request.json`. Les deux destinations de la chaîne historique étaient :
 
 - `ethanzxv/Sharm-Image-2.1-VL4B-FP8` ;
 - `ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA`.
@@ -130,17 +130,18 @@ La base peut être envoyée dès son propre entraînement validé et ses images 
 
 `artifacts/publication-request.json` conserve la demande actuelle ; `publication-status.json` contient les révisions publiées et la progression. Le rapport de publication met à jour l’état final après la vérification du LoRA.
 
-## Dataset sprites
+## Dataset sprites historique : six planches
 
 Les six planches locales `21228.png`, `21229.png`, `21230.png`, `21231.png`, `21301.png`, `21650.png` fournissent **1 540 sprites de 64 × 64, couvrant 384 espèces**, palettes normale et shiny. La disposition a été corrigée : Unown et Spinda sont absents, Castform possède quatre cellules par palette et Celebi est présent. Les noms ne sont plus décalés après les espèces manquantes. Voir [les correspondances et la préparation](02-sprite-lora/README.md).
 
 La préparation enlève tous les pixels exacts `#A5EBFF`, y compris les îlots de fond isolés, et conserve le RGBA. Les copies d'entraînement sont agrandies en nearest-neighbor. `dataset/sources.json` conserve les empreintes des six originaux ; les légendes distinguent les palettes shiny et les formes de Castform.
 
 ```bash
-./1-local-generation/.venv-qwen/bin/python ./2-LoRA-qwen/prepare_dataset.py --training-size 512
+./1-local-generation/.venv-qwen/bin/python ./2-LoRA-qwen/prepare_dataset.py \
+  --sheet-dir ./2-LoRA-qwen/02-sprite-lora/dataset/raw --training-size 512
 ```
 
-Les planches source doivent être présentes localement ; elles sont exclues de Git. Le répertoire `dataset/` et les traits PokéAPI mis en cache sont aussi exclus. Les sources 64 px ne créent pas de détails natifs supplémentaires lors d’un agrandissement vers 128 px.
+Les planches source sont désormais versionnées dans `02-sprite-lora/dataset/raw/`. Le répertoire historique `2-LoRA-qwen/dataset/` et ses traits PokéAPI mis en cache restent locaux. Le nouveau dataset Monster complet est versionné séparément dans `02-sprite-lora/dataset/prepared/monster-clean-v2/`. Les sources 64 px ne créent pas de détails natifs supplémentaires lors d’un agrandissement vers 128 px.
 
 Pour relancer seulement le LoRA après validation de la base et préparation des caches :
 

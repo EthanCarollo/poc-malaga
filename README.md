@@ -8,3 +8,9 @@ Dépôt de preuves de concept autour de solutions locales en IA. Le dépôt accu
 - `2-LoRA-qwen` — projet Sharm : alignement d’un encodeur Qwen3-VL 4B FP8 gelé avec un projecteur entraînable, puis LoRA de sprites. Le [plan de réalisation](2-LoRA-qwen/PLAN_SHARM.md) décrit les étapes et la publication privée sous `ethanzxv`.
 
 Chaque projet documentera ses dépendances, son installation et son lancement dans son propre dossier.
+
+## Données et workflow Git
+
+Les [PNG sources et le dataset Monster validé](2-LoRA-qwen/02-sprite-lora/dataset/README.md) sont versionnés avec les scripts, définitions, rapports et galeries. Les poids des modèles, identifiants, environnements, caches et brouillons restent locaux.
+
+Chaque ensemble cohérent de changements est commité selon la convention Angular `type(scope): description`, puis poussé sur `origin/main`. Voir [AGENTS.md](AGENTS.md) pour la consigne permanente.

@@ -10,7 +10,7 @@ Date de l'analyse : 19 octobre 2026. Statut : entraînements lancés ; publicati
 - Compte Hugging Face : **ethanzxv** ; les deux dépôts de modèles resteront **privés**.
 - Qwen3-VL 4B reste **gelé en FP8**. On entraîne le projecteur qui adapte ses représentations au diffuseur.
 - Le modèle Sharm général est stabilisé et publié avant d'entraîner le LoRA de sprites.
-- Chaque lot cohérent de modifications du code ou de la documentation est commité et poussé sur GitHub. Les poids et caches sont conservés hors Git.
+- Chaque lot cohérent de modifications du code, de la documentation ou des données validées est commité selon la convention Angular et poussé sur `origin/main`. Les PNG sources et le dataset Monster validé sont versionnés ; poids, identifiants, caches et brouillons restent locaux. Voir les consignes dans `AGENTS.md` à la racine.
 
 Les deux livrables HF proposés sont `ethanzxv/Sharm-Image-2.1-VL4B-FP8` et `ethanzxv/Sharm-Image-2.1-Sprites-128-LoRA`. Ces noms sont des destinations prévues, pas des dépôts déjà créés.
 
