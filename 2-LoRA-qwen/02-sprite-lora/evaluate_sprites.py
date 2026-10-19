@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import argparse
 import json
+import math
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
@@ -14,6 +16,11 @@ from sharm_image21.model_cards import (LABELS, comparison_manifest, generation_k
 
 @torch.inference_mode()
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--lora-weight", type=float, default=1.0)
+    args = parser.parse_args()
+    if not math.isfinite(args.lora_weight) or not 0 < args.lora_weight <= 2:
+        raise ValueError("Choisir un poids LoRA fini entre 0 et 2.")
     lora_dir = WEIGHTS / "sharm-image-2.1-sprites-128-lora"
     if not (lora_dir / "training-complete.json").exists():
         raise RuntimeError("Le LoRA n'est pas terminé.")
@@ -44,12 +51,19 @@ def main():
     pipeline = load_diffuser_pipeline(base=base)
     output = ARTIFACTS / "sprite-samples"
     output.mkdir(exist_ok=True)
+    existing = None
+    if (output / "comparison.json").exists():
+        candidate = load_comparisons(output, "lora", fingerprint, lora_fingerprint)
+        if (candidate["settings"]["num_inference_steps"] == 30
+                and [pair["species_id"] for pair in candidate["pairs"]] == [row["species_id"] for row in samples]):
+            existing = candidate
+    previous_report = json.loads((output / "evaluation.json").read_text()) if existing else None
     comparison = comparison_manifest(
         "lora", pipeline, steps=30, projector_sha256=fingerprint,
         controls={"base_model": base_config["hf_repo_intent"], "base_revision": base_config["base_revision"],
                   "student_identity": base_config["student_identity"], "same_conditioning_embeddings": True,
                   "text_cache_index_sha256": file_hash(cache.path), "dataset_identity": data["identity"],
-                  "lora_sha256": lora_fingerprint, "lora_weight": 1.0,
+                  "lora_sha256": lora_fingerprint, "lora_weight": args.lora_weight,
                   "training": {key: training["config"][key] for key in
                                ("steps", "resolution", "rank", "learning_rate", "accumulation")},
                   "training_image_count": sum(row["split"] == "train" for row in data["rows"]),
@@ -66,9 +80,14 @@ def main():
               for index, row in enumerate(samples)]
     # Complete the whole baseline pass before any adapter is loaded.
     for side, name, label in zip(("left", "right"), ("before", "after"), LABELS["lora"]):
+        if side == "left" and existing:
+            for index, pair in enumerate(existing["pairs"]):
+                comparison["pairs"][index]["left"] = pair["left"]
+                report[index]["before"] = previous_report["samples"][index]["before"]
+            continue
         if side == "right":
             pipeline.load_lora_weights(lora_dir, adapter_name="sharm_sprites")
-            pipeline.set_adapters("sharm_sprites", adapter_weights=1.0)
+            pipeline.set_adapters("sharm_sprites", adapter_weights=args.lora_weight)
         for index, row in enumerate(samples):
             embeds = cache.get(row["caption_id"]).unsqueeze(0).cuda()
             image = pipeline(prompt_embeds=embeds, prompt_embeds_mask=None, **generation_kwargs(30),
@@ -88,6 +107,7 @@ def main():
                                             "scope": "automatic checks verify file and numerical integrity, not identity quality"})
     atomic_json(lora_dir / "sharm_lora_config.json", {"projector_sha256": fingerprint,
         "base_model": "ethanzxv/Sharm-Image-2.1-VL4B-FP8", "private": True, "published": False,
+        "recommended_weight": args.lora_weight,
         "base_diffusion_revision": base_config["base_revision"],
         "lora_sha256": lora_fingerprint, "comparison_sha256": file_hash(output / "comparison.json")})
     packaged_lora = package_comparisons(output, lora_dir / "comparisons/lora", "lora", fingerprint, lora_fingerprint)

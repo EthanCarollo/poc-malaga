@@ -279,6 +279,7 @@ def loading_example(with_lora: bool = False) -> str:
             'case = json.loads((lora / "comparisons/lora/comparison.json").read_text())["pairs"][0]\n'
             'image = pipeline(case["prompt"], lora_dir=lora, width=512, height=512,\n'
             '                 output_resolution=512, num_inference_steps=30, true_cfg_scale=1.0,\n'
+            '                 attention_kwargs={"scale": metadata.get("recommended_weight", 1.0)},\n'
             '                 generator=torch.Generator("cuda").manual_seed(case["seed"])).images[0]\n'
             'image.resize((128, 128), Image.Resampling.NEAREST).save("sharm-sprite-128.png")\n'
         )
@@ -353,7 +354,7 @@ def lora_card(lora: dict, encoder: dict, footprint: dict) -> str:
         "## Avant / après LoRA — même prompt\n\n"
         "Chaque paire utilise exactement le même prompt, la même graine, les mêmes embeddings "
         "du VL 4B FP8 + projecteur et les mêmes réglages du diffuseur. Seul l’adaptateur LoRA "
-        "change, avec un poids de 1.0. Les espèces montrées sont réservées à la validation du LoRA ; "
+        f"change, avec un poids de {lora['controls']['lora_weight']:g}. Les espèces montrées sont réservées à la validation du LoRA ; "
         "leurs légendes peuvent être présentes dans le corpus d’alignement du projecteur. "
         "Les six premières espèces distinctes de validation sont retenues avant génération.\n\n"
         "Les deux côtés subissent la même réduction 512 → 128 en nearest-neighbor, sans détourage "

@@ -25,9 +25,11 @@ def main():
     if not Path(shipped.__file__).resolve().is_relative_to(args.base.resolve()):
         raise RuntimeError("Le loader utilisé ne provient pas du modèle publié.")
     case = json.loads((args.lora / "comparisons/lora/comparison.json").read_text())["pairs"][0]
+    metadata = json.loads((args.lora / "sharm_lora_config.json").read_text())
     pipeline = shipped.SharmImage21Pipeline.from_pretrained(args.base)
     image = pipeline(case["prompt"], lora_dir=args.lora, width=512, height=512,
                      output_resolution=512, num_inference_steps=30, true_cfg_scale=1.0,
+                     attention_kwargs={"scale": metadata.get("recommended_weight", 1.0)},
                      generator=torch.Generator(device="cuda").manual_seed(case["seed"])).images[0]
     pixels = np.asarray(image)
     if (image.mode != "RGBA" or image.size != (512, 512) or pixels[..., :3].std() < 1
@@ -38,6 +40,7 @@ def main():
     image.save(output)
     image.resize((128, 128), Image.Resampling.NEAREST).save(args.output / "published-generation-128.png")
     report = {"passed": True, "prompt": case["prompt"], "seed": case["seed"],
+              "lora_weight": metadata.get("recommended_weight", 1.0),
               "sha256": hashlib.sha256(output.read_bytes()).hexdigest(),
               "base": str(args.base), "lora": str(args.lora), "loader": str(shipped.__file__),
               "seconds": time.monotonic() - started, "gpu": torch.cuda.get_device_name(),
