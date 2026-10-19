@@ -2,6 +2,8 @@
 
 Un parcours en français pour comprendre, observer et reproduire les étapes de **Sharm Image Base**, puis la spécialisation **Monster Pixel Art**. Les notebooks appellent les scripts du projet : leurs paramètres, reprises et contrôles restent communs à la chaîne exécutée sur le serveur.
 
+**Consigne actuelle : préparer les notebooks ; aucun nouvel entraînement LoRA ni pré-calcul GPU Monster ne doit être lancé.** Le chapitre 05 contient des recettes affichées en aperçu et des lecteurs de données. Leur exécution attend une nouvelle demande explicite de l'utilisateur. La chaîne Base spatiale déjà active poursuit son périmètre autorisé.
+
 ## Ordre de lecture
 
 | Notebook | Contenu |
@@ -36,7 +38,7 @@ La structure est disponible pendant l'entraînement. **Les résultats finaux ne 
 
 ## Observer puis reproduire
 
-Les actions de téléchargement, reconstruction des données, calcul GPU et publication possèdent chacune un drapeau `RUN_... = False`. L'exécution ordinaire des notebooks affiche les commandes et lit les résultats disponibles. Modifier explicitement le drapeau correspondant lance l'action dans le Python du kernel.
+Les actions de téléchargement, reconstruction des données, calcul GPU et publication des autres chapitres possèdent chacune un drapeau `RUN_... = False`. L'exécution ordinaire des notebooks affiche les commandes et lit les résultats disponibles. Modifier explicitement le drapeau correspondant lance l'action dans le Python du kernel. Dans le chapitre 05, `preview_script` affiche uniquement les recettes : aucun drapeau d'entraînement n'est proposé pendant cette préparation.
 
 Pour les actions GPU, utiliser le kernel CUDA **du workspace Linux distant**, attendre la fin de toute chaîne active et définir `SHARM_NOTEBOOK_GPU=1` dans cet environnement. Le helper refuse le calcul GPU Windows et une nouvelle chaîne lorsqu'un trainer est détecté. Les verrous des runners restent actifs. L'entraînement en cours continue dans son processus détaché ; il n'est pas migré dans un kernel interactif.
 

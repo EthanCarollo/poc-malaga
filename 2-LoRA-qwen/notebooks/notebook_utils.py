@@ -131,6 +131,13 @@ def _active_chain():
     return any(any(name in line for name in names) for line in result.stdout.splitlines())
 
 
+def preview_script(script, arguments=()):
+    """Show a future recipe without offering a launch switch."""
+    path = contained(PROJECT, script)
+    print(shlex.join([sys.executable, str(path), *map(str, arguments)]))
+    print("Recette préparée uniquement. Aucun processus lancé.")
+
+
 def run_script(script, arguments=(), *, enabled=False, gpu=False):
     """Print first; only launch when the notebook explicitly enables this action."""
     path = contained(PROJECT, script)

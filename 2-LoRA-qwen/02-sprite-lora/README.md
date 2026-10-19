@@ -2,6 +2,8 @@
 
 Lecture guidée : [notebook 01 — Dataset](../notebooks/01_dataset_monster.ipynb), puis [notebook 05 — LoRA Monster](../notebooks/05_lora_monster.ipynb).
 
+**Consigne actuelle : préparer les notebooks uniquement.** Aucun nouvel entraînement LoRA ni pré-calcul GPU Monster ne doit être lancé avant une nouvelle demande explicite de l'utilisateur. Les PNG sources et le dataset Monster validé sont déjà commités et poussés sur `main`.
+
 Spécialisation de **Sharm Image Base** pour produire des monstres en pixel art, en **PNG RGBA 128 × 128**. Sharm Image Base contient le générateur Qwen Image 2.1 et son encodeur Qwen3-VL 4B FP8 intégré. Le LoRA apprend le style du diffuseur avec un projecteur validé et figé.
 
 ## Dataset actuel
