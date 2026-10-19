@@ -138,12 +138,19 @@ def build_release(kind, config, lora_sha, review, base_hf_revision=None):
         "scope": "experimental text-to-image, image editing not validated", "prepared_at": time.time(),
         "source_export": source.name, "source_config_sha256": file_hash(source / filename),
     })
+    card_path = destination / "README.md"
+    # Replace a hardlink before editing the release-specific card.
+    card = card_path.read_text(encoding="utf-8")
+    notes = list(review.get("encoder_notes", []))
     if kind == "lora":
-        card_path = destination / "README.md"
-        # Replace a hardlink before editing the release-specific card.
-        card = card_path.read_text(encoding="utf-8")
-        card_path.unlink()
-        card_path.write_text(card + f"\nRévision HF exacte de la base : `{base_hf_revision}`.\n", encoding="utf-8")
+        card += f"\nRévision HF exacte de la base : `{base_hf_revision}`.\n"
+        notes += review.get("lora_notes", [])
+    card += "\n## Observations sur ce premier candidat\n\n"
+    card += "Inspection qualitative des images par Codex ; la portée reste limitée aux paires présentées.\n\n"
+    card += "\n".join(f"- {note}" for note in notes) + "\n\n"
+    card += "Le rapport lié aux empreintes des images est disponible dans [visual-review.json](visual-review.json).\n"
+    card_path.unlink()
+    card_path.write_text(card, encoding="utf-8")
     checksums = {path.relative_to(destination).as_posix(): file_hash(path) for path in destination.rglob("*")
                  if path.is_file() and ".cache" not in path.relative_to(destination).parts
                  and path.name != "checksums.json"}
