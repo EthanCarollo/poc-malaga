@@ -1,0 +1,9 @@
+torch==2.14.1
+# Install CUDA 13.0 wheels from https://download.pytorch.org/whl/cu130
+diffusers @ git+https://github.com/huggingface/diffusers.git@b800f828f3951c4d206e154411bcbfa693cd322e
+transformers==5.20.1
+accelerate==1.15.0
+safetensors==0.8.0
+huggingface_hub==2.2.0
+kernels==0.17.2
+pillow==13.0.0

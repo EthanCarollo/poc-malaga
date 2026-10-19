@@ -7,8 +7,16 @@ Le projet s’exécute depuis **deux notebooks autonomes**, chacun dans son doss
 | **Sharm Image 2.1 VL 4B FP8 — Base** | [Notebook Base](Sharm-Image-2.1-VL4B/Sharm_Image_2_1_VL4B.ipynb) | Installation, données RGBA, distillation 8B → 4B, caches, entraînement du projecteur, comparaisons, export, inférence, publication et rapports |
 | **Sharm Image 2.1 VL 4B LoRA Monster** | [Notebook Monster](Sharm-Image-2.1-VL4B-LoRA-Monster/Sharm_Image_2_1_VL4B_LoRA_Monster.ipynb) | Dataset, définitions, Base retenue, caches, entraînement LoRA, comparaisons avant/après, contrôle RGBA et publication |
 
+## Base publiée : text encoder et DiT FP8
+
+La révision [HF `a0c0e168097024cecd8c43f68004d1bedbab32df`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/a0c0e168097024cecd8c43f68004d1bedbab32df) contient le VL 4B FP8, le projecteur précédemment publié et le DiT en FP8 E4M3 avec échelles par ligne. Les 232 couches linéaires éligibles du DiT utilisent aussi un calcul FP8 natif sur la RTX 5060 Ti ; normes, biais, VAE et projecteur conservent leur précision. Les anciens shards BF16 du DiT ont été retirés de cette révision.
+
+Les 52 fichiers ont été vérifiés après envoi et le dépôt reste privé. Le loader exact a produit deux PNG RGBA réels, inspectés par agent, avec un pic d'environ 8,95 Gio de VRAM. Leurs sujets sont reconnaissables, mais les fonds restent largement opaques : les détourages transparents propres ne sont pas validés. Voir les [preuves et limites](Sharm-Image-2.1-VL4B/reports/README.md).
+
+Le candidat spatial refusé reste archivé ; il n'est pas utilisé dans cette Base. Le nouveau projet pixel art Iris se trouve dans un dépôt séparé : [Sharm-Iris-PixelArt](https://github.com/EthanCarollo/Sharm-Iris-PixelArt), avec un notebook et les données de traits versionnées. Aucun nouvel entraînement Monster ou Iris n'a été lancé.
+
 ```text
-2-LoRA-qwen/
+Sharm-Image-2.1/
 ├── README.md
 ├── Sharm-Image-2.1-VL4B/
 │   ├── Sharm_Image_2_1_VL4B.ipynb
@@ -38,11 +46,11 @@ Chaque fichier contient ses fonctions dans une annexe de cellules Python. Le cha
 
 Enregistrer le notebook après modification du code de l’annexe : le chargeur lit ces cellules dans le fichier sauvegardé. Les paramètres du parcours sont les valeurs courantes du kernel. Les checkpoints historiques conservent l’identité de leurs anciennes sources ; une nouvelle recette doit utiliser un workspace/run neuf ou des identités explicitement compatibles.
 
-Aucun nouvel entraînement LoRA n’est lancé pendant la préparation de ces fichiers. La chaîne Base historique déjà active conserve ses sources dans son workspace jusqu’à sa fin. Les nouveaux notebooks ne sont pas copiés par-dessus les fichiers d’un calcul actif.
+Aucun nouvel entraînement LoRA n’est lancé pendant la préparation de ces fichiers. La chaîne Base spatiale historique est terminée et son candidat est refusé. Ses sources, caches et checkpoints restent conservés ; la conversion FP8 publiée reprend le projecteur antérieur validé techniquement.
 
 ## Modèles et données
 
-La Base comprend le générateur Qwen Image 2.1, le VL 4B FP8 gelé et son projecteur. Le 8B BF16 est un enseignant hors ligne. Le LoRA Monster spécialise une révision précise de cette Base ; le SHA du projecteur et la révision HF doivent correspondre.
+La Base comprend le générateur Qwen Image 2.1 avec DiT FP8, le VL 4B FP8 gelé et son projecteur BF16. Le 8B BF16 est un enseignant hors ligne. Le LoRA Monster historique reste lié à sa révision de Base d'origine ; sa compatibilité avec ce DiT FP8 n'est pas validée. Pour son entraînement, conserver les composants BF16 publics à la révision figée avant préparation NF4.
 
 Les 25 PNG sources et le dataset Monster validé sont dans le dossier Monster : 4 481 images RGBA uniques, 649 espèces, définitions FR/EN, légendes, splits par espèce et rapports. Le déplacement conserve les octets des PNG et des manifestes signés. La provenance de la recette historique reste dans les anciens commits Git.
 

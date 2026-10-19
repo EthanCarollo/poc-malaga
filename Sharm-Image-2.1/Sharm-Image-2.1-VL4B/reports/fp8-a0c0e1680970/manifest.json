@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "files": {
+    "fp8-validation.json": "a4bc97d97c9aab242932c0935aaa490e284eb5d390abd531b9886696faa1e099",
+    "fp8-visual-review.json": "d365cab57b7ac0817b532a0e62700229b935309d2a29fcc8ef42e551d7bd90cf",
+    "projector/config.json": "032e07497773fae73369359d299821a9cd1dff5bf5c3959a66486bfe46d8dac5",
+    "publication-status.json": "719cfafc185e82056c532cce4178e97df55c76b851a6e4a179ba42ce139b693f",
+    "release_manifest.json": "6476bc33d232536d249f197e6bd49aad7c6d1b2cc8ef8d9d17b71ce6cda96e5b",
+    "runtime-versions.json": "2760ce59c8ddb9601777e16b0d7462f7feb0ae4c183b0a86d2d8cd43c39322f5",
+    "sharm_config.json": "f9c31350c958dd1f6659492b8396aa201d25c0922f6adcfbfd78dd6a2c65128a",
+    "summary.json": "c695a0b38d635f69a8ab4469fa470582b123a1b5913fd500a46ff495273880db",
+    "transformer/fp8_config.json": "b87f5686104435010166f795dc7b8036d4b8f2c97b2879f8ab1143f98b5f57f0",
+    "validation/fp8-1-preview.png": "a994a6215a15e45ffdeeffb363ca7cabe55e50a1125309c7b4235b0d52c7d8e4",
+    "validation/fp8-1.png": "df2e189c2df1d5f5660021110d5dd5258ed6b44201c3c03e94033adc8acf8e6b",
+    "validation/fp8-2-preview.png": "f14d629ec3efd69bc57f47c03771922d82ba877b70f0fb005c7cfc9daf7e2f16",
+    "validation/fp8-2.png": "9709e3005baaa10256458dfa77e0ba1951415af5e8b31d07e69aec9fad0522b9"
+  }
+}

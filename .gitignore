@@ -17,4 +17,10 @@ __pycache__/
 # Keep downloaded references and preparation drafts local.
 2-LoRA-qwen/02-sprite-lora/dataset/reference/
 2-LoRA-qwen/Sharm-Image-2.1-VL4B-LoRA-Monster/dataset/reference/
+# Consolidated Sharm Image project (historical paths above remain excluded).
+Sharm-Image-2.1/dataset/
+Sharm-Image-2.1/cache/
+Sharm-Image-2.1/artifacts/
+Sharm-Image-2.1/*.png
+Sharm-Image-2.1/Sharm-Image-2.1-VL4B-LoRA-Monster/dataset/reference/
 .ipynb_checkpoints/

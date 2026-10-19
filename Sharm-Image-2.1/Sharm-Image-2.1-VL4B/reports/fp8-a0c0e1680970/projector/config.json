@@ -1,0 +1,37 @@
+{
+  "input_dim": 2560,
+  "output_dim": 4096,
+  "bottleneck": 1024,
+  "convention": "qwenimage21-raw-template-leftpad-pre-final-rmsnorm-v1",
+  "teacher": {
+    "encoder": {
+      "kind": "teacher",
+      "revision": "d26bb61231c349cf6b7896fa83353113880e1ba3",
+      "config_sha256": "6001331949f7f86ab6d791a80b12246d4f8da5159fa08c3e62368a39f36d63a9",
+      "index_sha256": "859146bff8db1d617fca8b457a5223edff963bb70076b3645f2189fe0540a147",
+      "convention": "qwenimage21-raw-template-leftpad-pre-final-rmsnorm-v1",
+      "prefill_policy": "left-padded-bf16"
+    },
+    "corpus": "9c5aee339a25495227b7e01657569a6da168fe280902980108af3b503c3ec478"
+  },
+  "student": {
+    "encoder": {
+      "kind": "student",
+      "revision": "fefbb44cbcce8d1bb7e20b920b94f77432b3446d",
+      "config_sha256": "48bc97743d741920de3455f7a6f0a807b0c3ae692e662a0864f188ca528f92b2",
+      "index_sha256": "94c659b1e64a2e3f23e83e6392ee0961152902e7871da74e867c1bd826e2a761",
+      "convention": "qwenimage21-raw-template-leftpad-pre-final-rmsnorm-v1",
+      "prefill_policy": "single-prompt-fp8"
+    },
+    "corpus": "9c5aee339a25495227b7e01657569a6da168fe280902980108af3b503c3ec478"
+  },
+  "corpus_sha256": "9c5aee339a25495227b7e01657569a6da168fe280902980108af3b503c3ec478",
+  "training_subset_sha256": "9c5aee339a25495227b7e01657569a6da168fe280902980108af3b503c3ec478",
+  "scope": "experimental text-to-image alignment; editing not validated",
+  "selected_phase": "mlp",
+  "validation": {
+    "relative_mse": 0.13964579965977464,
+    "cosine": 0.9229458388872445,
+    "norm_ratio": 0.9329422162845731
+  }
+}

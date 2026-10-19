@@ -4,3 +4,6 @@
 2-LoRA-qwen/Sharm-Image-2.1-VL4B-LoRA-Monster/dataset/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Preserve the bytes signed by each final report manifest.
 2-LoRA-qwen/Sharm-Image-2.1-VL4B/reports/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+Sharm-Image-2.1/**/*.ipynb text eol=lf
+Sharm-Image-2.1/Sharm-Image-2.1-VL4B-LoRA-Monster/dataset/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+Sharm-Image-2.1/Sharm-Image-2.1-VL4B/reports/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

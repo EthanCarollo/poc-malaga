@@ -12,9 +12,12 @@
 
 ## Notebooks et résultats Sharm
 
+- La demande du 19 octobre autorise la publication de la Base avec le text encoder 4B FP8 et le DiT FP8, en conservant le projecteur antérieur `a414685b`. Ne pas publier ni relancer automatiquement le candidat spatial refusé `6fc98a1d`.
+- Regrouper le projet Sharm Image dans `Sharm-Image-2.1/`. Le projet Iris est un dépôt GitHub séparé (`EthanCarollo/Sharm-Iris-PixelArt`) avec son propre notebook et ses données ; préparer ce notebook sans lancer son fine-tuning.
+
 - Pour le moment, préparer uniquement les notebooks du LoRA : ne lancer aucun nouvel entraînement LoRA, ni ses pré-calculs GPU, sans nouvelle demande explicite de l'utilisateur. La chaîne Base spatiale déjà active conserve son périmètre autorisé.
-- Conserver exactement deux notebooks exécutables : `2-LoRA-qwen/Sharm-Image-2.1-VL4B/Sharm_Image_2_1_VL4B.ipynb` et `2-LoRA-qwen/Sharm-Image-2.1-VL4B-LoRA-Monster/Sharm_Image_2_1_VL4B_LoRA_Monster.ipynb`, dans leurs deux dossiers distincts.
+- Conserver exactement deux notebooks exécutables : `Sharm-Image-2.1/Sharm-Image-2.1-VL4B/Sharm_Image_2_1_VL4B.ipynb` et `Sharm-Image-2.1/Sharm-Image-2.1-VL4B-LoRA-Monster/Sharm_Image_2_1_VL4B_LoRA_Monster.ipynb`, dans leurs deux dossiers distincts.
 - Intégrer le code des étapes et des fonctions partagées dans les cellules de ces deux fichiers. Les calculs tournent localement dans le kernel de la machine choisie, sans script source externe ni troisième notebook. Conserver les lancements de calcul et publication désactivés par défaut dans Git ; ils restent réellement exécutables manuellement.
-- Après la fin réelle de la chaîne, la revue et la publication vérifiée, archiver les résultats dans `2-LoRA-qwen/Sharm-Image-2.1-VL4B/reports/` avec les paramètres, historiques, galeries complètes, revues identifiées, SHA-256 et révision HF immuable. L'étape d'archivage est intégrée au notebook Base.
+- Après la fin réelle de la chaîne, la revue et la publication vérifiée, archiver les résultats dans `Sharm-Image-2.1/Sharm-Image-2.1-VL4B/reports/` avec les paramètres, historiques, galeries complètes, revues identifiées, SHA-256 et révision HF immuable. L'étape d'archivage est intégrée au notebook Base.
 - Conserver les sorties de cellules nettoyées, les preuves dans des fichiers explicites et les poids hors Git. Ne pas inventer de résultat ni d'annotation humaine ; distinguer les pertes numériques, la revue par agent et la validation spatiale humaine.
 - Finaliser ce rangement, puis committer et pousser les notebooks et rapports sur `main` avant de clôturer le suivi d'entraînement.

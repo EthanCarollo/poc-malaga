@@ -2,7 +2,24 @@
 
 Ce dossier conserve les résultats lisibles depuis les notebooks : paramètres, historiques, comparaisons complètes et revue identifiée. Les contrôles du loader et la révision HF immuable sont requis pour une archive publiée. Un candidat refusé reçoit une archive distincte, sans publication ni validation inventée.
 
-## Compte rendu du 19 octobre 2026 : candidat refusé
+## Publication du 19 octobre 2026 : Base avec text encoder et DiT FP8
+
+**Révision HF vérifiée : [`a0c0e168097024cecd8c43f68004d1bedbab32df`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/a0c0e168097024cecd8c43f68004d1bedbab32df).** Les 52 fichiers ont été contrôlés sur cette révision immuable, avec conservation de la visibilité privée. Le DiT possède 232 couches linéaires quantifiées, soit 7 115 112 448 poids E4M3 ; l'audit de génération observe 13 920 appels FP8 natifs par image avec CFG, sans repli BF16 de ces couches. L'encodeur contient 3 633 315 840 paramètres de langue FP8 ; d'autres paramètres et composants conservent leur précision.
+
+Cette publication reprend le projecteur `a414685b` de la Base antérieure, sans entraînement supplémentaire et sans utiliser le candidat spatial refusé. Les anciens shards BF16 du DiT ont été retirés du dépôt à cette révision. Les normes, biais, VAE et projecteur restent hors quantification FP8.
+
+Deux vraies générations RGBA à 512 px, 30 pas, CFG 3 ont été produites par le loader exporté, avec un pic mesuré de 8,946 Gio de VRAM. Le renard et le dragon pixel art sont reconnaissables. **Les fonds sont largement blancs et opaques : alpha 245–255 et 64–255, sans pixel totalement transparent.** Le format RGBA et le calcul FP8 sont validés techniquement ; la qualité de détourage et la précision spatiale ne le sont pas. La revue est identifiée comme `agent_visual_review`, sans statistique humaine inventée.
+
+- [Résumé publié](fp8-a0c0e1680970/summary.json)
+- [Vérification GPU et vrais formats](fp8-a0c0e1680970/fp8-validation.json)
+- [Revue et limites](fp8-a0c0e1680970/fp8-visual-review.json)
+- [Renard RGBA original](fp8-a0c0e1680970/validation/fp8-1.png)
+- [Dragon RGBA original](fp8-a0c0e1680970/validation/fp8-2.png)
+- [SHA-256 des preuves archivées](fp8-a0c0e1680970/manifest.json)
+
+L'étape `archive` du parcours FP8 intégré au notebook conserve ces octets exacts, les paramètres de quantification et la révision HF. Aucun poids n'entre dans cette archive Git.
+
+## Expérience antérieure du 19 octobre 2026 : candidat spatial refusé
 
 **L'entraînement est terminé, la qualité attendue n'est pas atteinte.** Le candidat n'a été ni exporté pour publication, ni envoyé sur Hugging Face.
 
@@ -33,7 +50,7 @@ La dégradation d'alignement après flow est mesurée. Le diagnostic visuel mont
 
 Le projecteur refusé porte le SHA-256 `6fc98a1df3b9879a7a79d568c0f6ec054bcbe8c5b15602bc57f7bd8ad228b568`. Ses poids restent hors Git. Les PNG et manifestes sont archivés avec leurs octets exacts. Les deux phases conservent leurs historiques et paramètres ; aucune annotation humaine ni estimation statistique de précision spatiale n'a été créée.
 
-L'API HF authentifiée a confirmé les révisions précédentes, inchangées : Base `1e912f5a1e5df40bdaf927abf3e4220d73781321`, ancien Monster `07a21bb50fb7749b8b7378ddf6f67ea3de078d5d`. Leur visibilité reste privée. Aucun nouvel entraînement ou pré-calcul GPU Monster n'a été lancé.
+Avant la conversion FP8, l'API HF avait confirmé Base `1e912f5a1e5df40bdaf927abf3e4220d73781321` et ancien Monster `07a21bb50fb7749b8b7378ddf6f67ea3de078d5d`. La Base a depuis reçu la publication décrite ci-dessus ; Monster reste à sa révision antérieure. Leur visibilité reste privée. Aucun nouvel entraînement ou pré-calcul GPU Monster n'a été lancé.
 
 ## Archiver un candidat refusé
 
