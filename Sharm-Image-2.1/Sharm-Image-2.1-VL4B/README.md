@@ -12,6 +12,13 @@ La Base avec **text encoder et DiT FP8** est publiée à [la révision `a0c0e168
 
 Le loader exact a généré deux PNG RGBA réels sur GPU ; les poids et appels FP8 ont été contrôlés. Pic mesuré : 8,95 Gio sur RTX 5060 Ti. Les fonds restent largement opaques malgré la demande de transparence : le format RGBA fonctionne, pas une garantie de détourage. La [carte du modèle](MODEL_CARD_FP8.md) et les [rapports](reports/README.md) précisent les limites.
 
+## Voir les comparatifs
+
+- [Avant NF4 / après FP8 : 16 paires, 32 PNG et mesures](reports/comparison-nf4-fp8-a0c0e1680970-v1/README.md). Même encodeur 4B FP8, même projecteur, mêmes embeddings et bruit initial ; galerie HTML avec curseur et planches exhaustives.
+- [8B BF16 / 4B FP8 : les 4 paires historiques](reports/encoder-8b-4b-1e912f5a/README.md), avec DiT NF4 partagé. Ce petit échantillon est distinct du nouveau comparatif de diffusion.
+
+Le code de génération, les contrôles, la galerie et la publication des preuves sont intégrés au notebook Base. Aucun entraînement supplémentaire ne démarre. Les écarts de pixels et les revues visuelles restent distincts d'une mesure humaine de précision spatiale.
+
 ## Résultat du 19 octobre 2026
 
 Les 1 000 pas de warmup, les 1 500 pas de flow et les 288 générations sont terminés. **Le candidat flow est refusé après inspection des 144 images du candidat et des 144 homologues 8B.** Il répète des formes pour des prompts différents et déforme les sujets. Les 24 générations de diagnostic du warmup ont également été inspectées : leurs contours sont plus propres, mais la fidélité aux sujets reste insuffisante.

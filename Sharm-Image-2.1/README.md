@@ -13,6 +13,8 @@ La révision [HF `a0c0e168097024cecd8c43f68004d1bedbab32df`](https://huggingface
 
 Les 52 fichiers ont été vérifiés après envoi et le dépôt reste privé. Le loader exact a produit deux PNG RGBA réels, inspectés par agent, avec un pic d'environ 8,95 Gio de VRAM. Leurs sujets sont reconnaissables, mais les fonds restent largement opaques : les détourages transparents propres ne sont pas validés. Voir les [preuves et limites](Sharm-Image-2.1-VL4B/reports/README.md).
 
+Les [comparatifs avant / après](Sharm-Image-2.1-VL4B/reports/README.md#comparatifs-avant--après) distinguent le changement de diffusion NF4 → FP8 (16 paires, mêmes embeddings et bruit initial), les 4 paires historiques d'encodeurs 8B / 4B et le candidat spatial refusé. Le notebook Base contient leur génération, galerie avec curseur, mesures et archivage.
+
 Le candidat spatial refusé reste archivé ; il n'est pas utilisé dans cette Base. Le nouveau projet pixel art Iris se trouve dans un dépôt séparé : [Sharm-Iris-PixelArt](https://github.com/EthanCarollo/Sharm-Iris-PixelArt), avec un notebook et les données de traits versionnées. Aucun nouvel entraînement Monster ou Iris n'a été lancé.
 
 ```text

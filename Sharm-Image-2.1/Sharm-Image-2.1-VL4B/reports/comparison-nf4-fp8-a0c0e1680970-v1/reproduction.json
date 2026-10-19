@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "comparison_code_matches_git_revision": "ca10261391b2875e7aba9594caf0f3ce95623285",
+  "executed_notebook_sha256": "0bd272316778b2db9cd69bc47db7b077c34c77370654a36bfc64280fce396261",
+  "comparison_source_sha256": "0d15a31fbfc3885b99649ca72898854b956ffa266e3fb2079b00ae96bd09528b",
+  "comparison_and_runtime_cells_match_committed_code": true,
+  "notebook_changes_since_execution": "Only additional CPU collection/publication cells and run metadata; executed comparison and runtime cells are identical",
+  "execution": "Embedded notebook definitions, explicitly selected by a minimal launcher; no external task implementation",
+  "new_training": false,
+  "published_export_validation_images_reproduced_byte_for_byte": [
+    "images/fox-1000-after-fp8.png",
+    "images/dragon-1001-after-fp8.png"
+  ],
+  "compared_model_revision": "a0c0e168097024cecd8c43f68004d1bedbab32df"
+}

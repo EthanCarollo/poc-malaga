@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "sources_sha256": "304860561a93f2c38dbdd33b882d4728e8208ef1fab515aea39f611cbbb2e908",
+  "prompts": [
+    {
+      "id": "fox",
+      "prompt": "A single red fox, full body, clean detailed illustration, isolated on a transparent background."
+    },
+    {
+      "id": "dragon",
+      "prompt": "A single blue dragon, complete body, crisp pixel art sprite, isolated on a transparent background."
+    },
+    {
+      "id": "flower",
+      "prompt": "This is an RGBA image with transparency. A single black flower, pixel art. The image has alpha channel and the background is transparent."
+    },
+    {
+      "id": "frog",
+      "prompt": "A single green frog monster, full body, front view, crisp pixel art game sprite, isolated on a transparent background."
+    },
+    {
+      "id": "left-right",
+      "prompt": "A red cube to the left of a blue sphere, two separate objects, clean studio illustration on a plain white background."
+    },
+    {
+      "id": "above-below",
+      "prompt": "A yellow star above a purple circle, two separate shapes, centered clean flat illustration on a plain white background."
+    },
+    {
+      "id": "typography",
+      "prompt": "A black sign above a book, with the exact text \"OPEN\", legible typography, studio photograph."
+    },
+    {
+      "id": "landscape",
+      "prompt": "A small wooden cabin beside a calm mountain lake, green pine trees, warm sunset, detailed landscape illustration."
+    }
+  ],
+  "seeds": [
+    1000,
+    1001
+  ],
+  "width": 512,
+  "height": 512,
+  "output_resolution": 512,
+  "steps": 30,
+  "cfg": 3.0,
+  "negative_prompt": "",
+  "use_kv_cache": false,
+  "same_saved_embeddings": true,
+  "same_saved_initial_latents": true,
+  "arms": [
+    "before-nf4",
+    "after-fp8"
+  ],
+  "pairs_expected": 16,
+  "images_expected": 32,
+  "timing_scope": "diffusion and RGBA VAE decoding; excludes model loading and text encoding",
+  "performance_limit": "One sequential run per arm; first image excluded from steady-state summaries; no speed guarantee"
+}

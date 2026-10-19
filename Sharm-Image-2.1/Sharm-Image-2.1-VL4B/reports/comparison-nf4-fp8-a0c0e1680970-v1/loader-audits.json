@@ -1,0 +1,22 @@
+{
+  "before-nf4": {
+    "load_seconds": 90.24249442800647,
+    "quantized_modules": 232,
+    "classes": [
+      "Linear4bit"
+    ],
+    "weight_dtypes": [
+      "torch.uint8"
+    ]
+  },
+  "after-fp8": {
+    "load_seconds": 0.75047264299792,
+    "quantized_modules": 232,
+    "classes": [
+      "ScaledFP8Linear"
+    ],
+    "weight_dtypes": [
+      "torch.float8_e4m3fn"
+    ]
+  }
+}

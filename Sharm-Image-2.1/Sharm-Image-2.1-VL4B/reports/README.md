@@ -2,6 +2,24 @@
 
 Ce dossier conserve les résultats lisibles depuis les notebooks : paramètres, historiques, comparaisons complètes et revue identifiée. Les contrôles du loader et la révision HF immuable sont requis pour une archive publiée. Un candidat refusé reçoit une archive distincte, sans publication ni validation inventée.
 
+## Comparatifs avant / après
+
+| Comparatif | Galerie et paramètres | Portée |
+| --- | --- | --- |
+| **Ancien DiT NF4 → nouveau DiT FP8** | [16 paires, 32 PNG, planches et mesures](comparison-nf4-fp8-a0c0e1680970-v1/README.md) · [galerie HTML avec curseur](comparison-nf4-fp8-a0c0e1680970-v1/gallery.html) | Encodeur 4B FP8 et projecteur identiques ; mêmes embeddings et latents initiaux sauvegardés ; 8 prompts × 2 graines, 512 px, 30 pas, CFG 3 |
+| **Encodeur 8B BF16 → encodeur 4B FP8 + projecteur** | [4 paires historiques et leurs PNG originaux](encoder-8b-4b-1e912f5a/README.md) | Archive de la révision HF `1e912f5a` ; DiT NF4 partagé, 512 px, 20 pas, CFG 1 ; aucune nouvelle génération |
+| **Candidat spatial refusé / enseignant 8B** | [Galerie complète de l'expérience refusée](rejected-7a39a8cc674e/run/validation/review.html) | Expérience d'entraînement distincte ; ce projecteur n'est pas celui de la Base publiée |
+
+Pour le comparatif de diffusion, ouvrir `gallery.html` localement après avoir cloné le dépôt : chaque paire est visible côte à côte à 512 px et en superposition avec un curseur. Les 8 planches du README montrent aussi toutes les paires directement dans GitHub. Aucun PNG n'est retiré du rapport ni détouré après génération. Les paramètres, poids et loaders portent leurs SHA et révisions immuables.
+
+Les mesures MSE RGB/alpha indiquent des différences de pixels entre NF4 et FP8. Elles ne donnent pas un taux d'erreur des positions et ne prouvent pas une meilleure qualité. Les revues par agent sont identifiées ; aucune validation humaine statistique n'est inventée. Les comparatifs sont reproductibles depuis les cellules **Avant / après de la Base publiée** et **Archiver et publier les comparatifs réels** du notebook Base, avec tous les lancements désactivés par défaut.
+
+La [revue par agent des quatre paires historiques d'encodeurs](encoder-8b-4b-agent-review.json) constate des sujets communs et du texte lisible, mais aussi des différences de fond, de disposition et des déformations. Cet échantillon ne démontre pas une parité 8B ni des positions parfaites.
+
+La [revue complète NF4 / FP8](comparison-nf4-fp8-a0c0e1680970-v1/REVIEW.md) signale notamment une perte de transparence pour le dragon à la graine 1001, des changements de contenu pour les livres et une meilleure séparation étoile/cercle à la graine 1000. Sur ce seul passage, le temps médian génération + décodage passe de 26,43 s à 20,90 s, avec un pic de VRAM allouée passant de 5,73 à 8,95 Gio. Ces mesures excluent chargement et encodage texte ; elles ne constituent pas une garantie générale de vitesse ou de qualité.
+
+La publication des preuves ajoute `COMPARISONS.md` et un dossier de résultats sur HF, sans modifier les poids, le loader, la carte ou le manifeste du payload `a0c0e168`. Sa révision de documentation est conservée dans [comparison-publication.json](comparison-publication.json).
+
 ## Publication du 19 octobre 2026 : Base avec text encoder et DiT FP8
 
 **Révision HF vérifiée : [`a0c0e168097024cecd8c43f68004d1bedbab32df`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/a0c0e168097024cecd8c43f68004d1bedbab32df).** Les 52 fichiers ont été contrôlés sur cette révision immuable, avec conservation de la visibilité privée. Le DiT possède 232 couches linéaires quantifiées, soit 7 115 112 448 poids E4M3 ; l'audit de génération observe 13 920 appels FP8 natifs par image avec CFG, sans repli BF16 de ces couches. L'encodeur contient 3 633 315 840 paramètres de langue FP8 ; d'autres paramètres et composants conservent leur précision.

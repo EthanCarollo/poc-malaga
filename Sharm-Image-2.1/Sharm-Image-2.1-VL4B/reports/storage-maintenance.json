@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "applied": true,
+  "scope": "Regenerable pip and uv installer caches only",
+  "preserved": [
+    "all Hugging Face model caches",
+    "model tensors",
+    "teacher/student features",
+    "datasets",
+    "checkpoints",
+    "environments"
+  ],
+  "before_free_gib": 4.295619964599609,
+  "caches": [
+    {
+      "directory": "~/.cache/pip",
+      "files": 1654,
+      "logical_bytes": 3715046134
+    },
+    {
+      "directory": "~/.cache/uv",
+      "files": 141184,
+      "logical_bytes": 19419554201
+    }
+  ],
+  "after_free_gib": 12.813426971435547,
+  "freed_gib": 8.517807006835938
+}

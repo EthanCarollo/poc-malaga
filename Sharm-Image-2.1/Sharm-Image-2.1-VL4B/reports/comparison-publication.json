@@ -1,0 +1,12 @@
+{
+  "state": "complete",
+  "repo_id": "ethanzxv/Sharm-Image-2.1-VL4B-FP8",
+  "revision": "ae284b2618eb9bb1edc4b31fa18253469c73d6f9",
+  "private": true,
+  "compared_model_revision": "a0c0e168097024cecd8c43f68004d1bedbab32df",
+  "model_payload_unchanged": true,
+  "report": "comparison-nf4-fp8-a0c0e1680970-v1",
+  "report_manifest_sha256": "a72058b3db7fde12f2d28e10693c784ac3cba0a13d4e38e3ade3c73d626b00ff",
+  "files_verified": 53,
+  "original_model_files_preserved": 69
+}
