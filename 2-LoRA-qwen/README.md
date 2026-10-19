@@ -37,6 +37,8 @@ La première base est expérimentale et validée uniquement pour le texte vers i
 
 Le cache 8B utilise des lots de 16 pour amortir le transfert des couches déportées en RAM. Le 4B FP8 garde son encodage un prompt à la fois. `run_training.py --teacher-batch-size 4` permet de revenir aux petits lots sur une machine disposant de moins de mémoire ; les shards déjà écrits restent réutilisables.
 
+Le LoRA démarre sans recalcul des activations pour utiliser la marge de la carte 16 Gio. L’option `train_lora.py --gradient-checkpointing` réduit sa mémoire sur une carte plus contrainte. Ce réglage est enregistré dans la configuration et ne change pas les exemples, le nombre de pas ou la compatibilité des checkpoints.
+
 ## Confidentialité et sorties
 
 Les modèles, caches et données sont hors Git. La demande actuelle autorise la publication HF après les deux entraînements, leurs évaluations et la revue visuelle. Les destinations sont privées :

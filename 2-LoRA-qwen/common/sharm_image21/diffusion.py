@@ -5,7 +5,7 @@ import torch
 from .core import ORIGINAL, STUDENT
 
 
-def load_transformer(base: Path = ORIGINAL, training: bool = False):
+def load_transformer(base: Path = ORIGINAL, training: bool = False, gradient_checkpointing: bool = True):
     from diffusers import BitsAndBytesConfig, QwenImage21Transformer2DModel
     quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
                                       bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
@@ -17,7 +17,8 @@ def load_transformer(base: Path = ORIGINAL, training: bool = False):
     if training:
         from peft import prepare_model_for_kbit_training
         model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=False)
-        model.enable_gradient_checkpointing()
+        if gradient_checkpointing:
+            model.enable_gradient_checkpointing()
     else:
         model.eval()
     return model
