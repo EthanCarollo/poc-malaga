@@ -62,10 +62,12 @@ La licence Qwen Research et les attributions d’origine sont conservées. Aucun
 
 La fiche du LoRA contiendra deux galeries générées par la chaîne après les entraînements :
 
-- **Avant / après LoRA** : six espèces réservées à la validation, même base Sharm avec le VL 4B FP8 et son projecteur. Tous les rendus sans adaptateur sont calculés avant de charger le LoRA, puis les mêmes prompts sont rejoués avec l’adaptateur à 1.0.
+- **Avant / après LoRA** : six espèces réservées à la validation, même base Sharm avec le VL 4B FP8 et son projecteur. Tous les rendus sans adaptateur sont calculés avant de charger le LoRA, puis les mêmes prompts sont rejoués avec l’adaptateur. Le premier candidat recommande une force de **0.5**, retenue après comparaison à 1.0 sur ces six prompts. Le style et la transparence évoluent, avec encore des défauts de silhouettes et d’identité ; la fiche les expose.
 - **VL 8B d’origine / VL 4B FP8 + projecteur** : quatre prompts de validation générale, sans LoRA des deux côtés. Cette galerie figure aussi sur la fiche de la base Sharm.
 
 Chaque paire partage exactement le prompt, la graine CUDA réinitialisée, la résolution, le scheduler, le nombre de pas et le CFG. Le diffuseur est chargé en NF4 avec calcul BF16 et le VAE en BF16 des deux côtés. Les sprites sont générés en 512 px puis réduits de la même façon en 128 px, en nearest-neighbor. Les aperçus utilisent un damier ; les PNG à télécharger conservent leur alpha et aucune retouche n’est appliquée aux générations.
+
+`evaluate_sprites.py --lora-weight 0.5` calibre la force d’inférence sans réentraîner les poids. La passe sans LoRA est réutilisée uniquement si ses empreintes et réglages correspondent. La force recommandée est enregistrée dans `sharm_lora_config.json` et l’exemple de chargement la transmet avec `attention_kwargs={"scale": ...}`.
 
 Les images réelles, leurs empreintes, prompts, graines, réglages complets et versions du runtime sont copiés dans `comparisons/lora/` et `comparisons/encoder/` des exports. Une galerie absente, altérée ou incompatible avec les empreintes du projecteur ou du LoRA bloque l’assemblage de la fiche.
 

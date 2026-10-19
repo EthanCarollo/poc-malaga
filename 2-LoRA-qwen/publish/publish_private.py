@@ -74,7 +74,9 @@ def prerequisites(component):
     if lora_config["projector_sha256"] != fingerprint or lora_config["lora_sha256"] != lora_sha:
         raise ValueError("Les poids LoRA et leur déclaration sont incompatibles.")
     load_comparisons(lora / "comparisons/encoder", "encoder", fingerprint)
-    load_comparisons(lora / "comparisons/lora", "lora", fingerprint, lora_sha)
+    lora_comparison = load_comparisons(lora / "comparisons/lora", "lora", fingerprint, lora_sha)
+    if lora_config.get("recommended_weight", 1.0) != lora_comparison["controls"]["lora_weight"]:
+        raise ValueError("La force recommandée et celle des comparaisons sont différentes.")
     if file_hash(base / "comparisons/encoder/comparison.json") != file_hash(lora / "comparisons/encoder/comparison.json"):
         raise ValueError("Les deux fiches ne montrent pas la même référence VL.")
     expected = {"encoder_comparison_sha256": file_hash(base / "comparisons/encoder/comparison.json"),
