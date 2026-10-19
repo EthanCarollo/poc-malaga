@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import re
 import time
@@ -18,9 +19,12 @@ from PIL import Image
 
 SCRIPT_DIR = Path(__file__).resolve().parents[1]
 SHEETS = (
-    ("21228.png", "Hoenn / Gen 3", 252, 135),
-    ("21229.png", "Johto / Gen 2", 152, 100),
-    ("21230.png", "Kanto / Gen 1", 1, 151),
+    ("21228.png", "Hoenn / Gen 3", False),
+    ("21229.png", "Johto / Gen 2", False),
+    ("21230.png", "Kanto / Gen 1", False),
+    ("21231.png", "Kanto / Gen 1", True),
+    ("21301.png", "Johto / Gen 2", True),
+    ("21650.png", "Hoenn / Gen 3", True),
 )
 CELL_SIZE = 64
 PITCH = 69
@@ -35,6 +39,23 @@ DISPLAY_NAME_OVERRIDES = {
     "nidoran-f": "Nidoran♀",
     "nidoran-m": "Nidoran♂",
 }
+
+
+def sheet_cells(generation: str) -> list[tuple[int, str]]:
+    """Species/form per 64px cell, audited against these six source sheets.
+
+    Johto omits Unown (#201); Hoenn omits Spinda (#327) and gives Castform
+    four cells instead of two. Footer artwork is outside this cell list.
+    """
+    start, stop = {"Kanto / Gen 1": (1, 152), "Johto / Gen 2": (152, 252),
+                   "Hoenn / Gen 3": (252, 387)}[generation]
+    cells = []
+    for species_id in range(start, stop):
+        if species_id in (201, 327):
+            continue
+        forms = ("normal form", "sunny form", "rainy form", "snowy form") if species_id == 351 else ("", "")
+        cells.extend((species_id, form) for form in forms)
+    return cells
 
 
 def parse_color(value: str) -> tuple[int, int, int]:
@@ -130,10 +151,18 @@ def load_species_traits(output_dir: Path) -> dict[str, dict[str, str]]:
     return traits
 
 
-def make_caption(species: dict[str, str]) -> str:
+def asset_label(species: dict[str, str], shiny: bool = False, form: str = "") -> str:
+    return f"{'shiny ' if shiny else ''}{species['name']}" + (f", {form}" if form else "")
+
+
+def make_caption(species: dict[str, str], shiny: bool = False, form: str = "") -> str:
+    # PokéAPI's species color describes the normal palette, not shiny/weather forms.
+    coloration = "shiny coloration" if shiny else f"{species['color']} coloration"
+    if form:
+        coloration = "shiny coloration" if shiny else "weather-form coloration"
     return (
-        f"pkm_ow_sprite, {species['name']}, the {species['genus']}; "
-        f"{species['color']} coloration, {species['shape']} body. "
+        f"pkm_ow_sprite, {asset_label(species, shiny, form)}, the {species['genus']}; "
+        f"{coloration}, {species['shape']} body. "
         f"Pokédex note: {species['pokedex_note']} "
         "Classic handheld-game overworld pixel-art sprite, single character, transparent background."
     )
@@ -159,10 +188,17 @@ def main() -> None:
         default=BACKGROUND,
         help="Couleur de fond à retirer, en RRGGBB (par défaut : A5EBFF).",
     )
+    parser.add_argument("--sheet-dir", type=Path, default=SCRIPT_DIR,
+                        help="Dossier contenant les six planches PNG locales, normales et shiny.")
     args = parser.parse_args()
     if args.training_size < CELL_SIZE or args.training_size % 32:
         parser.error("--training-size doit être au moins 64 et être un multiple de 32.")
 
+    sheet_dir = args.sheet_dir.expanduser().resolve()
+    missing = [str(sheet_dir / name) for name, *_ in SHEETS if not (sheet_dir / name).is_file()]
+    if missing:
+        raise FileNotFoundError("Planches source absentes (le script les découpe mais ne les télécharge pas) : "
+                                + ", ".join(missing) + ". Fournir --sheet-dir ou utiliser 03-spatial-distillation/run.py --pokeapi.")
     output_dir = args.output_dir.expanduser().resolve()
     tiles_dir = output_dir / "sprites_64"
     training_dir = output_dir / f"train_{args.training_size}"
@@ -173,10 +209,11 @@ def main() -> None:
     traits = load_species_traits(output_dir)
     records: list[dict[str, object]] = []
     total_cells = 0
-    total_expected_sprites = sum(species_count * 2 for _, _, _, species_count in SHEETS)
+    total_expected_sprites = sum(len(sheet_cells(generation)) for _, generation, _ in SHEETS)
+    sources = []
     empty_cells = 0
-    for filename, generation, first_species_id, species_count in SHEETS:
-        sheet_path = SCRIPT_DIR / filename
+    for filename, generation, shiny in SHEETS:
+        sheet_path = sheet_dir / filename
         if not sheet_path.is_file():
             raise FileNotFoundError(f"Planche locale introuvable : {sheet_path}")
         with Image.open(sheet_path) as source:
@@ -188,13 +225,21 @@ def main() -> None:
                 )
             columns = (source.width - ORIGIN - CELL_SIZE) // PITCH + 1
             rows = (source.height - ORIGIN - CELL_SIZE) // PITCH + 1
+            if columns != 10:
+                raise ValueError(f"La grille auditée requiert dix colonnes : {filename}.")
+            cells = sheet_cells(generation)
+            if rows * columns < len(cells):
+                raise ValueError(f"Planche tronquée : {filename}.")
+            source_sha256 = hashlib.sha256(sheet_path.read_bytes()).hexdigest()
+            sources.append({"file_name": filename, "sha256": source_sha256, "generation": generation,
+                            "shiny": shiny, "size": list(source.size), "expected_cells": len(cells)})
             total_cells += rows * columns
             kept = 0
             for row in range(rows):
                 for column in range(columns):
-                    species_offset = row * (columns // 2) + column // 2
-                    if species_offset >= species_count:
-                        continue  # Ignore footer artwork/credits after the last Kanto Pokémon.
+                    cell_index = row * columns + column
+                    if cell_index >= len(cells):
+                        continue  # Ignore white placeholders and footer artwork/credits.
                     left = ORIGIN + column * PITCH
                     top = ORIGIN + row * PITCH
                     tile = source.crop((left, top, left + CELL_SIZE, top + CELL_SIZE)).convert("RGBA")
@@ -206,9 +251,9 @@ def main() -> None:
                     if occupied_pixels < 12:
                         continue
 
-                    species_id = first_species_id + species_offset
+                    species_id, form = cells[cell_index]
                     species = traits[str(species_id)]
-                    caption = make_caption(species)
+                    caption = make_caption(species, shiny, form)
                     stem = f"{Path(filename).stem}_r{row:02d}_c{column:02d}"
                     tile_path = tiles_dir / f"{stem}.png"
                     training_path = training_dir / f"{stem}.png"
@@ -222,6 +267,10 @@ def main() -> None:
                             "generation": generation,
                             "species_id": species_id,
                             "species": species["name"],
+                            "shiny": shiny,
+                            "form": form,
+                            "label": asset_label(species, shiny, form),
+                            "source_sha256": source_sha256,
                             "caption": caption,
                             "row": row,
                             "column": column,
@@ -231,7 +280,7 @@ def main() -> None:
                     kept += 1
             print(
                 f"{filename}: {source.width}×{source.height}, grille {columns}×{rows}, "
-                f"cellules Pokédex utilisées {species_count * 2}, sprites extraits {kept}."
+                f"cellules Pokédex utilisées {len(cells)}, sprites extraits {kept}."
             )
 
     if not records:
@@ -265,11 +314,21 @@ def main() -> None:
                     {
                         "file_name": Path(str(record["file"])).name,
                         "text": record["caption"],
+                        "group_id": str(record["species_id"]),
+                        "label": record["label"],
                     },
                     ensure_ascii=False,
                 )
                 + "\n"
             )
+
+    (output_dir / "sources.json").write_text(json.dumps({
+        "schema": 1, "layout": "six-sheets-missing-unown-spinda-castform-four-cells-v1",
+        "sheets": sources, "sprite_count": len(records),
+        "species_count": len({r["species_id"] for r in records}),
+        "missing_species": [201, 327], "background_removed": list(args.background),
+        "training_size": args.training_size,
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(
         f"Cellules examinées : {total_cells} ; sprites Pokédex attendus : "

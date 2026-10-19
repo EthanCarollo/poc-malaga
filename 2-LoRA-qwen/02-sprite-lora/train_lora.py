@@ -46,6 +46,8 @@ def evaluate(model, rows, texts, latents):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--resolution", type=int, default=512)
+    parser.add_argument("--training-cache", type=Path)
+    parser.add_argument("--base-validation", type=Path, default=ARTIFACTS / "base-validation.json")
     parser.add_argument("--steps", type=int, default=500)
     parser.add_argument("--accumulation", type=int, default=4)
     parser.add_argument("--rank", type=int, default=8)
@@ -66,8 +68,8 @@ def main():
     import bitsandbytes as bnb
     from safetensors.torch import load_file
 
-    data = json.loads((ARTIFACTS / f"sprite-training-{args.resolution}.json").read_text())
-    validation = json.loads((ARTIFACTS / "base-validation.json").read_text())
+    data = json.loads((args.training_cache or ARTIFACTS / f"sprite-training-{args.resolution}.json").read_text())
+    validation = json.loads(args.base_validation.read_text())
     if not validation.get("passed") or validation["projector_sha256"] != data["identity"]["projector_sha256"]:
         raise RuntimeError("Base validée et cache sprites de révisions différentes.")
     rows = data["rows"]
@@ -77,11 +79,13 @@ def main():
         raise ValueError("Un holdout par espèce est requis.")
     assert not ({r['species_id'] for r in training_rows} & {r['species_id'] for r in validation_rows})
     texts, latents = FeatureCache(Path(data["text_cache"])), FeatureCache(Path(data["latent_cache"]))
-    run_config = {**vars(args), "output": str(args.output), "cache_identity": data["identity"]}
+    run_config = {**{key: str(value) if isinstance(value, Path) else value for key,value in vars(args).items()},
+                  "output": str(args.output), "cache_identity": data["identity"]}
     # Activation recomputation changes memory/time, not the training examples or
     # objective. Keep checkpoints compatible when toggling this runtime option.
     run_signature = digest({key: value for key, value in run_config.items()
-                            if key not in ("gradient_checkpointing", "checkpointing_mode")})
+                            if key not in ("gradient_checkpointing", "checkpointing_mode",
+                                           "training_cache", "base_validation")})
     complete_path = args.output / "training-complete.json"
     if complete_path.exists():
         previous = json.loads(complete_path.read_text())

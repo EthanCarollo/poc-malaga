@@ -1,0 +1,488 @@
+[
+  {
+    "sheet": "48052.png",
+    "row": 6,
+    "column": 1,
+    "duplicate_of": "0042-golbat-female-normal-back-black-white-c1f2689b54",
+    "equivalent_variant": {
+      "species_id": 42,
+      "form_id": 42,
+      "form_identifier": "golbat",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48053.png",
+    "row": 6,
+    "column": 1,
+    "duplicate_of": "0042-golbat-female-shiny-back-black-white-c909b1f664",
+    "equivalent_variant": {
+      "species_id": 42,
+      "form_id": 42,
+      "form_identifier": "golbat",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "shiny",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48060.png",
+    "row": 11,
+    "column": 0,
+    "duplicate_of": "0202-wobbuffet-female-normal-back-black-white-82267b46e7",
+    "equivalent_variant": {
+      "species_id": 202,
+      "form_id": 202,
+      "form_identifier": "wobbuffet",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48061.png",
+    "row": 11,
+    "column": 0,
+    "duplicate_of": "0202-wobbuffet-female-shiny-back-black-white-e5b893a324",
+    "equivalent_variant": {
+      "species_id": 202,
+      "form_id": 202,
+      "form_identifier": "wobbuffet",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "shiny",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48068.png",
+    "row": 12,
+    "column": 0,
+    "duplicate_of": "0332-cacturne-female-normal-back-black-white-e4d9e18f33",
+    "equivalent_variant": {
+      "species_id": 332,
+      "form_id": 332,
+      "form_identifier": "cacturne",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48069.png",
+    "row": 12,
+    "column": 0,
+    "duplicate_of": "0332-cacturne-female-shiny-back-black-white-89cd56826f",
+    "equivalent_variant": {
+      "species_id": 332,
+      "form_id": 332,
+      "form_identifier": "cacturne",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "shiny",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48069.png",
+    "row": 14,
+    "column": 5,
+    "duplicate_of": "0351-castform-sunny-unspecified-normal-back-black-white-fd633deceb",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10028,
+      "form_identifier": "castform-sunny",
+      "form_name_en": "Sunny Form",
+      "form_name_fr": "Forme Solaire",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48069.png",
+    "row": 14,
+    "column": 6,
+    "duplicate_of": "0351-castform-rainy-unspecified-normal-back-black-white-ad9dcba52c",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10029,
+      "form_identifier": "castform-rainy",
+      "form_name_en": "Rainy Form",
+      "form_name_fr": "Forme Eau de Pluie",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48069.png",
+    "row": 14,
+    "column": 7,
+    "duplicate_of": "0351-castform-snowy-unspecified-normal-back-black-white-32d8ce368b",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10030,
+      "form_identifier": "castform-snowy",
+      "form_name_en": "Snowy Form",
+      "form_name_fr": "Forme Blizzard",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48072.png",
+    "row": 0,
+    "column": 4,
+    "duplicate_of": "0255-torchic-female-normal-front-black-white-c6ba8a307c",
+    "equivalent_variant": {
+      "species_id": 255,
+      "form_id": 255,
+      "form_identifier": "torchic",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "front",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48073.png",
+    "row": 0,
+    "column": 4,
+    "duplicate_of": "0255-torchic-female-shiny-front-black-white-f2a9adf50c",
+    "equivalent_variant": {
+      "species_id": 255,
+      "form_id": 255,
+      "form_identifier": "torchic",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48073.png",
+    "row": 14,
+    "column": 5,
+    "duplicate_of": "0351-castform-sunny-unspecified-normal-front-black-white-8add321b56",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10028,
+      "form_identifier": "castform-sunny",
+      "form_name_en": "Sunny Form",
+      "form_name_fr": "Forme Solaire",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48073.png",
+    "row": 14,
+    "column": 6,
+    "duplicate_of": "0351-castform-rainy-unspecified-normal-front-black-white-a54f36d1ee",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10029,
+      "form_identifier": "castform-rainy",
+      "form_name_en": "Rainy Form",
+      "form_name_fr": "Forme Eau de Pluie",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48073.png",
+    "row": 14,
+    "column": 7,
+    "duplicate_of": "0351-castform-snowy-unspecified-normal-front-black-white-18a5f90060",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10030,
+      "form_identifier": "castform-snowy",
+      "form_name_en": "Snowy Form",
+      "form_name_fr": "Forme Blizzard",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48076.png",
+    "row": 1,
+    "column": 6,
+    "duplicate_of": "0398-staraptor-female-normal-back-black-white-ffbc89020c",
+    "equivalent_variant": {
+      "species_id": 398,
+      "form_id": 398,
+      "form_identifier": "staraptor",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48076.png",
+    "row": 2,
+    "column": 2,
+    "duplicate_of": "0400-bibarel-female-normal-back-black-white-559e778755",
+    "equivalent_variant": {
+      "species_id": 400,
+      "form_id": 400,
+      "form_identifier": "bibarel",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48076.png",
+    "row": 5,
+    "column": 4,
+    "duplicate_of": "0415-combee-female-normal-back-black-white-848f369e00",
+    "equivalent_variant": {
+      "species_id": 415,
+      "form_id": 415,
+      "form_identifier": "combee",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48076.png",
+    "row": 5,
+    "column": 7,
+    "duplicate_of": "0417-pachirisu-female-normal-back-black-white-98fcab0f03",
+    "equivalent_variant": {
+      "species_id": 417,
+      "form_id": 417,
+      "form_identifier": "pachirisu",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48076.png",
+    "row": 13,
+    "column": 3,
+    "duplicate_of": "0460-abomasnow-female-normal-back-black-white-cc80689292",
+    "equivalent_variant": {
+      "species_id": 460,
+      "form_id": 460,
+      "form_identifier": "abomasnow",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "back",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48080.png",
+    "row": 6,
+    "column": 1,
+    "duplicate_of": "0418-buizel-female-normal-front-black-white-b1e7fb063e",
+    "equivalent_variant": {
+      "species_id": 418,
+      "form_id": 418,
+      "form_identifier": "buizel",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "front",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "48080.png",
+    "row": 6,
+    "column": 3,
+    "duplicate_of": "0419-floatzel-female-normal-front-black-white-9911a4c7be",
+    "equivalent_variant": {
+      "species_id": 419,
+      "form_id": 419,
+      "form_identifier": "floatzel",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "male",
+      "palette": "normal",
+      "view": "front",
+      "sprite_style": "black-white"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "21228.png",
+    "row": 19,
+    "column": 7,
+    "duplicate_of": "0351-castform-sunny-unspecified-normal-front-black-white-8add321b56",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10028,
+      "form_identifier": "castform-sunny",
+      "form_name_en": "Sunny Form",
+      "form_name_fr": "Forme Solaire",
+      "gender": "unspecified",
+      "palette": "normal",
+      "view": "front",
+      "sprite_style": "emerald"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "21228.png",
+    "row": 19,
+    "column": 8,
+    "duplicate_of": "0351-castform-rainy-unspecified-normal-front-black-white-a54f36d1ee",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10029,
+      "form_identifier": "castform-rainy",
+      "form_name_en": "Rainy Form",
+      "form_name_fr": "Forme Eau de Pluie",
+      "gender": "unspecified",
+      "palette": "normal",
+      "view": "front",
+      "sprite_style": "emerald"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "21231.png",
+    "row": 9,
+    "column": 9,
+    "duplicate_of": "0050-diglett-unspecified-normal-front-emerald-8ee5dc46c2",
+    "equivalent_variant": {
+      "species_id": 50,
+      "form_id": 50,
+      "form_identifier": "diglett",
+      "form_name_en": "",
+      "form_name_fr": "",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "emerald"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "21650.png",
+    "row": 19,
+    "column": 7,
+    "duplicate_of": "0351-castform-sunny-unspecified-normal-front-black-white-8add321b56",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10028,
+      "form_identifier": "castform-sunny",
+      "form_name_en": "Sunny Form",
+      "form_name_fr": "Forme Solaire",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "emerald"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "21650.png",
+    "row": 19,
+    "column": 8,
+    "duplicate_of": "0351-castform-rainy-unspecified-normal-front-black-white-a54f36d1ee",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10029,
+      "form_identifier": "castform-rainy",
+      "form_name_en": "Rainy Form",
+      "form_name_fr": "Forme Eau de Pluie",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "emerald"
+    },
+    "reason": "identical centered RGBA pixels"
+  },
+  {
+    "sheet": "21650.png",
+    "row": 19,
+    "column": 9,
+    "duplicate_of": "0351-castform-snowy-unspecified-normal-front-emerald-0b5cf32d2c",
+    "equivalent_variant": {
+      "species_id": 351,
+      "form_id": 10030,
+      "form_identifier": "castform-snowy",
+      "form_name_en": "Snowy Form",
+      "form_name_fr": "Forme Blizzard",
+      "gender": "unspecified",
+      "palette": "shiny",
+      "view": "front",
+      "sprite_style": "emerald"
+    },
+    "reason": "identical centered RGBA pixels"
+  }
+]

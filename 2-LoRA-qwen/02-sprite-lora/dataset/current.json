@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "dataset": "prepared/monster-clean-v2",
+  "manifest_sha256": "18cafc9683bd04df4c67772a16992111c7ed2f9d76f97b43cd5c4af7208901e9",
+  "audit_sha256": "cf8735e07694753d1d1aba5ad4df18356b3a69134d68c8947e945a61b6fa9318",
+  "unique_images": 4481,
+  "species": 649,
+  "ready_for_data_cache": true,
+  "training_started": false,
+  "updated_at": "2026-10-19T16:40:59.180253+00:00"
+}

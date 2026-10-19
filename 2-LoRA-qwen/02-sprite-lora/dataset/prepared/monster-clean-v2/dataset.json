@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "dataset_version": "monster-clean-v2",
+  "preparation_version": "monster-rgba-v1",
+  "raw_files": 25,
+  "unique_source_sheets": 24,
+  "verified_source_cells": 4508,
+  "unique_images": 4481,
+  "duplicate_cells": 27,
+  "unresolved_cells": 0,
+  "species": 649,
+  "by_style": {
+    "black-white": 2947,
+    "emerald": 1534
+  },
+  "by_view": {
+    "back": 1470,
+    "front": 3011
+  },
+  "by_palette": {
+    "normal": 2409,
+    "shiny": 2072
+  },
+  "by_split": {
+    "train": 4084,
+    "validation": 397
+  },
+  "by_verification": {
+    "exact_rgb5_composite": 4250,
+    "source_label_reference_palette_unique_matte": 101,
+    "paired_palette_exact_alpha": 18,
+    "audited_legacy_grid_unique_matte": 112
+  },
+  "manifest_sha256": "18cafc9683bd04df4c67772a16992111c7ed2f9d76f97b43cd5c4af7208901e9",
+  "preparation_script_sha256": "8ccafb1f6b8b3f70fe35890dbc7f18358362c50cddb4fe59fc8d0a19def2329c",
+  "training_started": false,
+  "human_review": false,
+  "reference_matching_is_not_human_review": true
+}

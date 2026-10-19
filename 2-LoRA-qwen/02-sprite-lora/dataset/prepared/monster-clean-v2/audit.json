@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "errors": [],
+  "unique_images_checked": 4481,
+  "png_files_checked": 13443,
+  "source_cells_accounted": 4508,
+  "species": 649,
+  "train_species": 583,
+  "validation_species": 66,
+  "verification_levels": {
+    "exact_rgb5_composite": 4250,
+    "source_label_reference_palette_unique_matte": 101,
+    "paired_palette_exact_alpha": 18,
+    "audited_legacy_grid_unique_matte": 112
+  },
+  "manifest_sha256": "18cafc9683bd04df4c67772a16992111c7ed2f9d76f97b43cd5c4af7208901e9",
+  "human_review": false,
+  "note": "Integrity/geometry/metadata audit, not a guarantee of generated image quality."
+}

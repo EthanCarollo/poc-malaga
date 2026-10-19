@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "note": "Immutable originals in dataset/raw. Coordinates are zero-based; do not infer species by a constant offset.",
+  "battle_groups": [
+    {"region": "Kanto", "species_range": [1, 151], "sheets": {"48052.png": ["back", false], "48053.png": ["back", true], "48056.png": ["front", false], "48057.png": ["front", true]}},
+    {"region": "Johto", "species_range": [152, 251], "sheets": {"48060.png": ["back", false], "48061.png": ["back", true], "48064.png": ["front", false], "48065.png": ["front", true]}},
+    {"region": "Hoenn", "species_range": [252, 386], "sheets": {"48068.png": ["back", false], "48069.png": ["back", true], "48072.png": ["front", false], "48073.png": ["front", true]}},
+    {"region": "Sinnoh", "species_range": [387, 493], "sheets": {"48076.png": ["back", false], "48080.png": ["front", false]}},
+    {"region": "Unova", "species_range": [494, 649], "sheets": {"48084.png": ["back", false], "48085.png": ["back", true], "48088.png": ["front", false], "48089.png": ["front", true]}}
+  ],
+  "battle_grid": {"columns": 8, "cell_size": 96, "row_pitch": 103, "origin": 0},
+  "legacy_sheets": {
+    "21228.png": ["Hoenn / Gen 3", false], "21229.png": ["Johto / Gen 2", false],
+    "21230.png": ["Kanto / Gen 1", false], "21231.png": ["Kanto / Gen 1", true],
+    "21301.png": ["Johto / Gen 2", true], "21650.png": ["Hoenn / Gen 3", true]
+  },
+  "legacy_grid": {"columns": 10, "cell_size": 64, "row_pitch": 69, "column_pitch": 69, "origin": 5},
+  "duplicate_files": {"48088 (1).png": "48088.png"},
+  "form_label_type_order": {"493": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
+  "form_label_type_order_note": "Arceus labels 00..16 use the 17 Gen V type IDs. This excludes historical ??? and later Fairy reference images even when their pixels alias Normal.",
+  "fallback_identities": {
+    "Kanto:4:4": {"species_id": 31}, "Kanto:6:7": {"species_id": 46},
+    "Hoenn:0:5": {"species_id": 256, "gender": "female"}, "Hoenn:0:6": {"species_id": 256, "gender": "male"},
+    "Hoenn:2:2": {"species_id": 267, "gender": "female"}, "Hoenn:2:3": {"species_id": 267, "gender": "male"},
+    "Sinnoh:1:4": {"species_id": 397, "gender": "male"},
+    "Unova:1:1": {"species_id": 503}, "Unova:6:5": {"species_id": 546}, "Unova:8:1": {"species_id": 556}
+  }
+}

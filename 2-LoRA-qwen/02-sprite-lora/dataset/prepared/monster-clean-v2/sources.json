@@ -1,0 +1,515 @@
+{
+  "sources": [
+    {
+      "file": "48052.png",
+      "sha256": "934783555c44f09c42e4dcb8ea651e4bcf7793e63cec3c6e4186d9caf222ab66",
+      "size": [
+        768,
+        2266
+      ],
+      "view": "back",
+      "shiny": false,
+      "region": "Kanto"
+    },
+    {
+      "file": "48053.png",
+      "sha256": "f730b0018b3b96ef48c80071f5a33efd18857ffe1abbcbac6eded7ec13dc8209",
+      "size": [
+        768,
+        2266
+      ],
+      "view": "back",
+      "shiny": true,
+      "region": "Kanto"
+    },
+    {
+      "file": "48056.png",
+      "sha256": "7f35c5a7b9e6c78b28a4cbcabc8a86a434d8b815e64aaad7d1a8da4afc886086",
+      "size": [
+        768,
+        2266
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Kanto"
+    },
+    {
+      "file": "48057.png",
+      "sha256": "3750ca36619a84092f822aa9e5db753e6a1da3ac169288668429de75c0ac54c2",
+      "size": [
+        768,
+        2266
+      ],
+      "view": "front",
+      "shiny": true,
+      "region": "Kanto"
+    },
+    {
+      "file": "48060.png",
+      "sha256": "4f6cee87836b5cc38b784ed4a48e4ae89f17809eae39f3c46b7792daa9df8108",
+      "size": [
+        768,
+        1957
+      ],
+      "view": "back",
+      "shiny": false,
+      "region": "Johto"
+    },
+    {
+      "file": "48061.png",
+      "sha256": "023146531c4a4fd71c6fedac145d92c50cbfc30406d47ff9174d628311e9ebe6",
+      "size": [
+        768,
+        1957
+      ],
+      "view": "back",
+      "shiny": true,
+      "region": "Johto"
+    },
+    {
+      "file": "48064.png",
+      "sha256": "8a41202babf36ece0773bda734c578ae535444e597e7a9fd6f217256c7151712",
+      "size": [
+        768,
+        1957
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Johto"
+    },
+    {
+      "file": "48065.png",
+      "sha256": "971a3328d1df91f293ce5189bc6927391988c21935052b27b99348a6b8c09575",
+      "size": [
+        768,
+        1957
+      ],
+      "view": "front",
+      "shiny": true,
+      "region": "Johto"
+    },
+    {
+      "file": "48068.png",
+      "sha256": "49c4f73b7bd458b43200e32beb7ae100cc028dcd0ba93f48c3dc0e8c21bd4fd1",
+      "size": [
+        768,
+        2060
+      ],
+      "view": "back",
+      "shiny": false,
+      "region": "Hoenn"
+    },
+    {
+      "file": "48069.png",
+      "sha256": "8f243c82577e7d1e922b9ce92b801794bcd467fdc3687c8c08cec8072f3e5608",
+      "size": [
+        768,
+        2060
+      ],
+      "view": "back",
+      "shiny": true,
+      "region": "Hoenn"
+    },
+    {
+      "file": "48072.png",
+      "sha256": "e9a25af3f9fab66297daf2666280713dd3c67bcb67233737ba47dc3ca0916b95",
+      "size": [
+        768,
+        2060
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Hoenn"
+    },
+    {
+      "file": "48073.png",
+      "sha256": "2d006988494204e042bf2de3df707e3ae2307862581c15303fdcf2506cd8ede5",
+      "size": [
+        768,
+        2060
+      ],
+      "view": "front",
+      "shiny": true,
+      "region": "Hoenn"
+    },
+    {
+      "file": "48076.png",
+      "sha256": "7e574392dd11c6cc329912d8584bc387f4828130ce3c5ecbc6cf9070aa0106a5",
+      "size": [
+        768,
+        2163
+      ],
+      "view": "back",
+      "shiny": false,
+      "region": "Sinnoh"
+    },
+    {
+      "file": "48080.png",
+      "sha256": "2712ac2dcb9a5005ba60f60264e8772438d74005ec2d33f75e3dee724a6d5b14",
+      "size": [
+        768,
+        2163
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Sinnoh"
+    },
+    {
+      "file": "48084.png",
+      "sha256": "1cf9df4139f5ea9a92a8d9b1ac81277660d1d2e0e23f63ed3b798d997fa0708c",
+      "size": [
+        768,
+        2369
+      ],
+      "view": "back",
+      "shiny": false,
+      "region": "Unova"
+    },
+    {
+      "file": "48085.png",
+      "sha256": "d0f8f6e04c5e396846647a508abf32e7105cf9f36ab41479db0eb101fb9b7f02",
+      "size": [
+        768,
+        2369
+      ],
+      "view": "back",
+      "shiny": true,
+      "region": "Unova"
+    },
+    {
+      "file": "48088.png",
+      "sha256": "a5b43f6b3ef280f3555f8fce6f72545cf3cf62835219ea40c0e998f27ff04caf",
+      "size": [
+        768,
+        2369
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Unova"
+    },
+    {
+      "file": "48089.png",
+      "sha256": "2e173ca2c26de7fbd3aa415121e624913855fde7769297fad2a267887db5a630",
+      "size": [
+        768,
+        2369
+      ],
+      "view": "front",
+      "shiny": true,
+      "region": "Unova"
+    },
+    {
+      "file": "21228.png",
+      "sha256": "0019725d4a280ea35eb9c14ac75e1602efd12269607aebc2553ffbd08667cf73",
+      "size": [
+        695,
+        1909
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Hoenn"
+    },
+    {
+      "file": "21229.png",
+      "sha256": "a08ebd763b8b060a15bbcb7414854d1c109c567c01dd00ecb2f9e3daadcb8ad9",
+      "size": [
+        695,
+        1431
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Johto"
+    },
+    {
+      "file": "21230.png",
+      "sha256": "929910725ca02c67fb851e7552679b05a8e344acf4674b9d67b9dcb7c89a2d34",
+      "size": [
+        695,
+        2144
+      ],
+      "view": "front",
+      "shiny": false,
+      "region": "Kanto"
+    },
+    {
+      "file": "21231.png",
+      "sha256": "7cff43a596607ad7c631c0212f671a22f2968624f123f4152a9fe44e78c7e3e9",
+      "size": [
+        695,
+        2144
+      ],
+      "view": "front",
+      "shiny": true,
+      "region": "Kanto"
+    },
+    {
+      "file": "21301.png",
+      "sha256": "f61cb3eb9f3429a61443fc17caeaf62c0ef62254952fceebedbf5075a7551a1a",
+      "size": [
+        695,
+        1428
+      ],
+      "view": "front",
+      "shiny": true,
+      "region": "Johto"
+    },
+    {
+      "file": "21650.png",
+      "sha256": "db728664dd0b63b15d5f596903b0566917903556cb466629c642ee9bbe4000f3",
+      "size": [
+        695,
+        1909
+      ],
+      "view": "front",
+      "shiny": true,
+      "region": "Hoenn"
+    },
+    {
+      "file": "48088 (1).png",
+      "duplicate_of": "48088.png",
+      "sha256": "a5b43f6b3ef280f3555f8fce6f72545cf3cf62835219ea40c0e998f27ff04caf"
+    }
+  ],
+  "references": {
+    "sprites_revision": "7a7d66b1620e646f69afd48dc1273da9033ede9c",
+    "pokeapi_revision": "6fd69dfe90465ba96534f6816fc817737d1f97f6",
+    "csv_sha256": {
+      "pokemon_species": "e66e2eeb25fd3836b0ebab6bf87bbf01960aa3c0555e2bac495fa8393c5e0c45",
+      "pokemon_species_names": "820cde17074cdb1c2b0595c997fb8f998e773bd5da3bb525dec85703c86c5fd9",
+      "pokemon": "16c81c33188b0eac403aa2f759fcbe9e42c611f722d263f5b5a6a5bff9f8ce6b",
+      "pokemon_forms": "99bf8f7ad4dc1f2e291357a090cef6a575623ec3cbf9030d0e33656e6e608ae2",
+      "pokemon_form_names": "f496066d02fab12c18d10cce0af2f748d09cb7e296ecc784cc8682f8c4da8625",
+      "pokemon_shapes": "acf1c6079fb3601ad1badae83c966ce6a5cf500e75e128415248772825d9b8cd",
+      "pokemon_shape_prose": "3c94532b01d4a98c334c23976265e387b157082d38d9a7b7b0202a93276d8060",
+      "pokemon_colors": "02f0753b509eacc92eb7896e932f3e873d86697de6449491ecebb278b1e60c1a",
+      "pokemon_types": "f1fc4bfd657a034ea3bf6972423b10276424aa068577b304a78a08996425ba05",
+      "types": "37f039c8d722f47d51ba1c5c5ecf9b7007235b1a9a1af2827645c777b70307c8",
+      "type_names": "685230c51074cf2f723debcf827a4df4c36ab0ec7e929c806ad65a3e40958705"
+    },
+    "sprite_files": 5015
+  },
+  "source_catalog": {
+    "schema_version": 1,
+    "note": "Immutable originals in dataset/raw. Coordinates are zero-based; do not infer species by a constant offset.",
+    "battle_groups": [
+      {
+        "region": "Kanto",
+        "species_range": [
+          1,
+          151
+        ],
+        "sheets": {
+          "48052.png": [
+            "back",
+            false
+          ],
+          "48053.png": [
+            "back",
+            true
+          ],
+          "48056.png": [
+            "front",
+            false
+          ],
+          "48057.png": [
+            "front",
+            true
+          ]
+        }
+      },
+      {
+        "region": "Johto",
+        "species_range": [
+          152,
+          251
+        ],
+        "sheets": {
+          "48060.png": [
+            "back",
+            false
+          ],
+          "48061.png": [
+            "back",
+            true
+          ],
+          "48064.png": [
+            "front",
+            false
+          ],
+          "48065.png": [
+            "front",
+            true
+          ]
+        }
+      },
+      {
+        "region": "Hoenn",
+        "species_range": [
+          252,
+          386
+        ],
+        "sheets": {
+          "48068.png": [
+            "back",
+            false
+          ],
+          "48069.png": [
+            "back",
+            true
+          ],
+          "48072.png": [
+            "front",
+            false
+          ],
+          "48073.png": [
+            "front",
+            true
+          ]
+        }
+      },
+      {
+        "region": "Sinnoh",
+        "species_range": [
+          387,
+          493
+        ],
+        "sheets": {
+          "48076.png": [
+            "back",
+            false
+          ],
+          "48080.png": [
+            "front",
+            false
+          ]
+        }
+      },
+      {
+        "region": "Unova",
+        "species_range": [
+          494,
+          649
+        ],
+        "sheets": {
+          "48084.png": [
+            "back",
+            false
+          ],
+          "48085.png": [
+            "back",
+            true
+          ],
+          "48088.png": [
+            "front",
+            false
+          ],
+          "48089.png": [
+            "front",
+            true
+          ]
+        }
+      }
+    ],
+    "battle_grid": {
+      "columns": 8,
+      "cell_size": 96,
+      "row_pitch": 103,
+      "origin": 0
+    },
+    "legacy_sheets": {
+      "21228.png": [
+        "Hoenn / Gen 3",
+        false
+      ],
+      "21229.png": [
+        "Johto / Gen 2",
+        false
+      ],
+      "21230.png": [
+        "Kanto / Gen 1",
+        false
+      ],
+      "21231.png": [
+        "Kanto / Gen 1",
+        true
+      ],
+      "21301.png": [
+        "Johto / Gen 2",
+        true
+      ],
+      "21650.png": [
+        "Hoenn / Gen 3",
+        true
+      ]
+    },
+    "legacy_grid": {
+      "columns": 10,
+      "cell_size": 64,
+      "row_pitch": 69,
+      "column_pitch": 69,
+      "origin": 5
+    },
+    "duplicate_files": {
+      "48088 (1).png": "48088.png"
+    },
+    "form_label_type_order": {
+      "493": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    "form_label_type_order_note": "Arceus labels 00..16 use the 17 Gen V type IDs. This excludes historical ??? and later Fairy reference images even when their pixels alias Normal.",
+    "fallback_identities": {
+      "Kanto:4:4": {
+        "species_id": 31
+      },
+      "Kanto:6:7": {
+        "species_id": 46
+      },
+      "Hoenn:0:5": {
+        "species_id": 256,
+        "gender": "female"
+      },
+      "Hoenn:0:6": {
+        "species_id": 256,
+        "gender": "male"
+      },
+      "Hoenn:2:2": {
+        "species_id": 267,
+        "gender": "female"
+      },
+      "Hoenn:2:3": {
+        "species_id": 267,
+        "gender": "male"
+      },
+      "Sinnoh:1:4": {
+        "species_id": 397,
+        "gender": "male"
+      },
+      "Unova:1:1": {
+        "species_id": 503
+      },
+      "Unova:6:5": {
+        "species_id": 546
+      },
+      "Unova:8:1": {
+        "species_id": 556
+      }
+    }
+  }
+}

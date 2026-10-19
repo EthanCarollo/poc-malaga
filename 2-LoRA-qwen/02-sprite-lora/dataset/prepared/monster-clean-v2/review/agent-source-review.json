@@ -1,0 +1,212 @@
+{
+  "reviewer": "Codex agent",
+  "human_review": false,
+  "scope": "34 source/cutout comparisons viewed in a contact sheet; not a human statistical evaluation",
+  "items": [
+    {
+      "sheet": "48052.png",
+      "row": 4,
+      "column": 4,
+      "label": "031"
+    },
+    {
+      "sheet": "48052.png",
+      "row": 8,
+      "column": 4,
+      "label": "059"
+    },
+    {
+      "sheet": "48053.png",
+      "row": 8,
+      "column": 4,
+      "label": "059"
+    },
+    {
+      "sheet": "48056.png",
+      "row": 4,
+      "column": 4,
+      "label": "031"
+    },
+    {
+      "sheet": "48060.png",
+      "row": 2,
+      "column": 7,
+      "label": "172"
+    },
+    {
+      "sheet": "48060.png",
+      "row": 6,
+      "column": 3,
+      "label": "195-F"
+    },
+    {
+      "sheet": "48060.png",
+      "row": 6,
+      "column": 4,
+      "label": "195-M"
+    },
+    {
+      "sheet": "48060.png",
+      "row": 18,
+      "column": 1,
+      "label": "248"
+    },
+    {
+      "sheet": "48061.png",
+      "row": 2,
+      "column": 7,
+      "label": "172"
+    },
+    {
+      "sheet": "48061.png",
+      "row": 6,
+      "column": 3,
+      "label": "195-F"
+    },
+    {
+      "sheet": "48061.png",
+      "row": 6,
+      "column": 4,
+      "label": "195-M"
+    },
+    {
+      "sheet": "48061.png",
+      "row": 18,
+      "column": 1,
+      "label": "248"
+    },
+    {
+      "sheet": "48065.png",
+      "row": 15,
+      "column": 3,
+      "label": "228"
+    },
+    {
+      "sheet": "48069.png",
+      "row": 2,
+      "column": 2,
+      "label": "267-F"
+    },
+    {
+      "sheet": "48069.png",
+      "row": 2,
+      "column": 3,
+      "label": "267-M"
+    },
+    {
+      "sheet": "48069.png",
+      "row": 12,
+      "column": 3,
+      "label": "335"
+    },
+    {
+      "sheet": "48069.png",
+      "row": 12,
+      "column": 4,
+      "label": "336"
+    },
+    {
+      "sheet": "48073.png",
+      "row": 2,
+      "column": 2,
+      "label": "267-F"
+    },
+    {
+      "sheet": "48073.png",
+      "row": 2,
+      "column": 3,
+      "label": "267-M"
+    },
+    {
+      "sheet": "48084.png",
+      "row": 1,
+      "column": 1,
+      "label": "503"
+    },
+    {
+      "sheet": "48084.png",
+      "row": 1,
+      "column": 7,
+      "label": "509"
+    },
+    {
+      "sheet": "48084.png",
+      "row": 6,
+      "column": 5,
+      "label": "546"
+    },
+    {
+      "sheet": "48084.png",
+      "row": 8,
+      "column": 1,
+      "label": "556"
+    },
+    {
+      "sheet": "48084.png",
+      "row": 14,
+      "column": 0,
+      "label": "595"
+    },
+    {
+      "sheet": "48085.png",
+      "row": 1,
+      "column": 1,
+      "label": "503"
+    },
+    {
+      "sheet": "48085.png",
+      "row": 8,
+      "column": 1,
+      "label": "556"
+    },
+    {
+      "sheet": "48085.png",
+      "row": 14,
+      "column": 0,
+      "label": "595"
+    },
+    {
+      "sheet": "48088.png",
+      "row": 1,
+      "column": 1,
+      "label": "503"
+    },
+    {
+      "sheet": "48088.png",
+      "row": 6,
+      "column": 5,
+      "label": "546"
+    },
+    {
+      "sheet": "48088.png",
+      "row": 8,
+      "column": 1,
+      "label": "556"
+    },
+    {
+      "sheet": "48089.png",
+      "row": 1,
+      "column": 1,
+      "label": "503"
+    },
+    {
+      "sheet": "48089.png",
+      "row": 8,
+      "column": 1,
+      "label": "556"
+    },
+    {
+      "sheet": "21230.png",
+      "row": 28,
+      "column": 7,
+      "label": 144
+    },
+    {
+      "sheet": "21231.png",
+      "row": 28,
+      "column": 7,
+      "label": 144
+    }
+  ],
+  "articuno_followup": "Matte uses the known cyan rather than an occupied corner; final cells match the independent reference exactly."
+}

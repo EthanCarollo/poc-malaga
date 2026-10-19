@@ -10,6 +10,7 @@ import numpy as np
 import torch
 from sharm_image21.core import ARTIFACTS, PROJECT, WEIGHTS, FeatureCache, atomic_json, file_hash
 from sharm_image21.diffusion import load_diffuser_pipeline
+from sharm_image21.image_io import require_transparent_background
 from sharm_image21.model_cards import (LABELS, comparison_manifest, generation_kwargs, load_comparisons,
                                        lora_card, package_comparisons, save_member)
 
@@ -95,9 +96,11 @@ def main():
             pixels = np.asarray(image)
             if image.mode != "RGBA" or pixels[..., :3].std() < 1 or pixels[..., 3].max() == 0:
                 raise RuntimeError(f"Échantillon sprite {name} vide ou mauvais format.")
+            alpha_fraction = require_transparent_background(image)
             comparison["pairs"][index][side] = save_member(
                 image, output, f"{row['species_id']}-{name}", label, final_size=128)
             report[index][name] = {"transparent_fraction": float((pixels[..., 3] == 0).mean()),
+                                   "near_transparent_fraction": alpha_fraction,
                                    "image": comparison["pairs"][index][side]["image"]["file"]}
     atomic_json(output / "comparison.json", comparison)
     load_comparisons(output, "lora", fingerprint, lora_fingerprint)

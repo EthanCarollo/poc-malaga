@@ -19,36 +19,44 @@ from sharm_image21.core import (ARTIFACTS, CACHE, ORIGINAL, ROOT, TEACHER_REVISI
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--resolution", type=int, default=512)
+    parser.add_argument("--dataset-root", type=Path, default=ROOT / "dataset")
+    parser.add_argument("--cache-root", type=Path, default=CACHE)
+    parser.add_argument("--projector-dir", type=Path, default=ARTIFACTS / "projector")
+    parser.add_argument("--base-validation", type=Path, default=ARTIFACTS / "base-validation.json")
+    parser.add_argument("--output-report", type=Path)
     args = parser.parse_args()
     resolution = args.resolution
     if resolution < 64 or resolution % 32:
         raise ValueError("Résolution multiple de 32 requise.")
-    projector_dir = ARTIFACTS / "projector"
+    projector_dir = args.projector_dir
     fingerprint = file_hash(projector_dir / "model.safetensors")
-    gate = json.loads((ARTIFACTS / "base-validation.json").read_text())
+    gate = json.loads(args.base_validation.read_text())
     if not gate.get("passed") or gate["projector_sha256"] != fingerprint:
         raise RuntimeError("La base Sharm doit être validée avant le cache LoRA.")
-    dataset = ROOT / f"dataset/train_{resolution}"
+    dataset = args.dataset_root / f"train_{resolution}"
     if not (dataset / "metadata.jsonl").is_file():
         raise FileNotFoundError(f"Préparer le dataset à {resolution}px avant l'entraînement.")
-    with (ROOT / "dataset/manifest.csv").open() as stream:
+    with (args.dataset_root / "manifest.csv").open(encoding="utf-8") as stream:
         species = {Path(row["file"]).name: row["species_id"] for row in csv.DictReader(stream)}
     rows = []
     for row in read_jsonl(dataset / "metadata.jsonl"):
         image_path = dataset / row["file_name"]
         image_sha = file_hash(image_path)
         species_id = species[row["file_name"]]
+        split = "validation" if int(digest(species_id)[:8], 16) % 10 == 0 else "train"
+        if str(row.get("group_id", species_id)) != str(species_id) or row.get("split", split) != split:
+            raise ValueError(f"Split ou groupe incompatible avec le manifeste : {row['file_name']}")
         rows.append({**row, "id": digest({"name": row["file_name"], "sha256": image_sha}),
                      "image_sha256": image_sha, "species_id": species_id, "caption_id": digest(row["text"]),
-                     "split": "validation" if int(digest(species_id)[:8], 16) % 10 == 0 else "train"})
+                     "split": split})
     identity = {"dataset_sha256": digest(rows), "resolution": resolution,
                 "projector_sha256": fingerprint, "teacher_revision": TEACHER_REVISION}
-    student = FeatureCache(CACHE / "student")
+    student = FeatureCache(args.cache_root / "student")
     caption_rows = list({row["caption_id"]: row for row in rows}.values())
     missing = [row["caption_id"] for row in caption_rows if row["caption_id"] not in student]
     if missing:
         raise RuntimeError(f"{len(missing)} légendes sprites sont absentes du cache du 4B ; compléter le corpus.")
-    projected = FeatureCache(CACHE / f"sprites-{resolution}-text", {**identity, "student": student.index["identity"]})
+    projected = FeatureCache(args.cache_root / f"sprites-{resolution}-text", {**identity, "student": student.index["identity"]})
     model = Projector.load(projector_dir, "cuda").eval()
     buffer = []
     for row in caption_rows:
@@ -66,7 +74,7 @@ def main():
     projected.write(buffer)
     del model
     torch.cuda.empty_cache()
-    latents = FeatureCache(CACHE / f"sprites-{resolution}-latents",
+    latents = FeatureCache(args.cache_root / f"sprites-{resolution}-latents",
                            {**identity, "vae_config": file_hash(ORIGINAL / "vae/config.json"),
                             "sampling": "per-image-seed-42-bf16-rgba-normalized-v1"})
     pending = [row for row in rows if row["id"] not in latents]
@@ -101,7 +109,8 @@ def main():
     latents.require(rows)
     result = {"identity": identity, "rows": rows, "text_cache": str(projected.directory),
               "latent_cache": str(latents.directory), "dataset_dir": str(dataset)}
-    atomic_json(ARTIFACTS / f"sprite-training-{resolution}.json", result)
+    default_report = ARTIFACTS / ("monster" if args.dataset_root.resolve() != (ROOT / "dataset").resolve() else "") / f"sprite-training-{resolution}.json"
+    atomic_json(args.output_report or default_report, result)
     print(json.dumps({"images": len(rows), "captions": len(caption_rows), "identity": identity}), flush=True)
 
 
