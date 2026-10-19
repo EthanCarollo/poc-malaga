@@ -1,5 +1,7 @@
 # Alignement initial des encodeurs
 
+Lecture guidée : [notebook 02 — Encodeurs et MSE](../notebooks/02_encodeurs_et_mse.ipynb).
+
 Cette étape prépare les modèles, contrôle le chargement FP8 et entraîne le projecteur initial. Le 8B d'origine de Qwen-Image-2.1 fournit les cibles ; le 4B FP8 reste gelé. Le projecteur MLP reçoit seul des gradients.
 
 ```mermaid

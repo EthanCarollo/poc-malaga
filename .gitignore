@@ -16,3 +16,4 @@ __pycache__/
 # Monster source sheets and validated datasets are versioned with their docs.
 # Keep downloaded references and preparation drafts local.
 2-LoRA-qwen/02-sprite-lora/dataset/reference/
+.ipynb_checkpoints/

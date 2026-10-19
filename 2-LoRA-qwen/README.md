@@ -1,5 +1,9 @@
 # Sharm : VL 4B FP8 gelé, projecteur et LoRA sprites
 
+## Comprendre le projet en notebooks
+
+Le [parcours numéroté de 00 à 06](notebooks/README.md) explique l'architecture, les données, le vrai FP8, les formules de MSE, l'entraînement, les galeries RGBA, le LoRA et la publication. Il appelle les scripts existants et lit les vrais résultats disponibles. Les calculs et envois sont désactivés par défaut ; les résultats finaux sont ajoutés après leur obtention et conservés dans [reports/](reports/README.md), avec leurs empreintes et la révision HF immuable.
+
 ## Sharm Image Monster Pixel Art : nouvelles données
 
 Le [dataset Monster nettoyé](02-sprite-lora/dataset/README.md) contient **4 481 PNG RGBA uniques de 128 × 128, couvrant 649 espèces**, issus des 25 fichiers fournis. Le découpage, les formes, les vues, les palettes, les doublons et les définitions FR/EN sont documentés et audités. Les données prêtes à utiliser sont dans `02-sprite-lora/dataset/prepared/monster-clean-v2/` ; cette préparation n'a pas encore servi à un nouvel entraînement du LoRA Monster. La chaîne spatiale de **Sharm Image Base** conserve son corpus et ses caches actuels sur le serveur SSH.

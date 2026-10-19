@@ -9,6 +9,8 @@ Dépôt de preuves de concept autour de solutions locales en IA. Le dépôt accu
 
 Chaque projet documentera ses dépendances, son installation et son lancement dans son propre dossier.
 
+Le [parcours Sharm en notebooks](2-LoRA-qwen/notebooks/README.md) présente l'architecture, les données Monster, les encodeurs et la MSE, l'entraînement spatial, les comparaisons PNG, le LoRA et la publication. Les résultats finaux revus sont conservés dans des [rapports versionnés](2-LoRA-qwen/reports/README.md).
+
 ## Données et workflow Git
 
 Les [PNG sources et le dataset Monster validé](2-LoRA-qwen/02-sprite-lora/dataset/README.md) sont versionnés avec les scripts, définitions, rapports et galeries. Les poids des modèles, identifiants, environnements, caches et brouillons restent locaux.

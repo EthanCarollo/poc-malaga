@@ -1,5 +1,7 @@
 # Apprentissage des positions avec le 4B FP8
 
+Lecture guidée : [notebook 03 — Base spatiale](../notebooks/03_base_spatiale.ipynb), puis [notebook 04 — Générations et évaluation](../notebooks/04_generations_et_evaluation.ipynb).
+
 La reprise sur le serveur SSH de 16 Go est décrite dans [REMOTE.md](REMOTE.md), avec le transfert vérifié, le budget disque et les étapes de publication.
 
 Cette expérience vise le respect de la position, de la séparation et du nombre des objets, avec une sortie PNG RGBA. Les poids du Qwen 4B FP8 restent gelés. On entraîne d'abord un projecteur contextuel, puis ce projecteur avec un objectif lié aux images. Un LoRA du diffuseur peut être ajouté dans une expérience distincte.

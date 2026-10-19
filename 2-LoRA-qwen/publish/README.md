@@ -1,5 +1,7 @@
 # Export et publication
 
+Lecture guidée : [notebook 06 — Publication et versions](../notebooks/06_publication_et_versions.ipynb). Après l'envoi vérifié, archiver les résultats selon [reports/README.md](../reports/README.md), puis committer et pousser les rapports et notebooks sur `main`.
+
 ```mermaid
 flowchart LR
     A[Poids entraînés et empreintes] --> B[Validation correspondant aux poids]
