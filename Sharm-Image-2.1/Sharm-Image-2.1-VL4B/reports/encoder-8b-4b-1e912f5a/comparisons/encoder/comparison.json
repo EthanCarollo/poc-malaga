@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "kind": "encoder",
+  "projector_sha256": "a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883",
+  "settings": {
+    "width": 512,
+    "height": 512,
+    "output_resolution": 512,
+    "num_inference_steps": 20,
+    "true_cfg_scale": 1.0,
+    "negative_prompt": null,
+    "num_images_per_prompt": 1,
+    "use_kv_cache": true,
+    "output_type": "pil",
+    "scheduler_class": "FlowMatchEulerDiscreteScheduler",
+    "scheduler_config": {
+      "num_train_timesteps": 1000,
+      "shift": 1.0,
+      "use_dynamic_shifting": true,
+      "base_shift": 0.5,
+      "max_shift": 0.9,
+      "base_image_seq_len": 256,
+      "max_image_seq_len": 8192,
+      "invert_sigmas": false,
+      "shift_terminal": 0.02,
+      "use_karras_sigmas": false,
+      "use_exponential_sigmas": false,
+      "use_beta_sigmas": false,
+      "time_shift_type": "exponential",
+      "stochastic_sampling": false,
+      "_class_name": "FlowMatchEulerDiscreteScheduler",
+      "_diffusers_version": "0.37.0.dev0"
+    },
+    "generator_device": "cuda",
+    "initial_noise": "fresh generator reset to the pair seed for each member",
+    "diffusion_precision": "NF4, double quantization, BF16 compute",
+    "vae_precision": "BF16",
+    "postprocess": "none"
+  },
+  "controls": {
+    "base_revision": "d26bb61231c349cf6b7896fa83353113880e1ba3",
+    "teacher_identity": {
+      "kind": "teacher",
+      "revision": "d26bb61231c349cf6b7896fa83353113880e1ba3",
+      "config_sha256": "6001331949f7f86ab6d791a80b12246d4f8da5159fa08c3e62368a39f36d63a9",
+      "index_sha256": "859146bff8db1d617fca8b457a5223edff963bb70076b3645f2189fe0540a147",
+      "convention": "qwenimage21-raw-template-leftpad-pre-final-rmsnorm-v1",
+      "prefill_policy": "left-padded-bf16"
+    },
+    "student_identity": {
+      "kind": "student",
+      "revision": "fefbb44cbcce8d1bb7e20b920b94f77432b3446d",
+      "config_sha256": "48bc97743d741920de3455f7a6f0a807b0c3ae692e662a0864f188ca528f92b2",
+      "index_sha256": "94c659b1e64a2e3f23e83e6392ee0961152902e7871da74e867c1bd826e2a761",
+      "convention": "qwenimage21-raw-template-leftpad-pre-final-rmsnorm-v1",
+      "prefill_policy": "single-prompt-fp8"
+    },
+    "teacher_cache_index_sha256": "0d2318fb9500511bec53bb36315200e3f7dcbdd49cfbaf1847cf2aa6be4c3938",
+    "student_cache_index_sha256": "9debfd961582b7678d79ca48b70365da14859c7200ca5e898fd2c42a10ad6cb2",
+    "lora": "absent on both sides",
+    "shared_diffusion_and_vae": true
+  },
+  "selection": {
+    "split": "projector validation",
+    "method": "first matching prompt per fixed category, then corpus order",
+    "markers": [
+      "alpha channel",
+      "exact text",
+      "to the left",
+      "Une illustration",
+      "Exactly",
+      "photograph"
+    ],
+    "selected_before_generation": true,
+    "count": 4
+  },
+  "provenance": {
+    "created_at": 1792369205.569925,
+    "source_commit": "44cdfdb5744ea6dbe82d9407a1acb39990e68ac6",
+    "script_sha256": "5cead94026a077c6287392659aa11a676ff449bfe5156729a2e345ab5228039d",
+    "model_cards_sha256": "8cee3fdae2c94ff8de1735cf200341052c462abb4b3e0e0fdc09faf3389f25b1",
+    "versions": {
+      "torch": "2.14.1+cu130",
+      "diffusers": "0.41.0.dev0",
+      "transformers": "5.20.1",
+      "bitsandbytes": "0.50.2",
+      "safetensors": "0.8.0",
+      "Pillow": "13.0.0",
+      "kernels": "0.17.2"
+    },
+    "cuda_version": "13.0",
+    "diffusers_source_commit": "b800f828f3951c4d206e154411bcbfa693cd322e",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti",
+    "capability": [
+      12,
+      0
+    ]
+  },
+  "pairs": [
+    {
+      "id": "86604a0c6ebe395e65bac92740b56031a71671d9b813be9638599a2ab223dbe0",
+      "prompt": "This is an RGBA image with transparency. A single black flower, pixel art. The image has alpha channel and the background is transparent.",
+      "seed": 1000,
+      "left": {
+        "label": "VL 8B d’origine — BF16",
+        "image": {
+          "file": "00-teacher-512.png",
+          "sha256": "8ef51a2530c360d2d6d070137b03ea60df5ed051f31484316e12ffca46ecec63",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "00-teacher-512.png",
+          "sha256": "8ef51a2530c360d2d6d070137b03ea60df5ed051f31484316e12ffca46ecec63",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "00-teacher-preview.png",
+          "sha256": "51b46ab5371aed9c701471ceb9285be51be0883be386ba8b96d876342fc65ce2",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      },
+      "right": {
+        "label": "Sharm VL 4B gelé — FP8 + projecteur BF16",
+        "image": {
+          "file": "00-sharm-512.png",
+          "sha256": "6a153c41a75bfe6dc3daed607b0faa98573d412cb7284f268a4a25814eb223e4",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "00-sharm-512.png",
+          "sha256": "6a153c41a75bfe6dc3daed607b0faa98573d412cb7284f268a4a25814eb223e4",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "00-sharm-preview.png",
+          "sha256": "0fecaae5a3e94d00576f7cae86c10402944c2aacb9993beadd68ee8ac67af009",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      }
+    },
+    {
+      "id": "a6699165c971e34568456cd03c9d2e6f40be2a109a97717306572e17026b53c1",
+      "prompt": "A black sign above a book, with the exact text \"OPEN\", legible typography, studio photograph.",
+      "seed": 1001,
+      "left": {
+        "label": "VL 8B d’origine — BF16",
+        "image": {
+          "file": "01-teacher-512.png",
+          "sha256": "2d48d009cadd9c3127778e2bced1d9eb933b0c6f8cc5930ab4f1bac5d1c06325",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "01-teacher-512.png",
+          "sha256": "2d48d009cadd9c3127778e2bced1d9eb933b0c6f8cc5930ab4f1bac5d1c06325",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "01-teacher-preview.png",
+          "sha256": "ed2f787bb022775d2bfafde9b149d42da3cfa912d7d0916465f0fbae9616d4f9",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      },
+      "right": {
+        "label": "Sharm VL 4B gelé — FP8 + projecteur BF16",
+        "image": {
+          "file": "01-sharm-512.png",
+          "sha256": "11481334778b65eae38d3fa1901c493b0a583fc7113e950531385453aa9a5e48",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "01-sharm-512.png",
+          "sha256": "11481334778b65eae38d3fa1901c493b0a583fc7113e950531385453aa9a5e48",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "01-sharm-preview.png",
+          "sha256": "75767e854d72160ef546a92ad43804272d4b08af746002a8964423251f6802a4",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      }
+    },
+    {
+      "id": "c94aac13390be8a167321d1d11d03ceacfee5d8c669ee9c7262436cf2907d3d2",
+      "prompt": "A black bicycle to the left of a purple sailing boat, clay sculpture, clear composition.",
+      "seed": 1002,
+      "left": {
+        "label": "VL 8B d’origine — BF16",
+        "image": {
+          "file": "02-teacher-512.png",
+          "sha256": "127ed21bb6fa31840192fd97accab8ad242fe310b8a60483c712be872069468b",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "02-teacher-512.png",
+          "sha256": "127ed21bb6fa31840192fd97accab8ad242fe310b8a60483c712be872069468b",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "02-teacher-preview.png",
+          "sha256": "ed6d879e3fd6372630080bacefff78b7e1970af200c0bf969cbfa390555d85c0",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      },
+      "right": {
+        "label": "Sharm VL 4B gelé — FP8 + projecteur BF16",
+        "image": {
+          "file": "02-sharm-512.png",
+          "sha256": "444bc5c8479b40f601abc286970743aee81a1cc7ef5476e2fb3fe93c3f7b187c",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "02-sharm-512.png",
+          "sha256": "444bc5c8479b40f601abc286970743aee81a1cc7ef5476e2fb3fe93c3f7b187c",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "02-sharm-preview.png",
+          "sha256": "a0d004784fba9d7918b63e8b880cb3d25178ec299b6154377b28f38ceb3f2260",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      }
+    },
+    {
+      "id": "549749ed14c9fefa3603dfb11c134a1909fee9ce622da59a935a544dc2e54273",
+      "prompt": "Une illustration de bicycle, game sprite, au premier plan devant flower, lumière douce, composition nette.",
+      "seed": 1003,
+      "left": {
+        "label": "VL 8B d’origine — BF16",
+        "image": {
+          "file": "03-teacher-512.png",
+          "sha256": "c53242ed1cb1dcece463484e2fda0ff8e7fdb3aa8e1f29fc7cbc8669f612de57",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "03-teacher-512.png",
+          "sha256": "c53242ed1cb1dcece463484e2fda0ff8e7fdb3aa8e1f29fc7cbc8669f612de57",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "03-teacher-preview.png",
+          "sha256": "aaeea348c2f63adfd92c1690d1e8e58e74c0750999348e14e82e6c91c8ecf365",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      },
+      "right": {
+        "label": "Sharm VL 4B gelé — FP8 + projecteur BF16",
+        "image": {
+          "file": "03-sharm-512.png",
+          "sha256": "be00e83ba6b41b42e702d3e3af4a6867520265d62bb5c4b0a4d0c3863d984d0e",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "source": {
+          "file": "03-sharm-512.png",
+          "sha256": "be00e83ba6b41b42e702d3e3af4a6867520265d62bb5c4b0a4d0c3863d984d0e",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA"
+        },
+        "preview": {
+          "file": "03-sharm-preview.png",
+          "sha256": "6613fae3237c6bfc6ec7ee4e24e9041e2b82024969b2993f01cee3ae2194f706",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "method": "agent_visual_review",
+  "reviewer": "Codex",
+  "archive": "encoder-8b-4b-1e912f5a",
+  "source_revision": "1e912f5a1e5df40bdaf927abf3e4220d73781321",
+  "archive_manifest_sha256": "e7c359037e16f9de83106f800d2e77887383daa27a8e9041d96e94d0aecc92c3",
+  "human_statistical_evaluation": false,
+  "new_gpu_generations": false,
+  "reviewed_files": [
+    "comparisons/encoder/00-teacher-512.png",
+    "comparisons/encoder/00-sharm-512.png",
+    "comparisons/encoder/01-teacher-512.png",
+    "comparisons/encoder/01-sharm-512.png",
+    "comparisons/encoder/02-teacher-512.png",
+    "comparisons/encoder/02-sharm-512.png",
+    "comparisons/encoder/03-teacher-512.png",
+    "comparisons/encoder/03-sharm-512.png"
+  ],
+  "viewing_method": "All four paired sheets, native 512px source previews; original images retained unchanged",
+  "observations": [
+    {
+      "pair": 0,
+      "observation": "Both variants produce a large dark pixel silhouette with little internal flower detail; the 4B output adds a small yellow mark. This is not evidence of semantic or spatial parity."
+    },
+    {
+      "pair": 1,
+      "observation": "OPEN is legible above a stack of books in both. The 8B preview has a transparent surrounding area while the 4B output has an opaque studio background. Both show several books despite the singular wording."
+    },
+    {
+      "pair": 2,
+      "observation": "Bicycle and sailing boat overlap in both. The 4B bicycle/frame and sail placement are more deformed; neither image demonstrates clean separated left/right placement."
+    },
+    {
+      "pair": 3,
+      "observation": "Both contain a bicycle and flowers, with different scale and arrangement. The 4B foreground flower is much larger and the frame/wheels are less coherent."
+    }
+  ],
+  "conclusion": "Some subjects and typography are preserved, but the outputs are visibly different; these four historical pairs do not prove 8B parity or perfect positions. They do not measure the new FP8 DiT."
+}

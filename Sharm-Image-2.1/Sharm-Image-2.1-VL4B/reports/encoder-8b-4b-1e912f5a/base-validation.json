@@ -1,0 +1,64 @@
+{
+  "projector_sha256": "a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883",
+  "embedding_metrics": {
+    "relative_mse": 0.13738654362989555,
+    "cosine": 0.9249958184476362,
+    "norm_ratio": 0.9358001416226374
+  },
+  "denoiser_relative_mse": 0.00037798059080766205,
+  "denoiser_worst_mse": 0.00142851157579571,
+  "scope": "experimental text-to-image; image editing not validated",
+  "updated_at": 1792369204.3549993,
+  "passed": true,
+  "samples": [
+    {
+      "file": "00-teacher-512.png",
+      "prompt": "This is an RGBA image with transparency. A single black flower, pixel art. The image has alpha channel and the background is transparent.",
+      "seed": 1000,
+      "conditioner": "teacher"
+    },
+    {
+      "file": "00-sharm-512.png",
+      "prompt": "This is an RGBA image with transparency. A single black flower, pixel art. The image has alpha channel and the background is transparent.",
+      "seed": 1000,
+      "conditioner": "sharm"
+    },
+    {
+      "file": "01-teacher-512.png",
+      "prompt": "A black sign above a book, with the exact text \"OPEN\", legible typography, studio photograph.",
+      "seed": 1001,
+      "conditioner": "teacher"
+    },
+    {
+      "file": "01-sharm-512.png",
+      "prompt": "A black sign above a book, with the exact text \"OPEN\", legible typography, studio photograph.",
+      "seed": 1001,
+      "conditioner": "sharm"
+    },
+    {
+      "file": "02-teacher-512.png",
+      "prompt": "A black bicycle to the left of a purple sailing boat, clay sculpture, clear composition.",
+      "seed": 1002,
+      "conditioner": "teacher"
+    },
+    {
+      "file": "02-sharm-512.png",
+      "prompt": "A black bicycle to the left of a purple sailing boat, clay sculpture, clear composition.",
+      "seed": 1002,
+      "conditioner": "sharm"
+    },
+    {
+      "file": "03-teacher-512.png",
+      "prompt": "Une illustration de bicycle, game sprite, au premier plan devant flower, lumière douce, composition nette.",
+      "seed": 1003,
+      "conditioner": "teacher"
+    },
+    {
+      "file": "03-sharm-512.png",
+      "prompt": "Une illustration de bicycle, game sprite, au premier plan devant flower, lumière douce, composition nette.",
+      "seed": 1003,
+      "conditioner": "sharm"
+    }
+  ],
+  "comparison_sha256": "0812125e3c4ce0e5075393b3005aa6b7c22769d7981c1185399d4244efa9db51"
+}

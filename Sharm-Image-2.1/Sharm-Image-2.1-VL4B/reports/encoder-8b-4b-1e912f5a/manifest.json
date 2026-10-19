@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "files": {
+    "base-validation.json": "1372fa0a13b7af91ded71ed301e2bd851e73c609e159cb23ff013d2cfaa40b37",
+    "pair-00.png": "fa95dc0a5eac412365d05657e1e36622287e5c01c1b60fc76525bfaf005f5018",
+    "pair-01.png": "a0fa9479001425fb7b4ff95635a6e2dcb69dda26afe57e21ae1080b6b404a626",
+    "pair-02.png": "01408409d8a6fb96dc71d128814c432341eaaee9dea4ec5d388d5df47d19d909",
+    "pair-03.png": "dacf77772f97d46516eb76dc5b22b166e8bc165d8deaeb4edee101643a3cbd27",
+    "README.md": "cc943a3e3c43f9fd124025683f200a9b36949ec4cd08bcde71f66eac9bb5947f",
+    "sources.json": "1e0633ca05b9d1af2418441053daaf28e551407de96cad35cd1ef07eaf583d37",
+    "comparisons/encoder/00-sharm-512.png": "6a153c41a75bfe6dc3daed607b0faa98573d412cb7284f268a4a25814eb223e4",
+    "comparisons/encoder/00-sharm-preview.png": "0fecaae5a3e94d00576f7cae86c10402944c2aacb9993beadd68ee8ac67af009",
+    "comparisons/encoder/00-teacher-512.png": "8ef51a2530c360d2d6d070137b03ea60df5ed051f31484316e12ffca46ecec63",
+    "comparisons/encoder/00-teacher-preview.png": "51b46ab5371aed9c701471ceb9285be51be0883be386ba8b96d876342fc65ce2",
+    "comparisons/encoder/01-sharm-512.png": "11481334778b65eae38d3fa1901c493b0a583fc7113e950531385453aa9a5e48",
+    "comparisons/encoder/01-sharm-preview.png": "75767e854d72160ef546a92ad43804272d4b08af746002a8964423251f6802a4",
+    "comparisons/encoder/01-teacher-512.png": "2d48d009cadd9c3127778e2bced1d9eb933b0c6f8cc5930ab4f1bac5d1c06325",
+    "comparisons/encoder/01-teacher-preview.png": "ed2f787bb022775d2bfafde9b149d42da3cfa912d7d0916465f0fbae9616d4f9",
+    "comparisons/encoder/02-sharm-512.png": "444bc5c8479b40f601abc286970743aee81a1cc7ef5476e2fb3fe93c3f7b187c",
+    "comparisons/encoder/02-sharm-preview.png": "a0d004784fba9d7918b63e8b880cb3d25178ec299b6154377b28f38ceb3f2260",
+    "comparisons/encoder/02-teacher-512.png": "127ed21bb6fa31840192fd97accab8ad242fe310b8a60483c712be872069468b",
+    "comparisons/encoder/02-teacher-preview.png": "ed6d879e3fd6372630080bacefff78b7e1970af200c0bf969cbfa390555d85c0",
+    "comparisons/encoder/03-sharm-512.png": "be00e83ba6b41b42e702d3e3af4a6867520265d62bb5c4b0a4d0c3863d984d0e",
+    "comparisons/encoder/03-sharm-preview.png": "6613fae3237c6bfc6ec7ee4e24e9041e2b82024969b2993f01cee3ae2194f706",
+    "comparisons/encoder/03-teacher-512.png": "c53242ed1cb1dcece463484e2fda0ff8e7fdb3aa8e1f29fc7cbc8669f612de57",
+    "comparisons/encoder/03-teacher-preview.png": "aaeea348c2f63adfd92c1690d1e8e58e74c0750999348e14e82e6c91c8ecf365",
+    "comparisons/encoder/comparison.json": "0812125e3c4ce0e5075393b3005aa6b7c22769d7981c1185399d4244efa9db51"
+  }
+}
