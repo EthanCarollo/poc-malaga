@@ -1,0 +1,30 @@
+{
+  "name": "Sharm Image 2.1 VL4B FP8",
+  "encoder_format": "fp8-e4m3",
+  "encoder_frozen": true,
+  "student_identity": {
+    "kind": "student",
+    "revision": "fefbb44cbcce8d1bb7e20b920b94f77432b3446d",
+    "config_sha256": "48bc97743d741920de3455f7a6f0a807b0c3ae692e662a0864f188ca528f92b2",
+    "index_sha256": "94c659b1e64a2e3f23e83e6392ee0961152902e7871da74e867c1bd826e2a761",
+    "convention": "qwenimage21-raw-template-leftpad-pre-final-rmsnorm-v1",
+    "prefill_policy": "single-prompt-fp8"
+  },
+  "projector_sha256": "a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883",
+  "base_validation_passed": true,
+  "base_revision": "d26bb61231c349cf6b7896fa83353113880e1ba3",
+  "scope": "experimental-text-to-image",
+  "image_editing_validated": false,
+  "hf_repo_intent": "ethanzxv/Sharm-Image-2.1-VL4B-FP8",
+  "private": true,
+  "hf_repo_id": "ethanzxv/Sharm-Image-2.1-VL4B-FP8",
+  "dit_format": "sharm-scaled-rowwise-e4m3-v1",
+  "dit_weight_dtype": "float8_e4m3fn",
+  "dit_activation_dtype": "float8_e4m3fn-dynamic-rowwise",
+  "dit_output_dtype": "bfloat16",
+  "dit_source_revision": "d26bb61231c349cf6b7896fa83353113880e1ba3",
+  "projector_source_revision": "1e912f5a1e5df40bdaf927abf3e4220d73781321",
+  "spatial_candidate_used": false,
+  "spatial_quality_validated": false,
+  "base_validation_scope": "Historical projector validation from the source revision; see fp8-validation.json for this quantized export"
+}

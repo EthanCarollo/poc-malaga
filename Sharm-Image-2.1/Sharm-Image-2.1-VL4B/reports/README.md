@@ -2,23 +2,40 @@
 
 Ce dossier conserve les résultats lisibles depuis les notebooks : paramètres, historiques, comparaisons complètes et revue identifiée. Les contrôles du loader et la révision HF immuable sont requis pour une archive publiée. Un candidat refusé reçoit une archive distincte, sans publication ni validation inventée.
 
+## README HF détaillé et vérification renouvelée
+
+**[Révision HF `812304af8f902f6ab0138b66b4b8b336125780be`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/812304af8f902f6ab0138b66b4b8b336125780be).** Le README affiche les 16 sorties Sharm sur sujets simples, les 16 paires Qwen original / Sharm et les diagnostics complémentaires. Chaque taille est rattachée au composant : Qwen3-VL 4B pour le texte, DiT Qwen-Image-2.1 7,1B pour la génération. Le lexique explique les formats et réglages.
+
+Les 52 fichiers du payload ont été vérifiés sur cette révision immuable ; les 170 autres fichiers préexistants sont conservés. Les poids et le loader restent identiques à `a0c0e168`. La carte, le manifeste et les preuves de contrôle ont changé. Deux générations réelles ont été rejouées avec le loader exact : leurs PNG sont identiques octet pour octet aux deux contrôles d'origine, avec les mêmes limites de transparence.
+
+[Résumé signé](fp8-812304af8f90/summary.json) · [Publication vérifiée](fp8-812304af8f90/publication-status.json) · [Contrôle GPU](fp8-812304af8f90/fp8-validation.json) · [Revue identifiée](fp8-812304af8f90/fp8-visual-review.json) · [SHA des preuves](fp8-812304af8f90/manifest.json).
+
 ## Comparatifs avant / après
 
 | Comparatif | Galerie et paramètres | Portée |
 | --- | --- | --- |
+| **Modèle Qwen original → Sharm publié** | [16 paires, 32 PNG et protocole](base-vs-sharm-v1/README.md) · [galerie HTML](base-vs-sharm-v1/gallery.html) · [revue exhaustive](base-vs-sharm-v1/REVIEW.md) | Features 8B BF16 + vrai DiT BF16 / 4B FP8 + projecteur + DiT FP8 natif ; 4 relations × FR/EN × 2 graines, 512 px, 30 pas, CFG 1, même bruit initial |
 | **Ancien DiT NF4 → nouveau DiT FP8** | [16 paires, 32 PNG, planches et mesures](comparison-nf4-fp8-a0c0e1680970-v1/README.md) · [galerie HTML avec curseur](comparison-nf4-fp8-a0c0e1680970-v1/gallery.html) | Encodeur 4B FP8 et projecteur identiques ; mêmes embeddings et latents initiaux sauvegardés ; 8 prompts × 2 graines, 512 px, 30 pas, CFG 3 |
 | **Encodeur 8B BF16 → encodeur 4B FP8 + projecteur** | [4 paires historiques et leurs PNG originaux](encoder-8b-4b-1e912f5a/README.md) | Archive de la révision HF `1e912f5a` ; DiT NF4 partagé, 512 px, 20 pas, CFG 1 ; aucune nouvelle génération |
 | **Candidat spatial refusé / enseignant 8B** | [Galerie complète de l'expérience refusée](rejected-7a39a8cc674e/run/validation/review.html) | Expérience d'entraînement distincte ; ce projecteur n'est pas celui de la Base publiée |
 
 Pour le comparatif de diffusion, ouvrir `gallery.html` localement après avoir cloné le dépôt : chaque paire est visible côte à côte à 512 px et en superposition avec un curseur. Les 8 planches du README montrent aussi toutes les paires directement dans GitHub. Aucun PNG n'est retiré du rapport ni détouré après génération. Les paramètres, poids et loaders portent leurs SHA et révisions immuables.
 
-Les mesures MSE RGB/alpha indiquent des différences de pixels entre NF4 et FP8. Elles ne donnent pas un taux d'erreur des positions et ne prouvent pas une meilleure qualité. Les revues par agent sont identifiées ; aucune validation humaine statistique n'est inventée. Les comparatifs sont reproductibles depuis les cellules **Avant / après de la Base publiée** et **Archiver et publier les comparatifs réels** du notebook Base, avec tous les lancements désactivés par défaut.
+Les mesures MSE RGB/alpha indiquent des différences de pixels entre les variantes comparées. Elles ne donnent pas un taux d'erreur des positions et ne prouvent pas une meilleure qualité. Les revues par agent sont identifiées ; aucune validation humaine statistique n'est inventée. Les comparatifs sont reproductibles depuis les cellules **Avant / après de la Base publiée** et **Archiver et publier les comparatifs réels** du notebook Base, avec tous les lancements désactivés par défaut.
 
 La [revue par agent des quatre paires historiques d'encodeurs](encoder-8b-4b-agent-review.json) constate des sujets communs et du texte lisible, mais aussi des différences de fond, de disposition et des déformations. Cet échantillon ne démontre pas une parité 8B ni des positions parfaites.
 
 La [revue complète NF4 / FP8](comparison-nf4-fp8-a0c0e1680970-v1/REVIEW.md) signale notamment une perte de transparence pour le dragon à la graine 1001, des changements de contenu pour les livres et une meilleure séparation étoile/cercle à la graine 1000. Sur ce seul passage, le temps médian génération + décodage passe de 26,43 s à 20,90 s, avec un pic de VRAM allouée passant de 5,73 à 8,95 Gio. Ces mesures excluent chargement et encodage texte ; elles ne constituent pas une garantie générale de vitesse ou de qualité.
 
-La publication des preuves ajoute `COMPARISONS.md` et un dossier de résultats sur HF, sans modifier les poids, le loader, la carte ou le manifeste du payload `a0c0e168`. Sa révision de documentation est conservée dans [comparison-publication.json](comparison-publication.json).
+Le premier envoi des preuves NF4/FP8 a ajouté `COMPARISONS.md` et son dossier sur HF sans modifier le payload `a0c0e168` ([révision vérifiée](comparison-publication.json)). Le [comparatif principal](base-comparison-publication.json) ajoute ensuite les 32 images original/Sharm, sans modifier le modèle. La carte détaillée reçoit son propre manifeste et une nouvelle vérification GPU ; elle conserve tous les poids et le loader.
+
+### Ce que montre le comparatif principal
+
+Sharm produit un seul personnage hybride à la place de plusieurs objets dans plusieurs scènes, ou des sujets superposés. La référence conserve plus souvent plusieurs silhouettes dans cet échantillon mais se trompe aussi sur les espèces, le nombre et les relations. Les cas `above-en` conservent une séparation verticale des deux côtés sans établir la fidélité aux sujets. **La parité 8B et la précision spatiale ne sont pas validées.**
+
+La MSE RGB sur blanc est de 0,052359 et la MSE alpha de 0,279840 ; ce sont des écarts entre sorties normalisées, pas des taux d'erreur de placement. Les 16 PNG Sharm et 11/16 références ont au moins un pixel alpha 0 ; ce critère faible ne mesure pas la qualité du détourage. Les paramètres, la revue identifiée et tous les PNG sont signés.
+
+Le 8B n'a pas été réencodé : ses features BF16 réelles sont réutilisées après contrôle des tokens, métadonnées et SHA. Le DiT de référence reste entièrement BF16 et utilise l'offload CPU. Le protocole ne permet donc pas de comparer la vitesse ou la VRAM complète des deux modèles. La [provenance d'exécution](base-vs-sharm-v1/reproducibility.json) conserve le commit et les empreintes du code effectivement employé.
 
 ## Publication du 19 octobre 2026 : Base avec text encoder et DiT FP8
 

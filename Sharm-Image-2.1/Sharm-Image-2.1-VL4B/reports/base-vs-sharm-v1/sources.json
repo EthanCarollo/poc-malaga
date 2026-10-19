@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "reference_repo": "Qwen/Qwen-Image-2.1",
+  "reference_revision": "d26bb61231c349cf6b7896fa83353113880e1ba3",
+  "after_repo": "ethanzxv/Sharm-Image-2.1-VL4B-FP8",
+  "after_revision": "a0c0e168097024cecd8c43f68004d1bedbab32df",
+  "original_weight_sha256": {
+    "transformer/diffusion_pytorch_model-00001-of-00002.safetensors": "9e6bc2d641e67bf277895ea8777141044a38f3edb7101bc469b2961dd7c36b4b",
+    "transformer/diffusion_pytorch_model-00002-of-00002.safetensors": "3aaf234dcbe128530479735854a346b5e3e66283b7c11db56f836bbd1c13ebaa",
+    "vae/diffusion_pytorch_model.safetensors": "a07a1b7c4ee2966a1b3bdc37de9b4f983d56937e46619f709a80b6e490675417"
+  },
+  "sharm_release_manifest_sha256": "6476bc33d232536d249f197e6bd49aad7c6d1b2cc8ef8d9d17b71ce6cda96e5b",
+  "comparison_source_sha256": "6b3e6c34860872bfadd72a7fcd2a282376bbc3e761169e6186621d2a5a197697",
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "new_training": false,
+  "teacher_encoding_reused_from_historical_bf16_cache": true,
+  "reference_offload": "BF16 DiT whole-model CPU offload; VAE moved to GPU only after denoising",
+  "performance_scope": "Image comparison only; cached 8B encoding and CPU offload prevent an end-to-end speed/VRAM comparison",
+  "teacher_cache_identity": {
+    "encoder": {
+      "kind": "teacher",
+      "revision": "d26bb61231c349cf6b7896fa83353113880e1ba3",
+      "config_sha256": "6001331949f7f86ab6d791a80b12246d4f8da5159fa08c3e62368a39f36d63a9",
+      "index_sha256": "859146bff8db1d617fca8b457a5223edff963bb70076b3645f2189fe0540a147",
+      "convention": "qwenimage21-raw-template-leftpad-pre-final-rmsnorm-v1",
+      "prefill_policy": "left-padded-bf16"
+    },
+    "corpus": "3f9d5fa8403e08adf270c29711b65b2f5b5f4c30aabde584c8d49e183fd8909f"
+  },
+  "teacher_cache_index_sha256": "8171df0c837053809583417de112fba806e22cc86e2c76c9089323756c38f60b"
+}

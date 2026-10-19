@@ -1,0 +1,17 @@
+{
+  "base": {
+    "weight_dtypes": [
+      "torch.bfloat16"
+    ],
+    "parameters": 7115124736,
+    "quantization": null,
+    "offload": "BF16 DiT whole-model CPU offload; VAE moved to GPU only after denoising"
+  },
+  "sharm": {
+    "weight_dtypes": [
+      "torch.float8_e4m3fn"
+    ],
+    "quantized_modules": 232,
+    "offload": "none"
+  }
+}

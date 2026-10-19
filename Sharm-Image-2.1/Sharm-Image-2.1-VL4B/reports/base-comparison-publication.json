@@ -1,0 +1,10 @@
+{
+  "state": "complete",
+  "repo_id": "ethanzxv/Sharm-Image-2.1-VL4B-FP8",
+  "revision": "92017aa6d75295518b8bbc1951f60baf6b6ef5ea",
+  "private": true,
+  "report": "base-vs-sharm-v1",
+  "files_verified": 52,
+  "report_manifest_sha256": "b1ffccdd9a87b5fc952f20bb91cea66d33cf878a9dd239dccb6e20b0ceaa1125",
+  "model_payload_unchanged": true
+}

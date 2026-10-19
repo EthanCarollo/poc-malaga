@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "selection": "First validation scene per relation/language in the immutable source order; selected before generation",
+  "source_scenes_sha256": "ac0280f7795ca4506cfc61ccbcf948cccaf95b76514f99548a28f1e971abae81",
+  "prompts": [
+    {
+      "id": "left-fr",
+      "scene_id": "7a3919a59e5c904ec6318bdfb2dc022be8917a7980ecedefc35824abb487a4bd",
+      "caption_id": "f93133adc29eacaa4db6efc635e3d5f82c0b8b55647f71dde28a7c565c6c0ff6",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "left",
+      "language": "fr",
+      "objects": [
+        "shiny Pidgeot",
+        "shiny Gligar"
+      ]
+    },
+    {
+      "id": "left-en",
+      "scene_id": "be834fd87531e47acb030753c467eac9a29ea18215a1db8295cbc402400c1b7f",
+      "caption_id": "5090856a617e561059b6ccb5d6deafc31b4bf2f19b0f5741af63b608e9a516c3",
+      "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon.",
+      "relation": "left",
+      "language": "en",
+      "objects": [
+        "shiny Rhydon",
+        "shiny Articuno",
+        "shiny Rhydon"
+      ]
+    },
+    {
+      "id": "right-fr",
+      "scene_id": "0b42af6855e5360ced053ed12f06d9c13ef29338a371baf7f76f6b5639a58cbb",
+      "caption_id": "fc98a7c3dd095c1a2172edc03ae9d739ad5c4ed569d98b982762c0303b846092",
+      "prompt": "Exactement trois objets distincts. Objet 1 : Mudkip. Objet 2 : shiny Camerupt. L'objet 1 est à droite de l'objet 2. Aucun chevauchement. Fond transparent. Objet 3 : Mudkip.",
+      "relation": "right",
+      "language": "fr",
+      "objects": [
+        "Mudkip",
+        "shiny Camerupt",
+        "Mudkip"
+      ]
+    },
+    {
+      "id": "right-en",
+      "scene_id": "48c578fbc6ee1338dbe07d88bafae050d7b1ca7ae5e241cb8064d8b6e45fa23b",
+      "caption_id": "3b84ce92fc4000de5bc89384771212e806669b2d86e73b2cc4ea70d8f1b385b1",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background.",
+      "relation": "right",
+      "language": "en",
+      "objects": [
+        "shiny Ralts",
+        "Solrock"
+      ]
+    },
+    {
+      "id": "above-fr",
+      "scene_id": "bab299ac9ce6cdb35bf5ae482ea660eb1f870645da3782a42ec207f94d8b037f",
+      "caption_id": "69f81e3282f9dc8aac02ec0376a869edcf65d95bf56cbf62d5c2a59a17f298ef",
+      "prompt": "Exactement deux objets distincts. Objet 1 : Plusle. Objet 2 : Shellder. L'objet 1 est au-dessus de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "above",
+      "language": "fr",
+      "objects": [
+        "Plusle",
+        "Shellder"
+      ]
+    },
+    {
+      "id": "above-en",
+      "scene_id": "db28464e386de8070cf328e3e4253f3837319be8e261e02364f1063ae97adcc4",
+      "caption_id": "0a874c2d787a66b2153f4fb910fca1433638a58134908b46e43551e58bc95b82",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background.",
+      "relation": "above",
+      "language": "en",
+      "objects": [
+        "shiny Aerodactyl",
+        "shiny Raikou"
+      ]
+    },
+    {
+      "id": "below-fr",
+      "scene_id": "31be1eddb78a19516513ce077dc3f3d6c22c91eb61696baac46129b144699da3",
+      "caption_id": "bfe4925926e12d86e34823486268604cc4e96169f5cd8e46dddc0c47383c060d",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "below",
+      "language": "fr",
+      "objects": [
+        "shiny Castform, sunny form",
+        "Paras"
+      ]
+    },
+    {
+      "id": "below-en",
+      "scene_id": "f3487a1d514a91a2b1e1e3e04d285a700ed05d4e0c370dd188ed0384136d07c2",
+      "caption_id": "9668829015820ad5193c806360fac1f6f86b73de80a780b72703e93f537c83d6",
+      "prompt": "Exactly two distinct objects. Object 1: Hoppip. Object 2: shiny Cacnea. Object 1 is below object 2. No overlap. Transparent background.",
+      "relation": "below",
+      "language": "en",
+      "objects": [
+        "Hoppip",
+        "shiny Cacnea"
+      ]
+    }
+  ],
+  "seeds": [
+    1000,
+    1001
+  ],
+  "width": 512,
+  "height": 512,
+  "steps": 30,
+  "cfg": 1.0,
+  "negative_prompt": null,
+  "use_kv_cache": false,
+  "scope": "Text-only comparison; no coordinate-box module or trained spatial candidate on either side",
+  "reference_offload": "BF16 DiT whole-model CPU offload; VAE moved to GPU only after denoising",
+  "performance_scope": "Image comparison only; cached 8B encoding and CPU offload prevent an end-to-end speed/VRAM comparison"
+}

@@ -1,0 +1,809 @@
+{
+  "pairs": [
+    {
+      "id": "left-fr",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "left",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "left-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1000,
+        "file": "images/left-fr-1000-base.png",
+        "sha256": "43898b78002d59d34dff599bf00a20495f6d0cd30c5660dab429ab37aabc8d9c",
+        "conditioning_sha256": "923aa7f414bfaf811f89b11bb41132e27712941197dc87b5761c8e981aa3e17e",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 52.10124681099842,
+        "peak_allocated_gib": 13.442353248596191,
+        "alpha": {
+          "min": 247,
+          "max": 255,
+          "fully_transparent_fraction": 0.0,
+          "near_transparent_fraction": 0.0,
+          "fully_opaque_fraction": 0.9874382019042969,
+          "mean": 0.99994083479339
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "left-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1000,
+        "file": "images/left-fr-1000-sharm.png",
+        "sha256": "b32ac219ee862775510dfd53ac57259a98046db7cce6b9c0f264bb9ab6e581b1",
+        "conditioning_sha256": "0994ac761bcd4c6dfa8659368ee0a56a79c22f0f54785cfda27191102a7a33cc",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.60238049000327,
+        "peak_allocated_gib": 8.947348594665527,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.14130783081054688,
+          "near_transparent_fraction": 0.5179672241210938,
+          "fully_opaque_fraction": 0.44982147216796875,
+          "mean": 0.4738994523590686
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.06610902462028463,
+      "alpha_mse": 0.521049218329958
+    },
+    {
+      "id": "left-fr",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "left",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "left-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1001,
+        "file": "images/left-fr-1001-base.png",
+        "sha256": "f5aced490a8757e6b764495ccf24a2bfaaf239d3feb6065df202466a1f4d4661",
+        "conditioning_sha256": "923aa7f414bfaf811f89b11bb41132e27712941197dc87b5761c8e981aa3e17e",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.262680678002653,
+        "peak_allocated_gib": 13.441819190979004,
+        "alpha": {
+          "min": 221,
+          "max": 255,
+          "fully_transparent_fraction": 0.0,
+          "near_transparent_fraction": 0.0,
+          "fully_opaque_fraction": 0.9864768981933594,
+          "mean": 0.9999137878417969
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "left-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1001,
+        "file": "images/left-fr-1001-sharm.png",
+        "sha256": "9fee0067a7174a1b05ccf0e49aab45dacfc84c7fb36d4bde4743f722a68cecf5",
+        "conditioning_sha256": "0994ac761bcd4c6dfa8659368ee0a56a79c22f0f54785cfda27191102a7a33cc",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.733805360003316,
+        "peak_allocated_gib": 8.947348594665527,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.2363739013671875,
+          "near_transparent_fraction": 0.7748222351074219,
+          "fully_opaque_fraction": 0.16129302978515625,
+          "mean": 0.2201453115425858
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.037310620300063484,
+      "alpha_mse": 0.7743535495216871
+    },
+    {
+      "id": "left-en",
+      "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon.",
+      "relation": "left",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "left-en",
+        "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon.",
+        "seed": 1000,
+        "file": "images/left-en-1000-base.png",
+        "sha256": "eb45e9b08e6cba9eea685e0b402a039e34571d21187a72e3cf4647e93fcfe52f",
+        "conditioning_sha256": "6d14d2369072fa2d4ba1fb1498957a9481907010e016ae88b598d4f98200d40c",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 21.286745351004356,
+        "peak_allocated_gib": 13.441481113433838,
+        "alpha": {
+          "min": 235,
+          "max": 255,
+          "fully_transparent_fraction": 0.0,
+          "near_transparent_fraction": 0.0,
+          "fully_opaque_fraction": 0.9865798950195312,
+          "mean": 0.9999295253379672
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "left-en",
+        "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon.",
+        "seed": 1000,
+        "file": "images/left-en-1000-sharm.png",
+        "sha256": "39b66bd56e86cf133e543b03c364ce1d727af4b8b292ac36e8efb92be1e3291f",
+        "conditioning_sha256": "93e0b20db2cb97b545e3c54068597e524e263fc20a7bbd4cc33f4200216562c6",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.588852111999586,
+        "peak_allocated_gib": 8.947287559509277,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.14555740356445312,
+          "near_transparent_fraction": 0.6365623474121094,
+          "fully_opaque_fraction": 0.21825027465820312,
+          "mean": 0.3458399155560662
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.10834039889888814,
+      "alpha_mse": 0.6430612997475242
+    },
+    {
+      "id": "left-en",
+      "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon.",
+      "relation": "left",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "left-en",
+        "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon.",
+        "seed": 1001,
+        "file": "images/left-en-1001-base.png",
+        "sha256": "827742b505a01cc1ecc72cb455046f591e589005d10100522270a58dc9f5f8fd",
+        "conditioning_sha256": "6d14d2369072fa2d4ba1fb1498957a9481907010e016ae88b598d4f98200d40c",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.12362445799954,
+        "peak_allocated_gib": 13.441481113433838,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.16646194458007812,
+          "near_transparent_fraction": 0.7863426208496094,
+          "fully_opaque_fraction": 0.12717056274414062,
+          "mean": 0.20315028171913296
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "left-en",
+        "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon.",
+        "seed": 1001,
+        "file": "images/left-en-1001-sharm.png",
+        "sha256": "91b7c6a2012b77c75157e40e7c168fddf397a96223de3f5e3e08a4aa35bf502b",
+        "conditioning_sha256": "93e0b20db2cb97b545e3c54068597e524e263fc20a7bbd4cc33f4200216562c6",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.504428209998878,
+        "peak_allocated_gib": 8.947287559509277,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.22824478149414062,
+          "near_transparent_fraction": 0.7695198059082031,
+          "fully_opaque_fraction": 0.11715316772460938,
+          "mean": 0.2132028018727022
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.07378878541276367,
+      "alpha_mse": 0.12636639493467808
+    },
+    {
+      "id": "right-fr",
+      "prompt": "Exactement trois objets distincts. Objet 1 : Mudkip. Objet 2 : shiny Camerupt. L'objet 1 est à droite de l'objet 2. Aucun chevauchement. Fond transparent. Objet 3 : Mudkip.",
+      "relation": "right",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "right-fr",
+        "prompt": "Exactement trois objets distincts. Objet 1 : Mudkip. Objet 2 : shiny Camerupt. L'objet 1 est à droite de l'objet 2. Aucun chevauchement. Fond transparent. Objet 3 : Mudkip.",
+        "seed": 1000,
+        "file": "images/right-fr-1000-base.png",
+        "sha256": "80d2245c327f1d7d44074b8e8cd7b3a33e614af496dc866b94de7a70fb2428bd",
+        "conditioning_sha256": "c8fcf215c50426efd6c063b4384993f1ee2b0961bd158d6874865f4f22bfd452",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 21.80427481800143,
+        "peak_allocated_gib": 13.444212436676025,
+        "alpha": {
+          "min": 249,
+          "max": 255,
+          "fully_transparent_fraction": 0.0,
+          "near_transparent_fraction": 0.0,
+          "fully_opaque_fraction": 0.9875106811523438,
+          "mean": 0.9999438566320082
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "right-fr",
+        "prompt": "Exactement trois objets distincts. Objet 1 : Mudkip. Objet 2 : shiny Camerupt. L'objet 1 est à droite de l'objet 2. Aucun chevauchement. Fond transparent. Objet 3 : Mudkip.",
+        "seed": 1000,
+        "file": "images/right-fr-1000-sharm.png",
+        "sha256": "683784ebfcdb8b538019e20cb54b0d20105fe1881788d4f467d525fdf92d48be",
+        "conditioning_sha256": "8161d2f1c7e7d9427ba1493b1dd97705b6945b680e9b85ceb81570dcc35f0d7a",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.77726275400346,
+        "peak_allocated_gib": 8.947457313537598,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.16778182983398438,
+          "near_transparent_fraction": 0.5062065124511719,
+          "fully_opaque_fraction": 0.43902587890625,
+          "mean": 0.4871006984336703
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.08078395604895405,
+      "alpha_mse": 0.5082570430839213
+    },
+    {
+      "id": "right-fr",
+      "prompt": "Exactement trois objets distincts. Objet 1 : Mudkip. Objet 2 : shiny Camerupt. L'objet 1 est à droite de l'objet 2. Aucun chevauchement. Fond transparent. Objet 3 : Mudkip.",
+      "relation": "right",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "right-fr",
+        "prompt": "Exactement trois objets distincts. Objet 1 : Mudkip. Objet 2 : shiny Camerupt. L'objet 1 est à droite de l'objet 2. Aucun chevauchement. Fond transparent. Objet 3 : Mudkip.",
+        "seed": 1001,
+        "file": "images/right-fr-1001-base.png",
+        "sha256": "e03f16b3a369d0a4d1b5dff7f036bad79984746b08035ce3a63cdd1b922363d6",
+        "conditioning_sha256": "c8fcf215c50426efd6c063b4384993f1ee2b0961bd158d6874865f4f22bfd452",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.8712217650027,
+        "peak_allocated_gib": 13.444212436676025,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.17695236206054688,
+          "near_transparent_fraction": 0.8055534362792969,
+          "fully_opaque_fraction": 0.07214736938476562,
+          "mean": 0.18531562954771752
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "right-fr",
+        "prompt": "Exactement trois objets distincts. Objet 1 : Mudkip. Objet 2 : shiny Camerupt. L'objet 1 est à droite de l'objet 2. Aucun chevauchement. Fond transparent. Objet 3 : Mudkip.",
+        "seed": 1001,
+        "file": "images/right-fr-1001-sharm.png",
+        "sha256": "52cbcbb7b9d8940d9d0d6a7eb607ae9c7f0cde33a5e86b75b3e2ad017906e164",
+        "conditioning_sha256": "8161d2f1c7e7d9427ba1493b1dd97705b6945b680e9b85ceb81570dcc35f0d7a",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.766064155002823,
+        "peak_allocated_gib": 8.947457313537598,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.22003936767578125,
+          "near_transparent_fraction": 0.7853317260742188,
+          "fully_opaque_fraction": 0.1556549072265625,
+          "mean": 0.21065789017022823
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.05469032691525325,
+      "alpha_mse": 0.1425874790894165
+    },
+    {
+      "id": "right-en",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background.",
+      "relation": "right",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "right-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background.",
+        "seed": 1000,
+        "file": "images/right-en-1000-base.png",
+        "sha256": "2b5d4ec57b7a5b2984f9aeb516b46c43e5bd259bcec77d0ed26d90238b41fab8",
+        "conditioning_sha256": "b10eda5b1df339cb6023b7c4e4d16b6d37dc6c68282140984e9fcdf518e3a861",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 21.27792036200117,
+        "peak_allocated_gib": 13.440551280975342,
+        "alpha": {
+          "min": 247,
+          "max": 255,
+          "fully_transparent_fraction": 0.0,
+          "near_transparent_fraction": 0.0,
+          "fully_opaque_fraction": 0.9886207580566406,
+          "mean": 0.9999438566320082
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "right-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background.",
+        "seed": 1000,
+        "file": "images/right-en-1000-sharm.png",
+        "sha256": "3cd4c6b07716c7d66b15358a978de353c8636b8c51288d995d5675c9689a006e",
+        "conditioning_sha256": "a48c16d8fca4b2fc07fcad1dd813a8f9cd29c3fd1c3a2a084d0337306d1f992a",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.512070581993612,
+        "peak_allocated_gib": 8.947117805480957,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.17040252685546875,
+          "near_transparent_fraction": 0.4978828430175781,
+          "fully_opaque_fraction": 0.46905517578125,
+          "mean": 0.4973671557856541
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.05225022678982152,
+      "alpha_mse": 0.49904070017109553
+    },
+    {
+      "id": "right-en",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background.",
+      "relation": "right",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "right-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background.",
+        "seed": 1001,
+        "file": "images/right-en-1001-base.png",
+        "sha256": "1e6c396c1cc3999da9f38aea6b18bbf3df66282cab0b4ff55dc1d9b0266d281f",
+        "conditioning_sha256": "b10eda5b1df339cb6023b7c4e4d16b6d37dc6c68282140984e9fcdf518e3a861",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.413366039996617,
+        "peak_allocated_gib": 13.440551280975342,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.17372894287109375,
+          "near_transparent_fraction": 0.8493080139160156,
+          "fully_opaque_fraction": 0.08484268188476562,
+          "mean": 0.14528998580633426
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "right-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background.",
+        "seed": 1001,
+        "file": "images/right-en-1001-sharm.png",
+        "sha256": "9f565552ddd5c0807cdff7a9096212f23f745c8ea653493e486bd8dca2a1fc15",
+        "conditioning_sha256": "a48c16d8fca4b2fc07fcad1dd813a8f9cd29c3fd1c3a2a084d0337306d1f992a",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.505736368002545,
+        "peak_allocated_gib": 8.947117805480957,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.22233963012695312,
+          "near_transparent_fraction": 0.8052825927734375,
+          "fully_opaque_fraction": 0.11708450317382812,
+          "mean": 0.18494558895335478
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.03790279347718201,
+      "alpha_mse": 0.13471736492903497
+    },
+    {
+      "id": "above-fr",
+      "prompt": "Exactement deux objets distincts. Objet 1 : Plusle. Objet 2 : Shellder. L'objet 1 est au-dessus de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "above",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "above-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : Plusle. Objet 2 : Shellder. L'objet 1 est au-dessus de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1000,
+        "file": "images/above-fr-1000-base.png",
+        "sha256": "89162a6dd3d6abf467da1f92ca578aefbf530b89655c8f708591356fe2c501bd",
+        "conditioning_sha256": "7e57d68f083ee8e6299653930a94a608895c0eb4402495ed95238805615cc69a",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 21.315253093001957,
+        "peak_allocated_gib": 13.44156551361084,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.139434814453125,
+          "near_transparent_fraction": 0.6978302001953125,
+          "fully_opaque_fraction": 0.2620658874511719,
+          "mean": 0.29722070132984835
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "above-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : Plusle. Objet 2 : Shellder. L'objet 1 est au-dessus de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1000,
+        "file": "images/above-fr-1000-sharm.png",
+        "sha256": "f1e59109c1ff31cc3cb871e342cee5abe2dba9296a793b3730ef92ccbd06f600",
+        "conditioning_sha256": "e0d8a99a4d0e6cf0170167ed537be4b625c3e09fa5af1f3c02a21a9ee2ddada6",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.482976785002393,
+        "peak_allocated_gib": 8.94730281829834,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.1516876220703125,
+          "near_transparent_fraction": 0.4743080139160156,
+          "fully_opaque_fraction": 0.4652595520019531,
+          "mean": 0.5180479012283624
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.05687019626222711,
+      "alpha_mse": 0.24860879477882605
+    },
+    {
+      "id": "above-fr",
+      "prompt": "Exactement deux objets distincts. Objet 1 : Plusle. Objet 2 : Shellder. L'objet 1 est au-dessus de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "above",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "above-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : Plusle. Objet 2 : Shellder. L'objet 1 est au-dessus de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1001,
+        "file": "images/above-fr-1001-base.png",
+        "sha256": "7acbef27408977b27405a1dd3895c766397a78991c49f75cf19f3734acaeda3e",
+        "conditioning_sha256": "7e57d68f083ee8e6299653930a94a608895c0eb4402495ed95238805615cc69a",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.248259908003092,
+        "peak_allocated_gib": 13.44156551361084,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.16907119750976562,
+          "near_transparent_fraction": 0.7607345581054688,
+          "fully_opaque_fraction": 0.12372207641601562,
+          "mean": 0.2333498487285539
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "above-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : Plusle. Objet 2 : Shellder. L'objet 1 est au-dessus de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1001,
+        "file": "images/above-fr-1001-sharm.png",
+        "sha256": "0797afdbd3994f312e98494de8edfa7037dcf140b6f551c3428383dc668e2e52",
+        "conditioning_sha256": "e0d8a99a4d0e6cf0170167ed537be4b625c3e09fa5af1f3c02a21a9ee2ddada6",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.62162114399689,
+        "peak_allocated_gib": 8.94730281829834,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.2500877380371094,
+          "near_transparent_fraction": 0.7488670349121094,
+          "fully_opaque_fraction": 0.14281463623046875,
+          "mean": 0.24210218541762407
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.03459440056267416,
+      "alpha_mse": 0.08888677559646906
+    },
+    {
+      "id": "above-en",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background.",
+      "relation": "above",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "above-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background.",
+        "seed": 1000,
+        "file": "images/above-en-1000-base.png",
+        "sha256": "d8dbe518831dfb3181fa698281dfc54df5bf3dd8c3ca97b06b654d0aed22dad4",
+        "conditioning_sha256": "075c161e2c44af0885dc37c956fd4ab74c66e5237a20a3fbcecb7ad9048ace1b",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 21.30108924399974,
+        "peak_allocated_gib": 13.440551280975342,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 3.814697265625e-06,
+          "near_transparent_fraction": 0.5545921325683594,
+          "fully_opaque_fraction": 0.1795806884765625,
+          "mean": 0.2940857681573606
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "above-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background.",
+        "seed": 1000,
+        "file": "images/above-en-1000-sharm.png",
+        "sha256": "2b6f569beb16eb0e8823dcaff2a148b9117a443f904598402abaf441d6bc5fd0",
+        "conditioning_sha256": "230751c501b928b7c500c8145624b0f6e8f467bacf33ab49c853067dc58aa0ba",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.46209161799925,
+        "peak_allocated_gib": 8.947117805480957,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.16297149658203125,
+          "near_transparent_fraction": 0.7046127319335938,
+          "fully_opaque_fraction": 0.23318862915039062,
+          "mean": 0.28649733300302543
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.031531405032799435,
+      "alpha_mse": 0.08585353594658604
+    },
+    {
+      "id": "above-en",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background.",
+      "relation": "above",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "above-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background.",
+        "seed": 1001,
+        "file": "images/above-en-1001-base.png",
+        "sha256": "d6a3b12c7de95b8ddb0428ee15f7fe0b1787b3056737b1b7b2dad77c732504b9",
+        "conditioning_sha256": "075c161e2c44af0885dc37c956fd4ab74c66e5237a20a3fbcecb7ad9048ace1b",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.235577697996632,
+        "peak_allocated_gib": 13.440551280975342,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.15141677856445312,
+          "near_transparent_fraction": 0.7785987854003906,
+          "fully_opaque_fraction": 0.12712860107421875,
+          "mean": 0.21105081894818475
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "above-en",
+        "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background.",
+        "seed": 1001,
+        "file": "images/above-en-1001-sharm.png",
+        "sha256": "27fa25523e2faaa83ba9813acafb29899a5c3277988a04d3188db6bdcadb0b01",
+        "conditioning_sha256": "230751c501b928b7c500c8145624b0f6e8f467bacf33ab49c853067dc58aa0ba",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.402467410996906,
+        "peak_allocated_gib": 8.947117805480957,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.2508659362792969,
+          "near_transparent_fraction": 0.75390625,
+          "fully_opaque_fraction": 0.113739013671875,
+          "mean": 0.23357099645278034
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.04480496882410665,
+      "alpha_mse": 0.08206297607891197
+    },
+    {
+      "id": "below-fr",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "below",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "below-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1000,
+        "file": "images/below-fr-1000-base.png",
+        "sha256": "72e2a48518d71ee22c3494a7107a53c272541a4f2e7ebc4de7e11ce11d12a8ed",
+        "conditioning_sha256": "357e4a91aba33cf0ea1f1eb6e975776d4a3a1de1c7d915f22e0bf8d09676b9bc",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 21.141475377997267,
+        "peak_allocated_gib": 13.441819190979004,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.1556854248046875,
+          "near_transparent_fraction": 0.6818656921386719,
+          "fully_opaque_fraction": 0.2676887512207031,
+          "mean": 0.31121127558689493
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "below-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1000,
+        "file": "images/below-fr-1000-sharm.png",
+        "sha256": "d6b40d65bd73da613b2a4ac773780350d4422352f1050040175c814948af1402",
+        "conditioning_sha256": "5d87af103233d2ecfd4b4af89b6e0434367938c4d246a60f47d86d3d629b6ae6",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.598056001996156,
+        "peak_allocated_gib": 8.947348594665527,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.16654205322265625,
+          "near_transparent_fraction": 0.5097770690917969,
+          "fully_opaque_fraction": 0.4434471130371094,
+          "mean": 0.4857308032465916
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.042231778021259436,
+      "alpha_mse": 0.22480607633726363
+    },
+    {
+      "id": "below-fr",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent.",
+      "relation": "below",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "below-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1001,
+        "file": "images/below-fr-1001-base.png",
+        "sha256": "5edbef609620806f45539d57c317e10943eeb24c5efc5c64b98b68529c8ebdff",
+        "conditioning_sha256": "357e4a91aba33cf0ea1f1eb6e975776d4a3a1de1c7d915f22e0bf8d09676b9bc",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.29756226999598,
+        "peak_allocated_gib": 13.441819190979004,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.16534423828125,
+          "near_transparent_fraction": 0.7685699462890625,
+          "fully_opaque_fraction": 0.17410659790039062,
+          "mean": 0.22686679316501993
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "below-fr",
+        "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent.",
+        "seed": 1001,
+        "file": "images/below-fr-1001-sharm.png",
+        "sha256": "282f17cd46ef51d1cbb6023efd8c77f8b5af9e5ccf45ba9b4ec2e7e1e9918b0c",
+        "conditioning_sha256": "5d87af103233d2ecfd4b4af89b6e0434367938c4d246a60f47d86d3d629b6ae6",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.634759248001501,
+        "peak_allocated_gib": 8.947348594665527,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.23994064331054688,
+          "near_transparent_fraction": 0.7656021118164062,
+          "fully_opaque_fraction": 0.160888671875,
+          "mean": 0.22334017286113664
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.0293892173569813,
+      "alpha_mse": 0.0964232618778497
+    },
+    {
+      "id": "below-en",
+      "prompt": "Exactly two distinct objects. Object 1: Hoppip. Object 2: shiny Cacnea. Object 1 is below object 2. No overlap. Transparent background.",
+      "relation": "below",
+      "seed": 1000,
+      "base": {
+        "arm": "base",
+        "prompt_id": "below-en",
+        "prompt": "Exactly two distinct objects. Object 1: Hoppip. Object 2: shiny Cacnea. Object 1 is below object 2. No overlap. Transparent background.",
+        "seed": 1000,
+        "file": "images/below-en-1000-base.png",
+        "sha256": "f5f4089f4c5e10394fdada798712f4c85532c4596623ccfdb27001c0ebdd7bc1",
+        "conditioning_sha256": "2a50c9e372cb5192e019cad85dd5d9dfb9f9760d11f81839f12c9b8d75d16eda",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 21.237731759007147,
+        "peak_allocated_gib": 13.440382480621338,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.12768936157226562,
+          "near_transparent_fraction": 0.7125587463378906,
+          "fully_opaque_fraction": 0.256011962890625,
+          "mean": 0.28290505502738206
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "below-en",
+        "prompt": "Exactly two distinct objects. Object 1: Hoppip. Object 2: shiny Cacnea. Object 1 is below object 2. No overlap. Transparent background.",
+        "seed": 1000,
+        "file": "images/below-en-1000-sharm.png",
+        "sha256": "45342085767bcadbe58e35c841602b7874d481d31997287a212be59c761305fc",
+        "conditioning_sha256": "7d023fe853ef921d7577799d3a09210e2bed13c235689525587fe7835defd9e7",
+        "noise_sha256": "1d8f199a0e4237aa098069642a5c7a8de33014f852a372066ee06f9a30e11ffe",
+        "seconds": 15.488036804999865,
+        "peak_allocated_gib": 8.947087287902832,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.18096160888671875,
+          "near_transparent_fraction": 0.49853515625,
+          "fully_opaque_fraction": 0.4464225769042969,
+          "mean": 0.4970188215667126
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.06310581100898116,
+      "alpha_mse": 0.24847377362044118
+    },
+    {
+      "id": "below-en",
+      "prompt": "Exactly two distinct objects. Object 1: Hoppip. Object 2: shiny Cacnea. Object 1 is below object 2. No overlap. Transparent background.",
+      "relation": "below",
+      "seed": 1001,
+      "base": {
+        "arm": "base",
+        "prompt_id": "below-en",
+        "prompt": "Exactly two distinct objects. Object 1: Hoppip. Object 2: shiny Cacnea. Object 1 is below object 2. No overlap. Transparent background.",
+        "seed": 1001,
+        "file": "images/below-en-1001-base.png",
+        "sha256": "4d082d5e4fe4f46a132eb16ceded366c1d25c4528443b6f372e2ee0de0f717ec",
+        "conditioning_sha256": "2a50c9e372cb5192e019cad85dd5d9dfb9f9760d11f81839f12c9b8d75d16eda",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 21.260530375999224,
+        "peak_allocated_gib": 13.440382480621338,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.16996002197265625,
+          "near_transparent_fraction": 0.7843360900878906,
+          "fully_opaque_fraction": 0.153717041015625,
+          "mean": 0.21224303900026809
+        },
+        "native_fp8_calls": 0
+      },
+      "sharm": {
+        "arm": "sharm",
+        "prompt_id": "below-en",
+        "prompt": "Exactly two distinct objects. Object 1: Hoppip. Object 2: shiny Cacnea. Object 1 is below object 2. No overlap. Transparent background.",
+        "seed": 1001,
+        "file": "images/below-en-1001-sharm.png",
+        "sha256": "3ff9b502e88313ab3cac17f8a76a7890451285c1cb6a653115fc262621a94ca3",
+        "conditioning_sha256": "7d023fe853ef921d7577799d3a09210e2bed13c235689525587fe7835defd9e7",
+        "noise_sha256": "387596a79cf8951daacf38ac1e9d36cb9e6c994a1804b8dbfa4e1856f49a87de",
+        "seconds": 15.424881134000316,
+        "peak_allocated_gib": 8.947087287902832,
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "fully_transparent_fraction": 0.2755012512207031,
+          "near_transparent_fraction": 0.7306098937988281,
+          "fully_opaque_fraction": 0.19147109985351562,
+          "mean": 0.26219754686542585
+        },
+        "native_fp8_calls": 6960
+      },
+      "rgb_on_white_mse": 0.02403284748185004,
+      "alpha_mse": 0.05288851557947589
+    }
+  ],
+  "images": 32,
+  "pairs_count": 16,
+  "scope": "Output-pixel differences, not ground-truth correctness or positional accuracy; no end-to-end performance comparison",
+  "mean_rgb_on_white_mse": 0.05235854731338063,
+  "mean_alpha_mse": 0.27983979747644616
+}

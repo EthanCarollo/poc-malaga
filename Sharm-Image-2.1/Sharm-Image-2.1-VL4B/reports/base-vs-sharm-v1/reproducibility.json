@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "generation_code_git_revision": "14833edb903c0e79358ff0d8ea5cc7e6bb726ca2",
+  "executed_notebook_sha256": "313f1cea7b216d3d421ce68a9213d9316ee3103e61c54f1cbd519de3b08e5718",
+  "comparison_source_sha256": "6b3e6c34860872bfadd72a7fcd2a282376bbc3e761169e6186621d2a5a197697",
+  "completed_generations": 32,
+  "new_training": false,
+  "baseline_encoding": "Reused original BF16 teacher features, token IDs and encoder metadata verified; the 8B encoder was not run again",
+  "baseline_denoiser": "Actual BF16 public model; whole-model CPU offload, no quantization",
+  "sharm_denoiser": "Actual published native FP8 model, 6960 native FP8 calls per CFG1 image",
+  "interrupted_attempt": {
+    "completed_images": 0,
+    "reason": "Group offload was too slow; stopped only that process, retained attempt files outside Git",
+    "protocol_changes": "Only CPU/GPU transfer policy changed; no prompt, seed, data, step or weight reduction"
+  },
+  "performance_comparison_valid": false,
+  "review_method": "agent_visual_review"
+}
