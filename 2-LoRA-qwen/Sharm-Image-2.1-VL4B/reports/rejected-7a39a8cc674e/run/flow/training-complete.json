@@ -1,0 +1,7 @@
+{
+  "signature": "962888a998e1d011e3b5a16a9613a4bc798184119c578a8e3b7cf7fe12eaada0",
+  "steps_completed": 1500,
+  "best_numerical_validation_loss": 0.09974897938081995,
+  "spatial_quality_validated": false,
+  "reason": "steps_completed"
+}

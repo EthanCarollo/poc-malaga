@@ -1,6 +1,45 @@
 # Rapports finaux versionnés
 
-Ce dossier conserve les résultats lisibles depuis les notebooks : paramètres, historiques, comparaisons complètes, revue identifiée, contrôles du loader et révision HF immuable. Aucun résultat final n'est ajouté avant la fin réelle des calculs et des contrôles.
+Ce dossier conserve les résultats lisibles depuis les notebooks : paramètres, historiques, comparaisons complètes et revue identifiée. Les contrôles du loader et la révision HF immuable sont requis pour une archive publiée. Un candidat refusé reçoit une archive distincte, sans publication ni validation inventée.
+
+## Compte rendu du 19 octobre 2026 : candidat refusé
+
+**L'entraînement est terminé, la qualité attendue n'est pas atteinte.** Le candidat n'a été ni exporté pour publication, ni envoyé sur Hugging Face.
+
+| Étape | Résultat observé |
+| --- | --- |
+| Warmup | 1 000 / 1 000 pas ; meilleur score numérique 0,092788 |
+| Flow | 1 500 / 1 500 pas ; meilleure perte de validation flow 0,099749 |
+| Galerie principale | 24 scènes × 3 graines × 4 méthodes = 288 PNG RGBA |
+| Revue par agent | 144 images candidat et 144 homologues 8B inspectés ; candidat refusé |
+| Diagnostic warmup | 6 scènes × 2 graines × 2 modes = 24 images inspectées ; remplacement refusé |
+| Contrôle des fichiers | SHA-256 des 312 PNG de génération conformes aux deux manifestes |
+
+Les sujets du candidat flow sont déformés et des formes très similaires reviennent pour des prompts différents. Des fragments supplémentaires et des motifs de fond apparaissent. Les variantes avec boîtes ne démontrent pas un placement correct des sujets demandés. Le professeur 8B a lui aussi des erreurs : ses images ne sont pas des annotations de référence.
+
+Sur les **24 mêmes prompts de validation sans boîtes**, les embeddings 4B et 8B ont chacun 24 empreintes distinctes. L'erreur relative moyenne d'alignement avec le 8B passe de **0,087146 au warmup à 0,183908 après flow** ; le cosinus moyen passe de **0,951827 à 0,897007**. Ces mesures comparent les tenseurs d'embeddings, pas les coordonnées des objets. Elles diffèrent de la perte flow de 0,099749, qui compare des champs de débruitage. Le score warmup ajoute un terme de cosinus à l'erreur relative.
+
+La dégradation d'alignement après flow est mesurée. Le diagnostic visuel montre aussi des répétitions dès le warmup. Cela ne prouve donc pas qu'un simple changement du poids de perte flow suffirait. La cause unique n'est pas établie ; aucun nouvel entraînement n'a été lancé sur cette hypothèse. La suite doit examiner la conservation de l'information sémantique et le protocole de sélection avant de reprendre le calcul.
+
+### Preuves conservées
+
+- [Résumé et identités](rejected-7a39a8cc674e/summary.json)
+- [Revue complète identifiée `agent_visual_review`](rejected-7a39a8cc674e/visual-review.json)
+- [Galerie appariée complète](rejected-7a39a8cc674e/run/validation/review.html)
+- [Manifeste des 288 générations](rejected-7a39a8cc674e/run/validation/predictions.json)
+- [Mesures des embeddings](rejected-7a39a8cc674e/post-training-diagnostics.json)
+- [Revue du diagnostic warmup](rejected-7a39a8cc674e/warmup-diagnostic-review.json)
+- [SHA-256 de tous les fichiers archivés](rejected-7a39a8cc674e/manifest.json)
+
+Le projecteur refusé porte le SHA-256 `6fc98a1df3b9879a7a79d568c0f6ec054bcbe8c5b15602bc57f7bd8ad228b568`. Ses poids restent hors Git. Les PNG et manifestes sont archivés avec leurs octets exacts. Les deux phases conservent leurs historiques et paramètres ; aucune annotation humaine ni estimation statistique de précision spatiale n'a été créée.
+
+L'API HF authentifiée a confirmé les révisions précédentes, inchangées : Base `1e912f5a1e5df40bdaf927abf3e4220d73781321`, ancien Monster `07a21bb50fb7749b8b7378ddf6f67ea3de078d5d`. Leur visibilité reste privée. Aucun nouvel entraînement ou pré-calcul GPU Monster n'a été lancé.
+
+## Archiver un candidat refusé
+
+Dans le notebook Base, choisir `ARCHIVE_OUTCOME = "rejected"`, puis activer manuellement `RUN_ARCHIVE_RESULTS`. Cette étape exige une chaîne terminée, une galerie complète sans doublon, une revue de rejet couvrant toutes les images du candidat, le profil exact et les empreintes liées. Elle conserve aussi une éventuelle galerie de diagnostic, séparément. Elle ne charge aucun poids et ne publie rien.
+
+Le dossier `rejected-<SHA candidat>` est immuable. Son résumé porte `outcome: rejected`, `published: false` et `hf_revision: null`. Le pointeur `current.json` désigne le dernier résultat archivé, qui peut donc être un rejet.
 
 ## Archive d'une Base publiée
 

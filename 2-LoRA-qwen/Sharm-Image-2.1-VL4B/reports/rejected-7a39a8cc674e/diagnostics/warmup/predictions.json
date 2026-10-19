@@ -1,0 +1,1481 @@
+{
+  "signature": "7a08940f3ab25b48fe857ef59e77603292f3d18d6b88baf75e0451637c00a98a",
+  "config": {
+    "candidate_sha256": "587bd9bd2ae9f0c0de9e62a72ecefde83ec7066f18fc450a6cfc56a2053fcc22",
+    "dataset_sha256": "65b81f033910eec2106ecbec7c15133465d5a3a8218422116b1cb394a959631c",
+    "baseline_sha256": null,
+    "rows": [
+      "7a3919a59e5c904ec6318bdfb2dc022be8917a7980ecedefc35824abb487a4bd",
+      "48c578fbc6ee1338dbe07d88bafae050d7b1ca7ae5e241cb8064d8b6e45fa23b",
+      "db28464e386de8070cf328e3e4253f3837319be8e261e02364f1063ae97adcc4",
+      "31be1eddb78a19516513ce077dc3f3d6c22c91eb61696baac46129b144699da3",
+      "be834fd87531e47acb030753c467eac9a29ea18215a1db8295cbc402400c1b7f",
+      "0a7653db5fc490714c5f5f1c1e32ce91b18d21f0d461aea452e1a5586302fc85"
+    ],
+    "seeds": [
+      1000,
+      1001
+    ],
+    "steps": 30,
+    "split": "validation",
+    "resolution": 256,
+    "methods": [
+      "candidate_text",
+      "candidate_layout"
+    ],
+    "cfg": 1.0,
+    "kv_cache": false,
+    "generator_sha256": "1791f5f3c6ac370f6c03c2d2dad5b8a73d60d584fb4366e1ccda1ea497195569",
+    "core_sha256": "8c635b298479e3fc27092d88463dbfb414d8693248a16fa2559e2b9321316345"
+  },
+  "rows": [
+    {
+      "id": "e92061cbaa1f96fd2d23bcb8a3a7f206f68248d90dc2ba3be66bb60132b86194",
+      "scene_id": "7a3919a59e5c904ec6318bdfb2dc022be8917a7980ecedefc35824abb487a4bd",
+      "pair_group": [
+        "18",
+        "207"
+      ],
+      "method": "candidate_text",
+      "seed": 1000,
+      "file_name": "images/e92061cbaa1f96fd2d23bcb8a3a7f206f68248d90dc2ba3be66bb60132b86194.png",
+      "preview": "previews/e92061cbaa1f96fd2d23bcb8a3a7f206f68248d90dc2ba3be66bb60132b86194.png",
+      "image_sha256": "2c7701b4cec1ed450f03fdadc2aa67a92bbd93ba2206bc841577ccccba492162",
+      "objects": [
+        {
+          "id": "21231_r03_c04.png",
+          "group_id": "18",
+          "label": "shiny Pidgeot",
+          "file_name": "21231_r03_c04.png",
+          "sha256": "12d57783d427119dfa9aa0435e2559ddd66f6d0c16b32c5652ddcb7fb322d5a4",
+          "box": [
+            0.0859375,
+            0.34765625,
+            0.3671875,
+            0.640625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.07600695542711852,
+            0.34439210392682895,
+            0.3760069554271185,
+            0.644392103926829
+          ]
+        },
+        {
+          "id": "21301_r10_c09.png",
+          "group_id": "207",
+          "label": "shiny Gligar",
+          "file_name": "21301_r10_c09.png",
+          "sha256": "eeae8ae614080abf81d19a52cf32e4ce7370f72485f81da85b1b8bccecc7d2aa",
+          "box": [
+            0.58984375,
+            0.4140625,
+            0.81640625,
+            0.6328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.5865501871637125,
+            0.40906595309705784,
+            0.8165501871637125,
+            0.6390659530970578
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent."
+    },
+    {
+      "id": "9ea84e90f960b9cf07d86132c40120b0a355845c5a7ac6655e87ae7c360bc97d",
+      "scene_id": "7a3919a59e5c904ec6318bdfb2dc022be8917a7980ecedefc35824abb487a4bd",
+      "pair_group": [
+        "18",
+        "207"
+      ],
+      "method": "candidate_text",
+      "seed": 1001,
+      "file_name": "images/9ea84e90f960b9cf07d86132c40120b0a355845c5a7ac6655e87ae7c360bc97d.png",
+      "preview": "previews/9ea84e90f960b9cf07d86132c40120b0a355845c5a7ac6655e87ae7c360bc97d.png",
+      "image_sha256": "05d5225758e0b9a690d2482b7aee0ff281098d7217b129ea1a2cc431b476c1b6",
+      "objects": [
+        {
+          "id": "21231_r03_c04.png",
+          "group_id": "18",
+          "label": "shiny Pidgeot",
+          "file_name": "21231_r03_c04.png",
+          "sha256": "12d57783d427119dfa9aa0435e2559ddd66f6d0c16b32c5652ddcb7fb322d5a4",
+          "box": [
+            0.0859375,
+            0.34765625,
+            0.3671875,
+            0.640625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.07600695542711852,
+            0.34439210392682895,
+            0.3760069554271185,
+            0.644392103926829
+          ]
+        },
+        {
+          "id": "21301_r10_c09.png",
+          "group_id": "207",
+          "label": "shiny Gligar",
+          "file_name": "21301_r10_c09.png",
+          "sha256": "eeae8ae614080abf81d19a52cf32e4ce7370f72485f81da85b1b8bccecc7d2aa",
+          "box": [
+            0.58984375,
+            0.4140625,
+            0.81640625,
+            0.6328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.5865501871637125,
+            0.40906595309705784,
+            0.8165501871637125,
+            0.6390659530970578
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent."
+    },
+    {
+      "id": "3e47e081d47469bf0a264d01d32c124ec0a14c7602d46da705cebcf396a4eaae",
+      "scene_id": "48c578fbc6ee1338dbe07d88bafae050d7b1ca7ae5e241cb8064d8b6e45fa23b",
+      "pair_group": [
+        "280",
+        "338"
+      ],
+      "method": "candidate_text",
+      "seed": 1000,
+      "file_name": "images/3e47e081d47469bf0a264d01d32c124ec0a14c7602d46da705cebcf396a4eaae.png",
+      "preview": "previews/3e47e081d47469bf0a264d01d32c124ec0a14c7602d46da705cebcf396a4eaae.png",
+      "image_sha256": "d9c60e304fba5d0e7f1813c78502b66cfa117d60e8d2150f5eae02635e48b897",
+      "objects": [
+        {
+          "id": "21650_r05_c06.png",
+          "group_id": "280",
+          "label": "shiny Ralts",
+          "file_name": "21650_r05_c06.png",
+          "sha256": "c4d2f271125d004bbd6915c3d2fc4bd126e3de0a6afd29273485ec8322c9a55d",
+          "box": [
+            0.63671875,
+            0.32421875,
+            0.81640625,
+            0.59765625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.5885119554386964,
+            0.3212900023688604,
+            0.8685119554386964,
+            0.6012900023688604
+          ]
+        },
+        {
+          "id": "21228_r17_c01.png",
+          "group_id": "338",
+          "label": "Solrock",
+          "file_name": "21228_r17_c01.png",
+          "sha256": "5347eea18658715b01077c3df2203a68a9a5a99af7f07a779c8c45b014cd76e9",
+          "box": [
+            0.15234375,
+            0.36328125,
+            0.44140625,
+            0.69921875
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.12710402225486675,
+            0.362269852138285,
+            0.4671040222548668,
+            0.7022698521382851
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background."
+    },
+    {
+      "id": "bbb675bf27b9c07b647b15a13ca7284442a5833ee901ce87d53e15e1732a5ac8",
+      "scene_id": "48c578fbc6ee1338dbe07d88bafae050d7b1ca7ae5e241cb8064d8b6e45fa23b",
+      "pair_group": [
+        "280",
+        "338"
+      ],
+      "method": "candidate_text",
+      "seed": 1001,
+      "file_name": "images/bbb675bf27b9c07b647b15a13ca7284442a5833ee901ce87d53e15e1732a5ac8.png",
+      "preview": "previews/bbb675bf27b9c07b647b15a13ca7284442a5833ee901ce87d53e15e1732a5ac8.png",
+      "image_sha256": "2b7dc5a8816de1ea908e91aaf3417b2ba2a277020f1bdd268368aef8163a9bc0",
+      "objects": [
+        {
+          "id": "21650_r05_c06.png",
+          "group_id": "280",
+          "label": "shiny Ralts",
+          "file_name": "21650_r05_c06.png",
+          "sha256": "c4d2f271125d004bbd6915c3d2fc4bd126e3de0a6afd29273485ec8322c9a55d",
+          "box": [
+            0.63671875,
+            0.32421875,
+            0.81640625,
+            0.59765625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.5885119554386964,
+            0.3212900023688604,
+            0.8685119554386964,
+            0.6012900023688604
+          ]
+        },
+        {
+          "id": "21228_r17_c01.png",
+          "group_id": "338",
+          "label": "Solrock",
+          "file_name": "21228_r17_c01.png",
+          "sha256": "5347eea18658715b01077c3df2203a68a9a5a99af7f07a779c8c45b014cd76e9",
+          "box": [
+            0.15234375,
+            0.36328125,
+            0.44140625,
+            0.69921875
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.12710402225486675,
+            0.362269852138285,
+            0.4671040222548668,
+            0.7022698521382851
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background."
+    },
+    {
+      "id": "79f78fb0b312d3f510635b869d10d180db3441876031e3b38f9ee9b047c80142",
+      "scene_id": "db28464e386de8070cf328e3e4253f3837319be8e261e02364f1063ae97adcc4",
+      "pair_group": [
+        "142",
+        "243"
+      ],
+      "method": "candidate_text",
+      "seed": 1000,
+      "file_name": "images/79f78fb0b312d3f510635b869d10d180db3441876031e3b38f9ee9b047c80142.png",
+      "preview": "previews/79f78fb0b312d3f510635b869d10d180db3441876031e3b38f9ee9b047c80142.png",
+      "image_sha256": "470dc6a7680fba8465e6d0f76cec98ff51c60652bf753ea0c37d4b37ec45f354",
+      "objects": [
+        {
+          "id": "21231_r28_c03.png",
+          "group_id": "142",
+          "label": "shiny Aerodactyl",
+          "file_name": "21231_r28_c03.png",
+          "sha256": "24f54cb1f4488e009ed149b2209a0335abd55aec3baf29e36291dd622b04bb06",
+          "box": [
+            0.30078125,
+            0.09375,
+            0.63671875,
+            0.3515625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.2985826674756088,
+            0.05225176332164275,
+            0.6385826674756088,
+            0.3922517633216428
+          ]
+        },
+        {
+          "id": "21301_r18_c01.png",
+          "group_id": "243",
+          "label": "shiny Raikou",
+          "file_name": "21301_r18_c01.png",
+          "sha256": "e20bd7f836aac56c7cee958b7b18021a6e8cbafd23a93a2f2d468be027ddb954",
+          "box": [
+            0.4375,
+            0.61328125,
+            0.66015625,
+            0.83203125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.43378593532551146,
+            0.6085828307149529,
+            0.6637859353255114,
+            0.8385828307149529
+          ]
+        }
+      ],
+      "relation": "above",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background."
+    },
+    {
+      "id": "9d9895593c9cccbf141ff52fd17ceec94b41328ec4c7f08cf4e8e3f8f81d396b",
+      "scene_id": "db28464e386de8070cf328e3e4253f3837319be8e261e02364f1063ae97adcc4",
+      "pair_group": [
+        "142",
+        "243"
+      ],
+      "method": "candidate_text",
+      "seed": 1001,
+      "file_name": "images/9d9895593c9cccbf141ff52fd17ceec94b41328ec4c7f08cf4e8e3f8f81d396b.png",
+      "preview": "previews/9d9895593c9cccbf141ff52fd17ceec94b41328ec4c7f08cf4e8e3f8f81d396b.png",
+      "image_sha256": "274c7dcd94b44d39036d02c1b0bc303496677642a7853b4eca01d2d79f2a9b17",
+      "objects": [
+        {
+          "id": "21231_r28_c03.png",
+          "group_id": "142",
+          "label": "shiny Aerodactyl",
+          "file_name": "21231_r28_c03.png",
+          "sha256": "24f54cb1f4488e009ed149b2209a0335abd55aec3baf29e36291dd622b04bb06",
+          "box": [
+            0.30078125,
+            0.09375,
+            0.63671875,
+            0.3515625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.2985826674756088,
+            0.05225176332164275,
+            0.6385826674756088,
+            0.3922517633216428
+          ]
+        },
+        {
+          "id": "21301_r18_c01.png",
+          "group_id": "243",
+          "label": "shiny Raikou",
+          "file_name": "21301_r18_c01.png",
+          "sha256": "e20bd7f836aac56c7cee958b7b18021a6e8cbafd23a93a2f2d468be027ddb954",
+          "box": [
+            0.4375,
+            0.61328125,
+            0.66015625,
+            0.83203125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.43378593532551146,
+            0.6085828307149529,
+            0.6637859353255114,
+            0.8385828307149529
+          ]
+        }
+      ],
+      "relation": "above",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background."
+    },
+    {
+      "id": "822a2f5372341399f6cc32bf8d48b15d2bae586735f92a2dba0a8f74e8c881be",
+      "scene_id": "31be1eddb78a19516513ce077dc3f3d6c22c91eb61696baac46129b144699da3",
+      "pair_group": [
+        "351",
+        "46"
+      ],
+      "method": "candidate_text",
+      "seed": 1000,
+      "file_name": "images/822a2f5372341399f6cc32bf8d48b15d2bae586735f92a2dba0a8f74e8c881be.png",
+      "preview": "previews/822a2f5372341399f6cc32bf8d48b15d2bae586735f92a2dba0a8f74e8c881be.png",
+      "image_sha256": "5e24c0b0042a0f5108d8653a00e3945f2f846347c6bfab12d0fd7fb37c8c8b9e",
+      "objects": [
+        {
+          "id": "21650_r19_c07.png",
+          "group_id": "351",
+          "label": "shiny Castform, sunny form",
+          "file_name": "21650_r19_c07.png",
+          "sha256": "6d7e8d276e50cb24a6fae546b102118c7b3265bebb5521b8dd42374688c1596a",
+          "box": [
+            0.44140625,
+            0.59375,
+            0.62109375,
+            0.8203125
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.415996459263991,
+            0.5932108699082265,
+            0.645996459263991,
+            0.8232108699082265
+          ]
+        },
+        {
+          "id": "21230_r09_c00.png",
+          "group_id": "46",
+          "label": "Paras",
+          "file_name": "21230_r09_c00.png",
+          "sha256": "90ef53c18a8f2ccb3f321030a627027e998bb8af233fc633d59f4a9f6e84c0b0",
+          "box": [
+            0.359375,
+            0.06640625,
+            0.69140625,
+            0.36328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.35640342577868567,
+            0.04346146896700037,
+            0.6964034257786857,
+            0.3834614689670004
+          ]
+        }
+      ],
+      "relation": "below",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent."
+    },
+    {
+      "id": "00447af1d1be7e250de34f1919ab76196dd547b3ed9f58dea09dbc5c9e72f5f0",
+      "scene_id": "31be1eddb78a19516513ce077dc3f3d6c22c91eb61696baac46129b144699da3",
+      "pair_group": [
+        "351",
+        "46"
+      ],
+      "method": "candidate_text",
+      "seed": 1001,
+      "file_name": "images/00447af1d1be7e250de34f1919ab76196dd547b3ed9f58dea09dbc5c9e72f5f0.png",
+      "preview": "previews/00447af1d1be7e250de34f1919ab76196dd547b3ed9f58dea09dbc5c9e72f5f0.png",
+      "image_sha256": "8e571089e3c32a57788275395c05ede30ca924d2441076573c18a76af68eb583",
+      "objects": [
+        {
+          "id": "21650_r19_c07.png",
+          "group_id": "351",
+          "label": "shiny Castform, sunny form",
+          "file_name": "21650_r19_c07.png",
+          "sha256": "6d7e8d276e50cb24a6fae546b102118c7b3265bebb5521b8dd42374688c1596a",
+          "box": [
+            0.44140625,
+            0.59375,
+            0.62109375,
+            0.8203125
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.415996459263991,
+            0.5932108699082265,
+            0.645996459263991,
+            0.8232108699082265
+          ]
+        },
+        {
+          "id": "21230_r09_c00.png",
+          "group_id": "46",
+          "label": "Paras",
+          "file_name": "21230_r09_c00.png",
+          "sha256": "90ef53c18a8f2ccb3f321030a627027e998bb8af233fc633d59f4a9f6e84c0b0",
+          "box": [
+            0.359375,
+            0.06640625,
+            0.69140625,
+            0.36328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.35640342577868567,
+            0.04346146896700037,
+            0.6964034257786857,
+            0.3834614689670004
+          ]
+        }
+      ],
+      "relation": "below",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent."
+    },
+    {
+      "id": "254ec1396f03232bd04aa7c4142662227192ab6d771e0656f73ca4a9bd8eba53",
+      "scene_id": "be834fd87531e47acb030753c467eac9a29ea18215a1db8295cbc402400c1b7f",
+      "pair_group": [
+        "112",
+        "144"
+      ],
+      "method": "candidate_text",
+      "seed": 1000,
+      "file_name": "images/254ec1396f03232bd04aa7c4142662227192ab6d771e0656f73ca4a9bd8eba53.png",
+      "preview": "previews/254ec1396f03232bd04aa7c4142662227192ab6d771e0656f73ca4a9bd8eba53.png",
+      "image_sha256": "2f1e593f7eca08ef30ffa060cd7b7f47a79154735117da03946ea647a3274258",
+      "objects": [
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.07421875,
+            0.40625,
+            0.2421875,
+            0.6015625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.059501180882413796,
+            0.4050674846342167,
+            0.2595011808824138,
+            0.6050674846342167
+          ]
+        },
+        {
+          "id": "21231_r28_c06.png",
+          "group_id": "144",
+          "label": "shiny Articuno",
+          "file_name": "21231_r28_c06.png",
+          "sha256": "6291b91131986dc6866c09524b24fafc47441b1a4e40ac9f3b204a9abb4b3a8a",
+          "box": [
+            0.38671875,
+            0.40234375,
+            0.625,
+            0.62109375
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.3853599356190621,
+            0.39117988363530976,
+            0.6253599356190621,
+            0.6311798836353097
+          ]
+        },
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.73828125,
+            0.390625,
+            0.90625,
+            0.5859375
+          ],
+          "object_id": "3",
+          "allocation": [
+            0.7249595820141098,
+            0.3872708378872425,
+            0.9249595820141098,
+            0.5872708378872424
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon."
+    },
+    {
+      "id": "cccd5af3d2332e488b7641510b9fc1fffeee66f23a8b971ddd199d97905352f6",
+      "scene_id": "be834fd87531e47acb030753c467eac9a29ea18215a1db8295cbc402400c1b7f",
+      "pair_group": [
+        "112",
+        "144"
+      ],
+      "method": "candidate_text",
+      "seed": 1001,
+      "file_name": "images/cccd5af3d2332e488b7641510b9fc1fffeee66f23a8b971ddd199d97905352f6.png",
+      "preview": "previews/cccd5af3d2332e488b7641510b9fc1fffeee66f23a8b971ddd199d97905352f6.png",
+      "image_sha256": "340dd9696b5b615bdd77423a4e2e1b1540b3f1581a637840a780b8e15695c72e",
+      "objects": [
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.07421875,
+            0.40625,
+            0.2421875,
+            0.6015625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.059501180882413796,
+            0.4050674846342167,
+            0.2595011808824138,
+            0.6050674846342167
+          ]
+        },
+        {
+          "id": "21231_r28_c06.png",
+          "group_id": "144",
+          "label": "shiny Articuno",
+          "file_name": "21231_r28_c06.png",
+          "sha256": "6291b91131986dc6866c09524b24fafc47441b1a4e40ac9f3b204a9abb4b3a8a",
+          "box": [
+            0.38671875,
+            0.40234375,
+            0.625,
+            0.62109375
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.3853599356190621,
+            0.39117988363530976,
+            0.6253599356190621,
+            0.6311798836353097
+          ]
+        },
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.73828125,
+            0.390625,
+            0.90625,
+            0.5859375
+          ],
+          "object_id": "3",
+          "allocation": [
+            0.7249595820141098,
+            0.3872708378872425,
+            0.9249595820141098,
+            0.5872708378872424
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon."
+    },
+    {
+      "id": "4c69ec2a62c698b11febd971172c9e60b6a4b43a6e0835464f13cdd4172371e1",
+      "scene_id": "0a7653db5fc490714c5f5f1c1e32ce91b18d21f0d461aea452e1a5586302fc85",
+      "pair_group": [
+        "38",
+        "85"
+      ],
+      "method": "candidate_text",
+      "seed": 1000,
+      "file_name": "images/4c69ec2a62c698b11febd971172c9e60b6a4b43a6e0835464f13cdd4172371e1.png",
+      "preview": "previews/4c69ec2a62c698b11febd971172c9e60b6a4b43a6e0835464f13cdd4172371e1.png",
+      "image_sha256": "9b575c0ba97ac74a91a17aa020f34013c5339e1263bfb93c6feb05a46d031cea",
+      "objects": [
+        {
+          "id": "21230_r07_c05.png",
+          "group_id": "38",
+          "label": "Ninetales",
+          "file_name": "21230_r07_c05.png",
+          "sha256": "7a00abd7129860a291d664f2e224bf98d023337e95496971cb752388f5822217",
+          "box": [
+            0.62109375,
+            0.3984375,
+            0.828125,
+            0.625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.6120587148827418,
+            0.39766896166696,
+            0.8420587148827418,
+            0.62766896166696
+          ]
+        },
+        {
+          "id": "21230_r16_c09.png",
+          "group_id": "85",
+          "label": "Dodrio",
+          "file_name": "21230_r16_c09.png",
+          "sha256": "0c7e8b54415d5eb8c5243b0c4664c3678f1b20e724f7550894ebd75e415f4ce2",
+          "box": [
+            0.06640625,
+            0.3671875,
+            0.3515625,
+            0.6640625
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.05875163331229602,
+            0.36654036931285394,
+            0.358751633312296,
+            0.666540369312854
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: Ninetales. Object 2: Dodrio. Object 1 is to the right of object 2. No overlap. Transparent background."
+    },
+    {
+      "id": "a509374bc348d1fc58385a7c44ae12e1cfd5d5b6fe08ed9263576fc667ca1938",
+      "scene_id": "0a7653db5fc490714c5f5f1c1e32ce91b18d21f0d461aea452e1a5586302fc85",
+      "pair_group": [
+        "38",
+        "85"
+      ],
+      "method": "candidate_text",
+      "seed": 1001,
+      "file_name": "images/a509374bc348d1fc58385a7c44ae12e1cfd5d5b6fe08ed9263576fc667ca1938.png",
+      "preview": "previews/a509374bc348d1fc58385a7c44ae12e1cfd5d5b6fe08ed9263576fc667ca1938.png",
+      "image_sha256": "df6bb4f13d7160d218ed551b27ae69f2e90aa36a368ba4230cd7fac2bef15b3f",
+      "objects": [
+        {
+          "id": "21230_r07_c05.png",
+          "group_id": "38",
+          "label": "Ninetales",
+          "file_name": "21230_r07_c05.png",
+          "sha256": "7a00abd7129860a291d664f2e224bf98d023337e95496971cb752388f5822217",
+          "box": [
+            0.62109375,
+            0.3984375,
+            0.828125,
+            0.625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.6120587148827418,
+            0.39766896166696,
+            0.8420587148827418,
+            0.62766896166696
+          ]
+        },
+        {
+          "id": "21230_r16_c09.png",
+          "group_id": "85",
+          "label": "Dodrio",
+          "file_name": "21230_r16_c09.png",
+          "sha256": "0c7e8b54415d5eb8c5243b0c4664c3678f1b20e724f7550894ebd75e415f4ce2",
+          "box": [
+            0.06640625,
+            0.3671875,
+            0.3515625,
+            0.6640625
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.05875163331229602,
+            0.36654036931285394,
+            0.358751633312296,
+            0.666540369312854
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: Ninetales. Object 2: Dodrio. Object 1 is to the right of object 2. No overlap. Transparent background."
+    },
+    {
+      "id": "24eaf76723e4569f6176dbce907bb6383f9f842f5ed9fe5d579b9fa7b879f8d1",
+      "scene_id": "7a3919a59e5c904ec6318bdfb2dc022be8917a7980ecedefc35824abb487a4bd",
+      "pair_group": [
+        "18",
+        "207"
+      ],
+      "method": "candidate_layout",
+      "seed": 1000,
+      "file_name": "images/24eaf76723e4569f6176dbce907bb6383f9f842f5ed9fe5d579b9fa7b879f8d1.png",
+      "preview": "previews/24eaf76723e4569f6176dbce907bb6383f9f842f5ed9fe5d579b9fa7b879f8d1.png",
+      "image_sha256": "3681b70fd4b8ff62a5e48d0f06e16c41de231f751ea82c64d0295746a1b83b46",
+      "objects": [
+        {
+          "id": "21231_r03_c04.png",
+          "group_id": "18",
+          "label": "shiny Pidgeot",
+          "file_name": "21231_r03_c04.png",
+          "sha256": "12d57783d427119dfa9aa0435e2559ddd66f6d0c16b32c5652ddcb7fb322d5a4",
+          "box": [
+            0.0859375,
+            0.34765625,
+            0.3671875,
+            0.640625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.07600695542711852,
+            0.34439210392682895,
+            0.3760069554271185,
+            0.644392103926829
+          ]
+        },
+        {
+          "id": "21301_r10_c09.png",
+          "group_id": "207",
+          "label": "shiny Gligar",
+          "file_name": "21301_r10_c09.png",
+          "sha256": "eeae8ae614080abf81d19a52cf32e4ce7370f72485f81da85b1b8bccecc7d2aa",
+          "box": [
+            0.58984375,
+            0.4140625,
+            0.81640625,
+            0.6328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.5865501871637125,
+            0.40906595309705784,
+            0.8165501871637125,
+            0.6390659530970578
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent. Normalized object boxes xyxy: [[0.0859375,0.34765625,0.3671875,0.640625],[0.58984375,0.4140625,0.81640625,0.6328125]]."
+    },
+    {
+      "id": "09a5999bff844968e08a14b69465346ee760edbffe8520bd12542e7011e0f186",
+      "scene_id": "7a3919a59e5c904ec6318bdfb2dc022be8917a7980ecedefc35824abb487a4bd",
+      "pair_group": [
+        "18",
+        "207"
+      ],
+      "method": "candidate_layout",
+      "seed": 1001,
+      "file_name": "images/09a5999bff844968e08a14b69465346ee760edbffe8520bd12542e7011e0f186.png",
+      "preview": "previews/09a5999bff844968e08a14b69465346ee760edbffe8520bd12542e7011e0f186.png",
+      "image_sha256": "e8c3fe512389b652aa315915a5dbd8a763536b125ee2f00ef8a4f16af7b9a857",
+      "objects": [
+        {
+          "id": "21231_r03_c04.png",
+          "group_id": "18",
+          "label": "shiny Pidgeot",
+          "file_name": "21231_r03_c04.png",
+          "sha256": "12d57783d427119dfa9aa0435e2559ddd66f6d0c16b32c5652ddcb7fb322d5a4",
+          "box": [
+            0.0859375,
+            0.34765625,
+            0.3671875,
+            0.640625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.07600695542711852,
+            0.34439210392682895,
+            0.3760069554271185,
+            0.644392103926829
+          ]
+        },
+        {
+          "id": "21301_r10_c09.png",
+          "group_id": "207",
+          "label": "shiny Gligar",
+          "file_name": "21301_r10_c09.png",
+          "sha256": "eeae8ae614080abf81d19a52cf32e4ce7370f72485f81da85b1b8bccecc7d2aa",
+          "box": [
+            0.58984375,
+            0.4140625,
+            0.81640625,
+            0.6328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.5865501871637125,
+            0.40906595309705784,
+            0.8165501871637125,
+            0.6390659530970578
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Pidgeot. Objet 2 : shiny Gligar. L'objet 1 est à gauche de l'objet 2. Aucun chevauchement. Fond transparent. Normalized object boxes xyxy: [[0.0859375,0.34765625,0.3671875,0.640625],[0.58984375,0.4140625,0.81640625,0.6328125]]."
+    },
+    {
+      "id": "db14f4c938141c188964ef45ac229a0d6c99fba5b0ba0eae41f6926ec67753de",
+      "scene_id": "48c578fbc6ee1338dbe07d88bafae050d7b1ca7ae5e241cb8064d8b6e45fa23b",
+      "pair_group": [
+        "280",
+        "338"
+      ],
+      "method": "candidate_layout",
+      "seed": 1000,
+      "file_name": "images/db14f4c938141c188964ef45ac229a0d6c99fba5b0ba0eae41f6926ec67753de.png",
+      "preview": "previews/db14f4c938141c188964ef45ac229a0d6c99fba5b0ba0eae41f6926ec67753de.png",
+      "image_sha256": "7691a7c4e40b179634632407852cdd087e7bfa7e7c27f1f008c7e729954d1c4e",
+      "objects": [
+        {
+          "id": "21650_r05_c06.png",
+          "group_id": "280",
+          "label": "shiny Ralts",
+          "file_name": "21650_r05_c06.png",
+          "sha256": "c4d2f271125d004bbd6915c3d2fc4bd126e3de0a6afd29273485ec8322c9a55d",
+          "box": [
+            0.63671875,
+            0.32421875,
+            0.81640625,
+            0.59765625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.5885119554386964,
+            0.3212900023688604,
+            0.8685119554386964,
+            0.6012900023688604
+          ]
+        },
+        {
+          "id": "21228_r17_c01.png",
+          "group_id": "338",
+          "label": "Solrock",
+          "file_name": "21228_r17_c01.png",
+          "sha256": "5347eea18658715b01077c3df2203a68a9a5a99af7f07a779c8c45b014cd76e9",
+          "box": [
+            0.15234375,
+            0.36328125,
+            0.44140625,
+            0.69921875
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.12710402225486675,
+            0.362269852138285,
+            0.4671040222548668,
+            0.7022698521382851
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background. Normalized object boxes xyxy: [[0.63671875,0.32421875,0.81640625,0.59765625],[0.15234375,0.36328125,0.44140625,0.69921875]]."
+    },
+    {
+      "id": "bf88ef35d6e4806001772aeeb50be5abc732824efd6d64150e6cf7bd4ecf9388",
+      "scene_id": "48c578fbc6ee1338dbe07d88bafae050d7b1ca7ae5e241cb8064d8b6e45fa23b",
+      "pair_group": [
+        "280",
+        "338"
+      ],
+      "method": "candidate_layout",
+      "seed": 1001,
+      "file_name": "images/bf88ef35d6e4806001772aeeb50be5abc732824efd6d64150e6cf7bd4ecf9388.png",
+      "preview": "previews/bf88ef35d6e4806001772aeeb50be5abc732824efd6d64150e6cf7bd4ecf9388.png",
+      "image_sha256": "32e79ccfa9707299846ad1933185066043a7bd937693973a11ecee4d3825f639",
+      "objects": [
+        {
+          "id": "21650_r05_c06.png",
+          "group_id": "280",
+          "label": "shiny Ralts",
+          "file_name": "21650_r05_c06.png",
+          "sha256": "c4d2f271125d004bbd6915c3d2fc4bd126e3de0a6afd29273485ec8322c9a55d",
+          "box": [
+            0.63671875,
+            0.32421875,
+            0.81640625,
+            0.59765625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.5885119554386964,
+            0.3212900023688604,
+            0.8685119554386964,
+            0.6012900023688604
+          ]
+        },
+        {
+          "id": "21228_r17_c01.png",
+          "group_id": "338",
+          "label": "Solrock",
+          "file_name": "21228_r17_c01.png",
+          "sha256": "5347eea18658715b01077c3df2203a68a9a5a99af7f07a779c8c45b014cd76e9",
+          "box": [
+            0.15234375,
+            0.36328125,
+            0.44140625,
+            0.69921875
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.12710402225486675,
+            0.362269852138285,
+            0.4671040222548668,
+            0.7022698521382851
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Ralts. Object 2: Solrock. Object 1 is to the right of object 2. No overlap. Transparent background. Normalized object boxes xyxy: [[0.63671875,0.32421875,0.81640625,0.59765625],[0.15234375,0.36328125,0.44140625,0.69921875]]."
+    },
+    {
+      "id": "adb7789a532e48aadef7b637af6630f8f9beb3c305b7a2739b85bd2394fc63ec",
+      "scene_id": "db28464e386de8070cf328e3e4253f3837319be8e261e02364f1063ae97adcc4",
+      "pair_group": [
+        "142",
+        "243"
+      ],
+      "method": "candidate_layout",
+      "seed": 1000,
+      "file_name": "images/adb7789a532e48aadef7b637af6630f8f9beb3c305b7a2739b85bd2394fc63ec.png",
+      "preview": "previews/adb7789a532e48aadef7b637af6630f8f9beb3c305b7a2739b85bd2394fc63ec.png",
+      "image_sha256": "72906dfa5609f3748f71a1071f694aa30d179f446fad8bc1c78289843be2213e",
+      "objects": [
+        {
+          "id": "21231_r28_c03.png",
+          "group_id": "142",
+          "label": "shiny Aerodactyl",
+          "file_name": "21231_r28_c03.png",
+          "sha256": "24f54cb1f4488e009ed149b2209a0335abd55aec3baf29e36291dd622b04bb06",
+          "box": [
+            0.30078125,
+            0.09375,
+            0.63671875,
+            0.3515625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.2985826674756088,
+            0.05225176332164275,
+            0.6385826674756088,
+            0.3922517633216428
+          ]
+        },
+        {
+          "id": "21301_r18_c01.png",
+          "group_id": "243",
+          "label": "shiny Raikou",
+          "file_name": "21301_r18_c01.png",
+          "sha256": "e20bd7f836aac56c7cee958b7b18021a6e8cbafd23a93a2f2d468be027ddb954",
+          "box": [
+            0.4375,
+            0.61328125,
+            0.66015625,
+            0.83203125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.43378593532551146,
+            0.6085828307149529,
+            0.6637859353255114,
+            0.8385828307149529
+          ]
+        }
+      ],
+      "relation": "above",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background. Normalized object boxes xyxy: [[0.30078125,0.09375,0.63671875,0.3515625],[0.4375,0.61328125,0.66015625,0.83203125]]."
+    },
+    {
+      "id": "51ddd5b748786bb5ed0e8eacc539ab90d6f559112fa95ea06cfa8383f3b97bf3",
+      "scene_id": "db28464e386de8070cf328e3e4253f3837319be8e261e02364f1063ae97adcc4",
+      "pair_group": [
+        "142",
+        "243"
+      ],
+      "method": "candidate_layout",
+      "seed": 1001,
+      "file_name": "images/51ddd5b748786bb5ed0e8eacc539ab90d6f559112fa95ea06cfa8383f3b97bf3.png",
+      "preview": "previews/51ddd5b748786bb5ed0e8eacc539ab90d6f559112fa95ea06cfa8383f3b97bf3.png",
+      "image_sha256": "f7df7695ba92982fec795aa2422b33c9adb576c6e6cf209c22806684dbb1b4b4",
+      "objects": [
+        {
+          "id": "21231_r28_c03.png",
+          "group_id": "142",
+          "label": "shiny Aerodactyl",
+          "file_name": "21231_r28_c03.png",
+          "sha256": "24f54cb1f4488e009ed149b2209a0335abd55aec3baf29e36291dd622b04bb06",
+          "box": [
+            0.30078125,
+            0.09375,
+            0.63671875,
+            0.3515625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.2985826674756088,
+            0.05225176332164275,
+            0.6385826674756088,
+            0.3922517633216428
+          ]
+        },
+        {
+          "id": "21301_r18_c01.png",
+          "group_id": "243",
+          "label": "shiny Raikou",
+          "file_name": "21301_r18_c01.png",
+          "sha256": "e20bd7f836aac56c7cee958b7b18021a6e8cbafd23a93a2f2d468be027ddb954",
+          "box": [
+            0.4375,
+            0.61328125,
+            0.66015625,
+            0.83203125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.43378593532551146,
+            0.6085828307149529,
+            0.6637859353255114,
+            0.8385828307149529
+          ]
+        }
+      ],
+      "relation": "above",
+      "prompt": "Exactly two distinct objects. Object 1: shiny Aerodactyl. Object 2: shiny Raikou. Object 1 is above object 2. No overlap. Transparent background. Normalized object boxes xyxy: [[0.30078125,0.09375,0.63671875,0.3515625],[0.4375,0.61328125,0.66015625,0.83203125]]."
+    },
+    {
+      "id": "f1b6ef7087f10d8f723e7c9665b65e6bd2c927e1e67d97908b3ef191f6e94871",
+      "scene_id": "31be1eddb78a19516513ce077dc3f3d6c22c91eb61696baac46129b144699da3",
+      "pair_group": [
+        "351",
+        "46"
+      ],
+      "method": "candidate_layout",
+      "seed": 1000,
+      "file_name": "images/f1b6ef7087f10d8f723e7c9665b65e6bd2c927e1e67d97908b3ef191f6e94871.png",
+      "preview": "previews/f1b6ef7087f10d8f723e7c9665b65e6bd2c927e1e67d97908b3ef191f6e94871.png",
+      "image_sha256": "d4c076112a6b77e0944ae9ae962c3d5a892d2cddf4d9ea9637daab3548d027cf",
+      "objects": [
+        {
+          "id": "21650_r19_c07.png",
+          "group_id": "351",
+          "label": "shiny Castform, sunny form",
+          "file_name": "21650_r19_c07.png",
+          "sha256": "6d7e8d276e50cb24a6fae546b102118c7b3265bebb5521b8dd42374688c1596a",
+          "box": [
+            0.44140625,
+            0.59375,
+            0.62109375,
+            0.8203125
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.415996459263991,
+            0.5932108699082265,
+            0.645996459263991,
+            0.8232108699082265
+          ]
+        },
+        {
+          "id": "21230_r09_c00.png",
+          "group_id": "46",
+          "label": "Paras",
+          "file_name": "21230_r09_c00.png",
+          "sha256": "90ef53c18a8f2ccb3f321030a627027e998bb8af233fc633d59f4a9f6e84c0b0",
+          "box": [
+            0.359375,
+            0.06640625,
+            0.69140625,
+            0.36328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.35640342577868567,
+            0.04346146896700037,
+            0.6964034257786857,
+            0.3834614689670004
+          ]
+        }
+      ],
+      "relation": "below",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent. Normalized object boxes xyxy: [[0.44140625,0.59375,0.62109375,0.8203125],[0.359375,0.06640625,0.69140625,0.36328125]]."
+    },
+    {
+      "id": "f13e3ce7a8608460c4de84b3c1d474d7cd6dc3fdd7c70f58f0791bf622fb778a",
+      "scene_id": "31be1eddb78a19516513ce077dc3f3d6c22c91eb61696baac46129b144699da3",
+      "pair_group": [
+        "351",
+        "46"
+      ],
+      "method": "candidate_layout",
+      "seed": 1001,
+      "file_name": "images/f13e3ce7a8608460c4de84b3c1d474d7cd6dc3fdd7c70f58f0791bf622fb778a.png",
+      "preview": "previews/f13e3ce7a8608460c4de84b3c1d474d7cd6dc3fdd7c70f58f0791bf622fb778a.png",
+      "image_sha256": "b006e9c690b4dd21e73852d8ceedef0a6409cfcd147e1b9a5974bd5457a292a2",
+      "objects": [
+        {
+          "id": "21650_r19_c07.png",
+          "group_id": "351",
+          "label": "shiny Castform, sunny form",
+          "file_name": "21650_r19_c07.png",
+          "sha256": "6d7e8d276e50cb24a6fae546b102118c7b3265bebb5521b8dd42374688c1596a",
+          "box": [
+            0.44140625,
+            0.59375,
+            0.62109375,
+            0.8203125
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.415996459263991,
+            0.5932108699082265,
+            0.645996459263991,
+            0.8232108699082265
+          ]
+        },
+        {
+          "id": "21230_r09_c00.png",
+          "group_id": "46",
+          "label": "Paras",
+          "file_name": "21230_r09_c00.png",
+          "sha256": "90ef53c18a8f2ccb3f321030a627027e998bb8af233fc633d59f4a9f6e84c0b0",
+          "box": [
+            0.359375,
+            0.06640625,
+            0.69140625,
+            0.36328125
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.35640342577868567,
+            0.04346146896700037,
+            0.6964034257786857,
+            0.3834614689670004
+          ]
+        }
+      ],
+      "relation": "below",
+      "prompt": "Exactement deux objets distincts. Objet 1 : shiny Castform, sunny form. Objet 2 : Paras. L'objet 1 est en dessous de l'objet 2. Aucun chevauchement. Fond transparent. Normalized object boxes xyxy: [[0.44140625,0.59375,0.62109375,0.8203125],[0.359375,0.06640625,0.69140625,0.36328125]]."
+    },
+    {
+      "id": "c2cf22842b7304f224583738177919343a8c126205f26cb9878c1e0ab30a2c88",
+      "scene_id": "be834fd87531e47acb030753c467eac9a29ea18215a1db8295cbc402400c1b7f",
+      "pair_group": [
+        "112",
+        "144"
+      ],
+      "method": "candidate_layout",
+      "seed": 1000,
+      "file_name": "images/c2cf22842b7304f224583738177919343a8c126205f26cb9878c1e0ab30a2c88.png",
+      "preview": "previews/c2cf22842b7304f224583738177919343a8c126205f26cb9878c1e0ab30a2c88.png",
+      "image_sha256": "ab01ec5ddfbce40080a0b591820f445cb7856f458aa7a3594ccedef844c5a995",
+      "objects": [
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.07421875,
+            0.40625,
+            0.2421875,
+            0.6015625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.059501180882413796,
+            0.4050674846342167,
+            0.2595011808824138,
+            0.6050674846342167
+          ]
+        },
+        {
+          "id": "21231_r28_c06.png",
+          "group_id": "144",
+          "label": "shiny Articuno",
+          "file_name": "21231_r28_c06.png",
+          "sha256": "6291b91131986dc6866c09524b24fafc47441b1a4e40ac9f3b204a9abb4b3a8a",
+          "box": [
+            0.38671875,
+            0.40234375,
+            0.625,
+            0.62109375
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.3853599356190621,
+            0.39117988363530976,
+            0.6253599356190621,
+            0.6311798836353097
+          ]
+        },
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.73828125,
+            0.390625,
+            0.90625,
+            0.5859375
+          ],
+          "object_id": "3",
+          "allocation": [
+            0.7249595820141098,
+            0.3872708378872425,
+            0.9249595820141098,
+            0.5872708378872424
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon. Normalized object boxes xyxy: [[0.07421875,0.40625,0.2421875,0.6015625],[0.38671875,0.40234375,0.625,0.62109375],[0.73828125,0.390625,0.90625,0.5859375]]."
+    },
+    {
+      "id": "7829574059a676a8540849d12a45a34d1c76ddb3b16a8dc2643d323e2d9c94f7",
+      "scene_id": "be834fd87531e47acb030753c467eac9a29ea18215a1db8295cbc402400c1b7f",
+      "pair_group": [
+        "112",
+        "144"
+      ],
+      "method": "candidate_layout",
+      "seed": 1001,
+      "file_name": "images/7829574059a676a8540849d12a45a34d1c76ddb3b16a8dc2643d323e2d9c94f7.png",
+      "preview": "previews/7829574059a676a8540849d12a45a34d1c76ddb3b16a8dc2643d323e2d9c94f7.png",
+      "image_sha256": "24a812f10f8abd1d4d2d02a4d57010215ac00e42a772ea23d9684a5a9dfefb4a",
+      "objects": [
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.07421875,
+            0.40625,
+            0.2421875,
+            0.6015625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.059501180882413796,
+            0.4050674846342167,
+            0.2595011808824138,
+            0.6050674846342167
+          ]
+        },
+        {
+          "id": "21231_r28_c06.png",
+          "group_id": "144",
+          "label": "shiny Articuno",
+          "file_name": "21231_r28_c06.png",
+          "sha256": "6291b91131986dc6866c09524b24fafc47441b1a4e40ac9f3b204a9abb4b3a8a",
+          "box": [
+            0.38671875,
+            0.40234375,
+            0.625,
+            0.62109375
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.3853599356190621,
+            0.39117988363530976,
+            0.6253599356190621,
+            0.6311798836353097
+          ]
+        },
+        {
+          "id": "21231_r22_c03.png",
+          "group_id": "112",
+          "label": "shiny Rhydon",
+          "file_name": "21231_r22_c03.png",
+          "sha256": "71cc7585c860bf73bad8d6f6e913d5e2e7544453d30a4127d03134edaed270e1",
+          "box": [
+            0.73828125,
+            0.390625,
+            0.90625,
+            0.5859375
+          ],
+          "object_id": "3",
+          "allocation": [
+            0.7249595820141098,
+            0.3872708378872425,
+            0.9249595820141098,
+            0.5872708378872424
+          ]
+        }
+      ],
+      "relation": "left",
+      "prompt": "Exactly three distinct objects. Object 1: shiny Rhydon. Object 2: shiny Articuno. Object 1 is to the left of object 2. No overlap. Transparent background. Object 3: shiny Rhydon. Normalized object boxes xyxy: [[0.07421875,0.40625,0.2421875,0.6015625],[0.38671875,0.40234375,0.625,0.62109375],[0.73828125,0.390625,0.90625,0.5859375]]."
+    },
+    {
+      "id": "fbe029b77e6490a13b401712236bf37eadc4a933bcdfd1ba0033dc65be427834",
+      "scene_id": "0a7653db5fc490714c5f5f1c1e32ce91b18d21f0d461aea452e1a5586302fc85",
+      "pair_group": [
+        "38",
+        "85"
+      ],
+      "method": "candidate_layout",
+      "seed": 1000,
+      "file_name": "images/fbe029b77e6490a13b401712236bf37eadc4a933bcdfd1ba0033dc65be427834.png",
+      "preview": "previews/fbe029b77e6490a13b401712236bf37eadc4a933bcdfd1ba0033dc65be427834.png",
+      "image_sha256": "af93ba9ffc50a4cba7942b7a9f64d606c4cbb9212fe2bd1c68eb0108d1c1434e",
+      "objects": [
+        {
+          "id": "21230_r07_c05.png",
+          "group_id": "38",
+          "label": "Ninetales",
+          "file_name": "21230_r07_c05.png",
+          "sha256": "7a00abd7129860a291d664f2e224bf98d023337e95496971cb752388f5822217",
+          "box": [
+            0.62109375,
+            0.3984375,
+            0.828125,
+            0.625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.6120587148827418,
+            0.39766896166696,
+            0.8420587148827418,
+            0.62766896166696
+          ]
+        },
+        {
+          "id": "21230_r16_c09.png",
+          "group_id": "85",
+          "label": "Dodrio",
+          "file_name": "21230_r16_c09.png",
+          "sha256": "0c7e8b54415d5eb8c5243b0c4664c3678f1b20e724f7550894ebd75e415f4ce2",
+          "box": [
+            0.06640625,
+            0.3671875,
+            0.3515625,
+            0.6640625
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.05875163331229602,
+            0.36654036931285394,
+            0.358751633312296,
+            0.666540369312854
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: Ninetales. Object 2: Dodrio. Object 1 is to the right of object 2. No overlap. Transparent background. Normalized object boxes xyxy: [[0.62109375,0.3984375,0.828125,0.625],[0.06640625,0.3671875,0.3515625,0.6640625]]."
+    },
+    {
+      "id": "e4b24ea01af19237bf67c312999cf2b78f08438787c422e9b11d208932641545",
+      "scene_id": "0a7653db5fc490714c5f5f1c1e32ce91b18d21f0d461aea452e1a5586302fc85",
+      "pair_group": [
+        "38",
+        "85"
+      ],
+      "method": "candidate_layout",
+      "seed": 1001,
+      "file_name": "images/e4b24ea01af19237bf67c312999cf2b78f08438787c422e9b11d208932641545.png",
+      "preview": "previews/e4b24ea01af19237bf67c312999cf2b78f08438787c422e9b11d208932641545.png",
+      "image_sha256": "3857fb883f6d090fcc79ca0b8263cdb28d41b9e8448b9421d27fbd7a8b539877",
+      "objects": [
+        {
+          "id": "21230_r07_c05.png",
+          "group_id": "38",
+          "label": "Ninetales",
+          "file_name": "21230_r07_c05.png",
+          "sha256": "7a00abd7129860a291d664f2e224bf98d023337e95496971cb752388f5822217",
+          "box": [
+            0.62109375,
+            0.3984375,
+            0.828125,
+            0.625
+          ],
+          "object_id": "1",
+          "allocation": [
+            0.6120587148827418,
+            0.39766896166696,
+            0.8420587148827418,
+            0.62766896166696
+          ]
+        },
+        {
+          "id": "21230_r16_c09.png",
+          "group_id": "85",
+          "label": "Dodrio",
+          "file_name": "21230_r16_c09.png",
+          "sha256": "0c7e8b54415d5eb8c5243b0c4664c3678f1b20e724f7550894ebd75e415f4ce2",
+          "box": [
+            0.06640625,
+            0.3671875,
+            0.3515625,
+            0.6640625
+          ],
+          "object_id": "2",
+          "allocation": [
+            0.05875163331229602,
+            0.36654036931285394,
+            0.358751633312296,
+            0.666540369312854
+          ]
+        }
+      ],
+      "relation": "right",
+      "prompt": "Exactly two distinct objects. Object 1: Ninetales. Object 2: Dodrio. Object 1 is to the right of object 2. No overlap. Transparent background. Normalized object boxes xyxy: [[0.62109375,0.3984375,0.828125,0.625],[0.06640625,0.3671875,0.3515625,0.6640625]]."
+    }
+  ]
+}

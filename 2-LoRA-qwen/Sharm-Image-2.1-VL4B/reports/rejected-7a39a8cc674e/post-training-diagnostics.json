@@ -1,0 +1,456 @@
+{
+  "candidate": {
+    "signature": "962888a998e1d011e3b5a16a9613a4bc798184119c578a8e3b7cf7fe12eaada0",
+    "step": 1500,
+    "numerical_validation_loss": 0.09974897938081995,
+    "projector_sha256": "6fc98a1df3b9879a7a79d568c0f6ec054bcbe8c5b15602bc57f7bd8ad228b568",
+    "status": "candidate_requires_spatial_review",
+    "lora_sha256": null
+  },
+  "rows": [
+    {
+      "scene_id": "7a3919a59e5c904ec6318bdfb2dc022be8917a7980ecedefc35824abb487a4bd",
+      "tokens": 62,
+      "student_sha256": "721301afa19e2b0556cf6d67fad8cdef9fb45411e87a18d5d5f7ec7be3bf0d41",
+      "teacher_sha256": "17705505cc4c11cd92df2a58085c1c8688f56873f0f7c326b2a115a06a61b763",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.054381903260946274,
+          "cosine": 0.9680038094520569,
+          "norm_ratio": 0.9383487701416016
+        },
+        "flow": {
+          "relative_mse": 0.13204163312911987,
+          "cosine": 0.9206799268722534,
+          "norm_ratio": 0.9171593189239502
+        }
+      }
+    },
+    {
+      "scene_id": "48c578fbc6ee1338dbe07d88bafae050d7b1ca7ae5e241cb8064d8b6e45fa23b",
+      "tokens": 47,
+      "student_sha256": "3716f51d93b41d83bdb2c35b1dab9f89fee9c71bafb7d1282ca4bc52d1dcc577",
+      "teacher_sha256": "fb22ea11fa14cced256ad4f9bac052920a3a7128bf41e8490ef7e6ec3e179523",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.06944938004016876,
+          "cosine": 0.9628143310546875,
+          "norm_ratio": 0.9543517827987671
+        },
+        "flow": {
+          "relative_mse": 0.17632056772708893,
+          "cosine": 0.903171956539154,
+          "norm_ratio": 0.9348317384719849
+        }
+      }
+    },
+    {
+      "scene_id": "db28464e386de8070cf328e3e4253f3837319be8e261e02364f1063ae97adcc4",
+      "tokens": 47,
+      "student_sha256": "ce71bb8dd70b63d860f363089aa38bd93ebf320fd8e9eef631d3630f9a36ee7f",
+      "teacher_sha256": "75af67c617fef8b34893223080bb04ad9b68899f1130de0b5fe9c5986cc9c844",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.09426818788051605,
+          "cosine": 0.9437803030014038,
+          "norm_ratio": 0.9396198987960815
+        },
+        "flow": {
+          "relative_mse": 0.2025773525238037,
+          "cosine": 0.8859007954597473,
+          "norm_ratio": 0.9232463836669922
+        }
+      }
+    },
+    {
+      "scene_id": "31be1eddb78a19516513ce077dc3f3d6c22c91eb61696baac46129b144699da3",
+      "tokens": 62,
+      "student_sha256": "eb4fc01b76ac4e6d33f8ef6465eabfed4cc01b608b9774d15589634208d2fc51",
+      "teacher_sha256": "cd2f0e6e08efa2333647ffca3af06aaaadce4f1e211449a90f65189a7c9427ca",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.08374551683664322,
+          "cosine": 0.9507156610488892,
+          "norm_ratio": 0.9286013245582581
+        },
+        "flow": {
+          "relative_mse": 0.16000519692897797,
+          "cosine": 0.9048115015029907,
+          "norm_ratio": 0.9138109087944031
+        }
+      }
+    },
+    {
+      "scene_id": "be834fd87531e47acb030753c467eac9a29ea18215a1db8295cbc402400c1b7f",
+      "tokens": 58,
+      "student_sha256": "88e096b385c42b3651c679abc467acbd9e6c61fa6137bd61ef1828b7c2cc009c",
+      "teacher_sha256": "128fc0f0784f962cfcfcd4becf4975dbfbb7a3b393365c775a2565043669614d",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.12003260850906372,
+          "cosine": 0.9374502897262573,
+          "norm_ratio": 0.9176285862922668
+        },
+        "flow": {
+          "relative_mse": 0.22325024008750916,
+          "cosine": 0.8786404728889465,
+          "norm_ratio": 0.8918914198875427
+        }
+      }
+    },
+    {
+      "scene_id": "0a7653db5fc490714c5f5f1c1e32ce91b18d21f0d461aea452e1a5586302fc85",
+      "tokens": 46,
+      "student_sha256": "9f70bc783c6282dd85d66868cd71ad913a95cabbe920e5ec42c1efe13333fbb0",
+      "teacher_sha256": "3380e4c550168ca2de3a789872dd7104cd2d9713d8aa2ccdd84a5480e33688a0",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.07615175098180771,
+          "cosine": 0.9519981741905212,
+          "norm_ratio": 0.9627735018730164
+        },
+        "flow": {
+          "relative_mse": 0.18420296907424927,
+          "cosine": 0.8937143087387085,
+          "norm_ratio": 0.9464083909988403
+        }
+      }
+    },
+    {
+      "scene_id": "bab299ac9ce6cdb35bf5ae482ea660eb1f870645da3782a42ec207f94d8b037f",
+      "tokens": 59,
+      "student_sha256": "45eb067628673e56facb2fd4087f62b2a5f4b93a2466bb6e1c96d1a7ce1ec28c",
+      "teacher_sha256": "06d91b92fa27bb658ccdc6c017708f29f9e45721235cd9a9637e3db579b2506d",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.08880839496850967,
+          "cosine": 0.9586377739906311,
+          "norm_ratio": 0.9219563603401184
+        },
+        "flow": {
+          "relative_mse": 0.1630525290966034,
+          "cosine": 0.9116895794868469,
+          "norm_ratio": 0.9011675119400024
+        }
+      }
+    },
+    {
+      "scene_id": "f3487a1d514a91a2b1e1e3e04d285a700ed05d4e0c370dd188ed0384136d07c2",
+      "tokens": 45,
+      "student_sha256": "2897f3018ce9db66db24f54ac8e3dae669ee0f86fe426e8aa2480348ca1bbb3f",
+      "teacher_sha256": "51ddaeac1a42262d15c8aeaada76ec8e7c7a7383fc9a1dd40a8f7a72ff880bb4",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.1254737824201584,
+          "cosine": 0.9406363368034363,
+          "norm_ratio": 0.9248402714729309
+        },
+        "flow": {
+          "relative_mse": 0.22842806577682495,
+          "cosine": 0.8824942708015442,
+          "norm_ratio": 0.9050172567367554
+        }
+      }
+    },
+    {
+      "scene_id": "c747c48b42e28e1b80a539ec48cf61177002a509d67f24bf8db3a629639b413b",
+      "tokens": 50,
+      "student_sha256": "38736d573ecc9aa97b32e5cbc6cb5887420a403b468ea03bdca217090d21b5a9",
+      "teacher_sha256": "acebb0991fda695f6127fe79dab636fbf6cc27ed30a382082fd474552eb160f0",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.07075615972280502,
+          "cosine": 0.9612943530082703,
+          "norm_ratio": 0.9508416652679443
+        },
+        "flow": {
+          "relative_mse": 0.1751127690076828,
+          "cosine": 0.9023827910423279,
+          "norm_ratio": 0.9316494464874268
+        }
+      }
+    },
+    {
+      "scene_id": "0b42af6855e5360ced053ed12f06d9c13ef29338a371baf7f76f6b5639a58cbb",
+      "tokens": 69,
+      "student_sha256": "95995659bd32da287dea846ad2802c8a2f4af558177bb65db29713c09cc55f58",
+      "teacher_sha256": "1471d2b04887faf811d390b3ef33b23483d42d589ba2d6ccfb5603fdb00fd017",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.10236293077468872,
+          "cosine": 0.9390389323234558,
+          "norm_ratio": 0.9290573000907898
+        },
+        "flow": {
+          "relative_mse": 0.18033336102962494,
+          "cosine": 0.8922308087348938,
+          "norm_ratio": 0.9115958213806152
+        }
+      }
+    },
+    {
+      "scene_id": "4ceb991bed5adca139da06c20707777c94210489c7276968032f06c1277b5813",
+      "tokens": 42,
+      "student_sha256": "4a0497be7f6a651a71043f86fe1388430fb572b86fef3936deb03429a447ce1f",
+      "teacher_sha256": "b5af9a6bd0f1892a0e365e0b600be51173c1e8007cfa581763062d229d94cd11",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.05888102203607559,
+          "cosine": 0.9620062708854675,
+          "norm_ratio": 0.962698757648468
+        },
+        "flow": {
+          "relative_mse": 0.174255833029747,
+          "cosine": 0.9013678431510925,
+          "norm_ratio": 0.9446033835411072
+        }
+      }
+    },
+    {
+      "scene_id": "79c927344500a11ed1e88aac1528f05589096f4c1b36c4cb8a360e5114e0eba6",
+      "tokens": 45,
+      "student_sha256": "74e34b748cd141151eedaa51ca19c24a056f7c34e7798479cdd1e77f66e2c012",
+      "teacher_sha256": "bf02cf90aff00b391bb97c05154052069cd5e74bc14e079afcd8f902053dd626",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.06576867401599884,
+          "cosine": 0.9674164056777954,
+          "norm_ratio": 0.9473233819007874
+        },
+        "flow": {
+          "relative_mse": 0.1722056269645691,
+          "cosine": 0.9087381958961487,
+          "norm_ratio": 0.9272300004959106
+        }
+      }
+    },
+    {
+      "scene_id": "716766254d16c5f3fa7b6d4ebd853fbd6f001592ce8a70ba6214b9f070cae862",
+      "tokens": 61,
+      "student_sha256": "5b620d434062a3d670edcb31e51e20561be3988122bba6208683ebfc63a56988",
+      "teacher_sha256": "7fe4c4684997bc8e7fa63b7e3aae94ae8cceb01b4015bd4b8cb0acbd768a5333",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.05924158915877342,
+          "cosine": 0.9618539810180664,
+          "norm_ratio": 0.9381768703460693
+        },
+        "flow": {
+          "relative_mse": 0.13681745529174805,
+          "cosine": 0.9153887033462524,
+          "norm_ratio": 0.9158209562301636
+        }
+      }
+    },
+    {
+      "scene_id": "3081b98929d04f9fdf0f21b4b831349fb035c336c99a3beacaac63c8a074faba",
+      "tokens": 48,
+      "student_sha256": "cdd4c8c18c05835941c4693f4388e6d57dd7b23843825cc600817be979473a0f",
+      "teacher_sha256": "6e4e068b31901a0e276eadc628fc42a70dd463678d5a7f967ec5f30a0f48f989",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.07584948092699051,
+          "cosine": 0.9589064717292786,
+          "norm_ratio": 0.9383769631385803
+        },
+        "flow": {
+          "relative_mse": 0.17792758345603943,
+          "cosine": 0.9018111228942871,
+          "norm_ratio": 0.9168064594268799
+        }
+      }
+    },
+    {
+      "scene_id": "e202725c156bf90c6a0ce211459e9ce5cca80a4fb1b8f095aaab43a459eddd6a",
+      "tokens": 56,
+      "student_sha256": "460df48cc00a65f69c2897a321ff1721637c5004d1229f3a8a1ebc90d8d0d6ca",
+      "teacher_sha256": "9ca70442401461a253b13b0d1b253a9f5cfd8379ddd81aaa9adf0ba47312a4c8",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.16024689376354218,
+          "cosine": 0.9193388819694519,
+          "norm_ratio": 0.9040411710739136
+        },
+        "flow": {
+          "relative_mse": 0.2568136155605316,
+          "cosine": 0.8635424375534058,
+          "norm_ratio": 0.8867456912994385
+        }
+      }
+    },
+    {
+      "scene_id": "ddef5a381b2b4784826a7360d2a08cd853e5b834cdfb5d6c501c829979dc53c6",
+      "tokens": 61,
+      "student_sha256": "dc0632e01298c3862950f739b61faa61fe44d5d40d67f1aa482d4946fa9a113a",
+      "teacher_sha256": "f01b2b089af101fb89ea458de94178e3beda987c1192538d491f91c9b3211f39",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.07601812481880188,
+          "cosine": 0.9559965133666992,
+          "norm_ratio": 0.947018563747406
+        },
+        "flow": {
+          "relative_mse": 0.1557009518146515,
+          "cosine": 0.9082511067390442,
+          "norm_ratio": 0.9238991141319275
+        }
+      }
+    },
+    {
+      "scene_id": "82a0f9604973a6a79a75c7dd08a1b50c9f61ef10e435e235a92891ffe2a14eee",
+      "tokens": 47,
+      "student_sha256": "6cee178692f94c95daec45235c104f38987a2fece2963d6e3e8fc265a7ce3fd8",
+      "teacher_sha256": "9ab29c0bc79499d3d4a73f27edf6a92b3b8f13decccae2ad307d5f496e4637b4",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.0710281953215599,
+          "cosine": 0.9640452861785889,
+          "norm_ratio": 0.9470413327217102
+        },
+        "flow": {
+          "relative_mse": 0.17650336027145386,
+          "cosine": 0.9048080444335938,
+          "norm_ratio": 0.9313658475875854
+        }
+      }
+    },
+    {
+      "scene_id": "39446868c7ec6c68eb4de8993ce2dcf373f4bfe448e2361fc73986e35c2b0dcf",
+      "tokens": 50,
+      "student_sha256": "517e6e6b892b51cafffb17533a6d8c3ee856ab0700e64fbe61693b48df1ceb90",
+      "teacher_sha256": "f4af761cf21747770432761835df0f33d6ef0a39599442c5126fb5f3e3dd88de",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.08671903610229492,
+          "cosine": 0.9392719864845276,
+          "norm_ratio": 0.9458355903625488
+        },
+        "flow": {
+          "relative_mse": 0.19143500924110413,
+          "cosine": 0.8818218111991882,
+          "norm_ratio": 0.9236286282539368
+        }
+      }
+    },
+    {
+      "scene_id": "26b195a3a86bf60327ca4b2c5f0b065c227a7bcc9a8da46088694862053dbac8",
+      "tokens": 60,
+      "student_sha256": "ffd7b2d2579dd7b7a3457c81dc0dabc923202f80c85f9d37425b4681193ceed3",
+      "teacher_sha256": "c66034e81ee3cb1713d784e494f5ffb931ea69d7cf801aae2cd4c204fe7dae2d",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.06755638867616653,
+          "cosine": 0.9559299349784851,
+          "norm_ratio": 0.9480140209197998
+        },
+        "flow": {
+          "relative_mse": 0.14552585780620575,
+          "cosine": 0.9094283580780029,
+          "norm_ratio": 0.9292259812355042
+        }
+      }
+    },
+    {
+      "scene_id": "82a689985657b3243b0bc81e9d5f66f84e4da782ea7ae153d7af8251941e2e88",
+      "tokens": 50,
+      "student_sha256": "270ca1d950969b5d8fb0ca24d4f59787326fb2b445b18168fc926912228578d7",
+      "teacher_sha256": "dcf4e0fccf0bdcc6285a5ab10d352bd3cd44fce2add46385f43b1ebdc975b531",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.11989576369524002,
+          "cosine": 0.9386258125305176,
+          "norm_ratio": 0.925228476524353
+        },
+        "flow": {
+          "relative_mse": 0.22976349294185638,
+          "cosine": 0.8766348361968994,
+          "norm_ratio": 0.9053040742874146
+        }
+      }
+    },
+    {
+      "scene_id": "ebb289cb8a805553d8f80fab10dca79bbc8d126be1497e0d009cfa4bf849eaf8",
+      "tokens": 48,
+      "student_sha256": "8970ec7c937736a344334115a86e8783b7074e85ee4a7137f744ffb62dba789b",
+      "teacher_sha256": "732e37e6df162cf0de74951354a47047aa7065d93491cdccd47aa9bc1ceaf821",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.0777401477098465,
+          "cosine": 0.9522960782051086,
+          "norm_ratio": 0.9426813125610352
+        },
+        "flow": {
+          "relative_mse": 0.1851215958595276,
+          "cosine": 0.8931545615196228,
+          "norm_ratio": 0.9218486547470093
+        }
+      }
+    },
+    {
+      "scene_id": "7738cc8ad582ee36a6f8cdfb7577e5fc4bf74d29699c81cdb600e96b71aa1efa",
+      "tokens": 61,
+      "student_sha256": "5b43ce07fa00b56549e64eedb04808b6f05bf30a9757798fa839d1861384cce4",
+      "teacher_sha256": "0fecb591d33e4e07fd1397730c206ae5dc77171650783e02494e97b851d9942d",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.07380813360214233,
+          "cosine": 0.9509033560752869,
+          "norm_ratio": 0.9373995661735535
+        },
+        "flow": {
+          "relative_mse": 0.15202336013317108,
+          "cosine": 0.9041038751602173,
+          "norm_ratio": 0.9155380725860596
+        }
+      }
+    },
+    {
+      "scene_id": "bf3a033d60f8f92ae23f7660fc4ccac2092d5b1a99428335e998121bda8b4e40",
+      "tokens": 42,
+      "student_sha256": "d3ee0cdac57f9fb1edbd4be326b0ab9b1aa9482bc0129775ac2cd415ea8c1eab",
+      "teacher_sha256": "8688082c49522584a81ac3028173d13ae3013ac6a2acd3b907534b496446ea86",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.126064732670784,
+          "cosine": 0.9379621148109436,
+          "norm_ratio": 0.9642975926399231
+        },
+        "flow": {
+          "relative_mse": 0.2368914633989334,
+          "cosine": 0.8793376684188843,
+          "norm_ratio": 0.948798418045044
+        }
+      }
+    },
+    {
+      "scene_id": "17c1859e798212e908baf0647bd0da350b55ed68b333498dacc7c87fa958065b",
+      "tokens": 43,
+      "student_sha256": "3ca9969869d68bc2fedd8d9488a820acc9333c314fef67c3ee6e415886d8c681",
+      "teacher_sha256": "48d89d0b59e5b3a990814326968975a2312ca362d5357cd38a1df7722b022597",
+      "metrics": {
+        "warmup": {
+          "relative_mse": 0.08726546913385391,
+          "cosine": 0.9649292826652527,
+          "norm_ratio": 0.9422361850738525
+        },
+        "flow": {
+          "relative_mse": 0.1974710375070572,
+          "cosine": 0.9040630459785461,
+          "norm_ratio": 0.9252051711082458
+        }
+      }
+    }
+  ],
+  "student_distinct": 24,
+  "teacher_distinct": 24,
+  "warmup_mean_metrics": {
+    "relative_mse": 0.08714642779280742,
+    "cosine": 0.951827180882295,
+    "norm_ratio": 0.939932885269324
+  },
+  "flow_mean_metrics": {
+    "relative_mse": 0.18390753865242004,
+    "cosine": 0.897007000943025,
+    "norm_ratio": 0.9205332770943642
+  }
+}

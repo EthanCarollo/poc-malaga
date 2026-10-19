@@ -1,0 +1,23 @@
+{
+  "phase": "flow",
+  "dataset": "/home/eth/sharm-spatial-20261019/2-LoRA-qwen/artifacts/spatial/dataset",
+  "cache": "/home/eth/sharm-spatial-20261019/2-LoRA-qwen/cache/spatial",
+  "output": "/home/eth/sharm-spatial-20261019/2-LoRA-qwen/artifacts/spatial/run/flow",
+  "init_projector": "/home/eth/sharm-spatial-20261019/2-LoRA-qwen/artifacts/spatial/run/warmup/best/projector",
+  "steps": 1500,
+  "accumulation": 8,
+  "learning_rate": 5e-05,
+  "context_layers": 2,
+  "context_heads": 8,
+  "lora_rank": 0,
+  "lora_learning_rate": 5e-05,
+  "distillation_weight": 0.25,
+  "embedding_weight": 0.05,
+  "layout_dropout": 0.5,
+  "eval_every": 100,
+  "validation_limit": 32,
+  "patience": 6,
+  "checkpointing_mode": "alternating",
+  "seed": 42,
+  "device": "cuda"
+}

@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "method": "agent_visual_review",
+  "reviewer": "Codex (AI agent)",
+  "passed": false,
+  "prediction_signature": "7a08940f3ab25b48fe857ef59e77603292f3d18d6b88baf75e0451637c00a98a",
+  "reviewed_ids": [
+    "e92061cbaa1f96fd2d23bcb8a3a7f206f68248d90dc2ba3be66bb60132b86194",
+    "9ea84e90f960b9cf07d86132c40120b0a355845c5a7ac6655e87ae7c360bc97d",
+    "3e47e081d47469bf0a264d01d32c124ec0a14c7602d46da705cebcf396a4eaae",
+    "bbb675bf27b9c07b647b15a13ca7284442a5833ee901ce87d53e15e1732a5ac8",
+    "79f78fb0b312d3f510635b869d10d180db3441876031e3b38f9ee9b047c80142",
+    "9d9895593c9cccbf141ff52fd17ceec94b41328ec4c7f08cf4e8e3f8f81d396b",
+    "822a2f5372341399f6cc32bf8d48b15d2bae586735f92a2dba0a8f74e8c881be",
+    "00447af1d1be7e250de34f1919ab76196dd547b3ed9f58dea09dbc5c9e72f5f0",
+    "254ec1396f03232bd04aa7c4142662227192ab6d771e0656f73ca4a9bd8eba53",
+    "cccd5af3d2332e488b7641510b9fc1fffeee66f23a8b971ddd199d97905352f6",
+    "4c69ec2a62c698b11febd971172c9e60b6a4b43a6e0835464f13cdd4172371e1",
+    "a509374bc348d1fc58385a7c44ae12e1cfd5d5b6fe08ed9263576fc667ca1938",
+    "24eaf76723e4569f6176dbce907bb6383f9f842f5ed9fe5d579b9fa7b879f8d1",
+    "09a5999bff844968e08a14b69465346ee760edbffe8520bd12542e7011e0f186",
+    "db14f4c938141c188964ef45ac229a0d6c99fba5b0ba0eae41f6926ec67753de",
+    "bf88ef35d6e4806001772aeeb50be5abc732824efd6d64150e6cf7bd4ecf9388",
+    "adb7789a532e48aadef7b637af6630f8f9beb3c305b7a2739b85bd2394fc63ec",
+    "51ddd5b748786bb5ed0e8eacc539ab90d6f559112fa95ea06cfa8383f3b97bf3",
+    "f1b6ef7087f10d8f723e7c9665b65e6bd2c927e1e67d97908b3ef191f6e94871",
+    "f13e3ce7a8608460c4de84b3c1d474d7cd6dc3fdd7c70f58f0791bf622fb778a",
+    "c2cf22842b7304f224583738177919343a8c126205f26cb9878c1e0ab30a2c88",
+    "7829574059a676a8540849d12a45a34d1c76ddb3b16a8dc2643d323e2d9c94f7",
+    "fbe029b77e6490a13b401712236bf37eadc4a933bcdfd1ba0033dc65be427834",
+    "e4b24ea01af19237bf67c312999cf2b78f08438787c422e9b11d208932641545"
+  ],
+  "scope": "Diagnostic only: first 6 scenes, seeds 1000 and 1001, both modes, 30 steps; no change to the full 288-image flow evaluation.",
+  "observations": [
+    "All 24 warmup diagnostic images inspected in six comparison sheets. Outlines and larger subjects are cleaner than the flow output.",
+    "Repeated yellow/blue seed-dependent shapes remain across different prompts. Requested identities and object counts are not reliably followed.",
+    "Warmup is not an approved replacement candidate; no export or publication."
+  ],
+  "embedding_diagnostics": {
+    "student_distinct": 24,
+    "teacher_distinct": 24,
+    "warmup_mean_metrics": {
+      "relative_mse": 0.08714642779280742,
+      "cosine": 0.951827180882295,
+      "norm_ratio": 0.939932885269324
+    },
+    "flow_mean_metrics": {
+      "relative_mse": 0.18390753865242004,
+      "cosine": 0.897007000943025,
+      "norm_ratio": 0.9205332770943642
+    }
+  },
+  "causal_limits": "The measured flow alignment regression is established on these 24 validation prompts. Its unique cause is not proven. Warmup repetitions indicate that changing flow alone is not yet a demonstrated remedy."
+}
