@@ -31,14 +31,14 @@ Le projecteur est identique à celui de `1e912f5a1e5df40bdaf927abf3e4220d7378132
 | Modèle | Encodeur qui comprend le texte | DiT qui génère l'image | Sortie |
 | --- | --- | --- | --- |
 | **Sharm Image 2.1 VL4B FP8** | **Qwen3-VL 4B**, utilisé pour le texte, en FP8 ; projecteur d'alignement BF16 | **Qwen-Image-2.1, environ 7,1B** ; projections principales en FP8 natif | RGBA, avec canal alpha |
-| **Sharm Iris PixelArt** | **Qwen3-VL 4B**, en BF16 dans le notebook Iris | **Iris-3B, environ 3B**, chargé en BF16 pour ces tests | RGB ; aucun alpha natif |
+| **Sharm Iris PixelArt** | **Qwen3-VL 4B**, en BF16 dans le notebook Iris | **Iris-3B, environ 3B**, poids FP32 et calcul partiel BF16 | RGB ; aucun alpha natif |
 
 Le **4B de Sharm appartient à Qwen3-VL**, son encodeur de texte. Le **3B d'Iris appartient au DiT**, son générateur. Iris possède donc aussi un encodeur Qwen3-VL 4B séparé. « VL » signifie vision et langage ; ces parcours utilisent le texte uniquement.
 
 - **Encodeur / embeddings** : transforme le prompt, la description demandée, en tableaux de nombres qui conditionnent le générateur.
 - **Projecteur** : adapte les représentations de l'encodeur Qwen3-VL 4B au format attendu par le générateur Qwen-Image-2.1.
 - **DiT** (*Diffusion Transformer*) : réseau qui transforme progressivement le bruit initial en image. Sharm utilise ensuite un **VAE**, le décodeur qui convertit sa représentation comprimée en pixels. Iris calcule directement les pixels, sans VAE.
-- **FP8 / BF16 / NF4** : formats de nombres à 8, 16 ou 4 bits. Ils changent la mémoire et parfois le résultat ; la taille en paramètres reste la même. Certains composants gardent une autre précision.
+- **FP8 / BF16 / FP32 / NF4** : formats de nombres à 8, 16, 32 ou 4 bits. Ils changent la mémoire et parfois le résultat ; la taille en paramètres reste la même. Certains composants gardent une autre précision.
 - **LoRA / fine-tuning** : petites matrices apprises / adaptation sur un dataset. Les tests du modèle Iris de base ne chargent aucun LoRA et ne lancent aucun entraînement.
 - **Graine / pas de génération / CFG** : départ aléatoire reproductible / nombre d'itérations pour produire l'image / intensité du guidage par le texte. Les pas d'entraînement sont, eux, des mises à jour des poids.
 - **RGB / RGBA** : couleurs seules / couleurs plus alpha, le canal de transparence. Un fichier RGBA peut quand même avoir un fond opaque.
@@ -49,6 +49,9 @@ Le **4B de Sharm appartient à Qwen3-VL**, son encodeur de texte. Le **3B d'Iris
 - **Gelé / dataset / validation** : poids non modifiés / ensemble d'images et descriptions / exemples tenus à part pour contrôler le résultat.
 - **SHA-256 / révision** : empreinte d'un fichier / identifiant d'une version du dépôt, pour retrouver exactement les octets testés.
 - **HF / kernel / lien physique** : Hugging Face, qui héberge les modèles / processus Python qui exécute le notebook / plusieurs noms partageant le même fichier sur disque.
+
+- **Autocast** : choix automatique du format de certaines opérations ; ici, calcul partiel BF16 avec les poids DiT Iris conservés en FP32.
+- **RAM / VRAM / swap** : mémoire centrale du CPU / mémoire dédiée au GPU / espace disque où Linux peut déplacer des pages de RAM.
 
 Le style **pixel art** concerne la grille visible, les contours et la palette. Le terme **pixel-space** d'Iris décrit son calcul direct des pixels ; le style pixel art est demandé par les prompts et doit être vérifié dans les sorties.
 
