@@ -5,7 +5,7 @@ import torch
 from .core import ORIGINAL, STUDENT
 
 
-def load_transformer(base: Path = ORIGINAL, training: bool = False, gradient_checkpointing: bool = True):
+def load_transformer(base: Path = ORIGINAL, training: bool = False, gradient_checkpointing: bool | str = True):
     from diffusers import BitsAndBytesConfig, QwenImage21Transformer2DModel
     quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
                                       bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
@@ -17,8 +17,21 @@ def load_transformer(base: Path = ORIGINAL, training: bool = False, gradient_che
     if training:
         from peft import prepare_model_for_kbit_training
         model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=False)
-        if gradient_checkpointing:
+        mode = "all" if gradient_checkpointing is True else "none" if gradient_checkpointing is False else gradient_checkpointing
+        if mode not in ("all", "alternating", "none"):
+            raise ValueError(f"Mode de checkpointing inconnu : {mode}")
+        if mode != "none":
             model.enable_gradient_checkpointing()
+        if mode == "alternating":
+            default_checkpoint = model._gradient_checkpointing_func
+            selected = {id(block) for index, block in enumerate(model.transformer_blocks) if index % 2 == 0}
+
+            def checkpoint_some_blocks(module, *args):
+                if id(module) in selected:
+                    return default_checkpoint(module, *args)
+                return module(*args)
+
+            model.enable_gradient_checkpointing(gradient_checkpointing_func=checkpoint_some_blocks)
     else:
         model.eval()
     return model

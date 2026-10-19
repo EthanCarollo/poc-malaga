@@ -52,8 +52,11 @@ def main():
     parser.add_argument("--learning-rate", type=float, default=1e-4)
     parser.add_argument("--checkpoint-every", type=int, default=100)
     parser.add_argument("--gradient-checkpointing", action="store_true")
+    parser.add_argument("--checkpointing-mode", choices=("all", "alternating", "none"), default="alternating")
     parser.add_argument("--output", type=Path, default=WEIGHTS / "sharm-image-2.1-sprites-128-lora")
     args = parser.parse_args()
+    if args.gradient_checkpointing:
+        args.checkpointing_mode = "all"
     if min(args.steps, args.accumulation, args.rank, args.checkpoint_every) < 1 or args.learning_rate <= 0:
         raise ValueError("Pas, accumulation, rang et fréquence de checkpoint doivent être positifs.")
     seed_all(42)
@@ -77,7 +80,8 @@ def main():
     run_config = {**vars(args), "output": str(args.output), "cache_identity": data["identity"]}
     # Activation recomputation changes memory/time, not the training examples or
     # objective. Keep checkpoints compatible when toggling this runtime option.
-    run_signature = digest({key: value for key, value in run_config.items() if key != "gradient_checkpointing"})
+    run_signature = digest({key: value for key, value in run_config.items()
+                            if key not in ("gradient_checkpointing", "checkpointing_mode")})
     complete_path = args.output / "training-complete.json"
     if complete_path.exists():
         previous = json.loads(complete_path.read_text())
@@ -86,7 +90,7 @@ def main():
         print("LoRA déjà terminé.", flush=True)
         return
     args.output.mkdir(mode=0o700, parents=True, exist_ok=True)
-    model = load_transformer(training=True, gradient_checkpointing=args.gradient_checkpointing)
+    model = load_transformer(training=True, gradient_checkpointing=args.checkpointing_mode)
     model.add_adapter(LoraConfig(r=args.rank, lora_alpha=args.rank, init_lora_weights="gaussian",
                                  target_modules=["to_k", "to_q", "to_v", "to_out.0"]))
     parameters = [p for p in model.parameters() if p.requires_grad]
