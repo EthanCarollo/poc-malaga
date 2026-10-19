@@ -1,3 +1,5 @@
+> Exécution actuelle : ouvrir [le notebook Monster](../Sharm_Image_2_1_VL4B_LoRA_Monster.ipynb), sections Données, Préparation et Audit. Les références aux scripts ci-dessous documentent la recette historique qui a produit cette version signée ; ces sources restent dans l’historique Git. Les PNG, manifestes et rapports de cette version conservent leurs octets.
+
 # Données — Sharm Image Monster Pixel Art
 
 ## Version prête à utiliser

@@ -1,8 +1,6 @@
 *.sh text eol=lf
 # Preserve dataset hashes on Windows and Linux; no newline conversion.
-2-LoRA-qwen/02-sprite-lora/dataset/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-# The dataset records the SHA-256 of this exact preparation recipe.
-2-LoRA-qwen/02-sprite-lora/prepare_monster_dataset.py -text
-2-LoRA-qwen/notebooks/** text eol=lf
+2-LoRA-qwen/**/*.ipynb text eol=lf
+2-LoRA-qwen/Sharm-Image-2.1-VL4B-LoRA-Monster/dataset/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Preserve the bytes signed by each final report manifest.
-2-LoRA-qwen/reports/** -text
+2-LoRA-qwen/Sharm-Image-2.1-VL4B/reports/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

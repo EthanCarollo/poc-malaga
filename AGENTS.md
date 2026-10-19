@@ -13,8 +13,8 @@
 ## Notebooks et résultats Sharm
 
 - Pour le moment, préparer uniquement les notebooks du LoRA : ne lancer aucun nouvel entraînement LoRA, ni ses pré-calculs GPU, sans nouvelle demande explicite de l'utilisateur. La chaîne Base spatiale déjà active conserve son périmètre autorisé.
-- Documenter le parcours dans `2-LoRA-qwen/notebooks/` : architecture, données, encodeurs et MSE, Base spatiale, générations, LoRA Monster, export et publication.
-- Appeler les scripts existants depuis les notebooks ; conserver les actions de calcul et publication désactivées par défaut dans les fichiers versionnés.
-- Après la fin réelle de la chaîne, la revue et la publication vérifiée, archiver les résultats dans `2-LoRA-qwen/reports/` avec les paramètres, historiques, galeries complètes, revues identifiées, SHA-256 et révision HF immuable. Voir `reports/README.md` et `notebooks/archive_spatial_results.py`.
+- Conserver exactement deux notebooks exécutables : `2-LoRA-qwen/Sharm-Image-2.1-VL4B/Sharm_Image_2_1_VL4B.ipynb` et `2-LoRA-qwen/Sharm-Image-2.1-VL4B-LoRA-Monster/Sharm_Image_2_1_VL4B_LoRA_Monster.ipynb`, dans leurs deux dossiers distincts.
+- Intégrer le code des étapes et des fonctions partagées dans les cellules de ces deux fichiers. Les calculs tournent localement dans le kernel de la machine choisie, sans script source externe ni troisième notebook. Conserver les lancements de calcul et publication désactivés par défaut dans Git ; ils restent réellement exécutables manuellement.
+- Après la fin réelle de la chaîne, la revue et la publication vérifiée, archiver les résultats dans `2-LoRA-qwen/Sharm-Image-2.1-VL4B/reports/` avec les paramètres, historiques, galeries complètes, revues identifiées, SHA-256 et révision HF immuable. L'étape d'archivage est intégrée au notebook Base.
 - Conserver les sorties de cellules nettoyées, les preuves dans des fichiers explicites et les poids hors Git. Ne pas inventer de résultat ni d'annotation humaine ; distinguer les pertes numériques, la revue par agent et la validation spatiale humaine.
 - Finaliser ce rangement, puis committer et pousser les notebooks et rapports sur `main` avant de clôturer le suivi d'entraînement.
