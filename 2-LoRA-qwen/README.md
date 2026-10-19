@@ -2,6 +2,14 @@
 
 Le projet comprend deux entraînements successifs : aligner les représentations du Qwen3-VL 4B FP8 gelé avec le diffuseur Qwen-Image-2.1 grâce à un projecteur entraînable, puis entraîner un LoRA sprites sur cette base figée. Le [plan détaillé](PLAN_SHARM.md) documente les choix et les limites.
 
+## Première base entraînée et publiée
+
+La base [Sharm Image 2.1 VL4B FP8](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8) est publiée **en privé** sous `ethanzxv`, à la révision `1e912f5a1e5df40bdaf927abf3e4220d73781321`. Les 56 fichiers ont été vérifiés contre leurs tailles et empreintes distantes ; l’accès anonyme est refusé. Le LoRA sprites poursuit son entraînement de 500 pas.
+
+Le projecteur a effectué 1 000 pas linéaires puis 5 000 pas MLP. Après export BF16, les 2 049 prompts de validation donnent une erreur relative de `0.13739`, un cosinus de `0.92500` et un ratio de normes de `0.93580`. Le MLP est le candidat retenu. Son empreinte est `a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883`.
+
+Les fichiers safetensors de la base passent de **33,12 Go à 21,64 Go**, soit **−34,66 %**. Le conditionneur avec son projecteur passe de 17,53 Go à 6,06 Go, soit −65,46 %. Ces tailles en octets décimaux excluent configurations, caches et LoRA. Les quatre comparaisons 8B/4B figurent sur la fiche HF, avec les observations : texte OPEN conservé et transparence de la fleur maintenue, mais une composition vélo/bateau plus fusionnée et des détails du vélo moins stables avec le 4B. La base reste expérimentale en texte vers image.
+
 ## Installer et lancer
 
 Depuis la racine du dépôt, sur WSL avec le runtime Qwen et CUDA :
