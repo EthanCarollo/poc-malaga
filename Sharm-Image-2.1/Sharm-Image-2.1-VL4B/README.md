@@ -40,7 +40,7 @@ Le style **pixel art** concerne la grille visible, les contours et la palette. L
 
 ## Publication FP8 disponible
 
-La Base avec **encodeur de texte Qwen3-VL 4B FP8 et DiT Qwen-Image-2.1 7,1B FP8** est disponible à [la révision `812304af`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/812304af8f902f6ab0138b66b4b8b336125780be), avec les tests visibles directement dans son README. Ses poids et son loader sont identiques à `a0c0e168` ; seuls la carte, son manifeste et les nouvelles preuves de contrôle ont changé. Elle utilise le projecteur antérieur `a414685b`, sans le candidat spatial ci-dessous. Le parcours principal ajouté au notebook convertit, vérifie, publie et archive cet export ; aucune nouvelle distillation n'est requise.
+La Base avec **encodeur de texte Qwen3-VL 4B FP8 et DiT Qwen-Image-2.1 7,1B FP8** est disponible à [la révision `e6ef25ce`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/e6ef25ce358f400781a9cd3c3e0fb8068312b599), avec les tests visibles directement dans son README. Ses poids et son loader sont identiques à `a0c0e168` ; seuls la carte, son manifeste et les nouvelles preuves de contrôle ont changé. Elle utilise le projecteur antérieur `a414685b`, sans le candidat spatial ci-dessous. Le parcours principal ajouté au notebook convertit, vérifie, publie et archive cet export ; aucune nouvelle distillation n'est requise.
 
 Le loader exact a généré deux PNG RGBA réels sur GPU ; les poids et appels FP8 ont été contrôlés. Pic mesuré : 8,95 Gio sur RTX 5060 Ti. Les fonds restent largement opaques malgré la demande de transparence : le format RGBA fonctionne, pas une garantie de détourage. La [carte du modèle](MODEL_CARD_FP8.md) et les [rapports](reports/README.md) précisent les limites.
 

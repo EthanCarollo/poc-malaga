@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "passed": true,
+  "reviewer": "Codex (AI agent)",
+  "method": "agent_visual_review",
+  "reviewed_at": "2026-10-20T00:16:49.799710+00:00",
+  "verification_sha256": "e89d0702996e9c73aadd8e1122738535bc2f906e10d388ab93f0385d0db8d90a",
+  "projector_sha256": "a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883",
+  "reviewed_files": [
+    "validation/fp8-1.png",
+    "validation/fp8-2.png"
+  ],
+  "scope": "Original Base FP8 text-to-image technical and visual sanity review; not a transparency-quality or spatial-accuracy approval",
+  "observations": [
+    "Inspected both freshly rerun native 512x512 RGBA outputs; their SHA-256 values are byte-identical to the original a0c0e168 verification outputs.",
+    "The first output depicts a recognizable complete red fox with coherent outlines.",
+    "The second depicts a recognizable blue pixel-art dragon with coherent outline and visible pixel structure.",
+    "Both have a largely opaque white background despite the transparent-background request. Alpha ranges are 245-255 and 64-255; no fully transparent pixels in either example."
+  ],
+  "transparency_quality_passed": false,
+  "spatial_quality_validated": false,
+  "human_statistical_evaluation": false,
+  "limitations": [
+    "Two fixed examples do not measure general 8B parity or a human success rate.",
+    "Native RGBA format and successful FP8 kernels do not establish clean cutout alpha."
+  ],
+  "documentation_scope": "Component sizes and precision glossary, published Base inference notebook, generalist examples and exhaustive comparisons; same tested model tensors and loader"
+}

@@ -4,11 +4,11 @@ Ce dossier conserve les résultats lisibles depuis les notebooks : paramètres, 
 
 ## README HF détaillé et vérification renouvelée
 
-**[Révision HF `812304af8f902f6ab0138b66b4b8b336125780be`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/812304af8f902f6ab0138b66b4b8b336125780be).** Le README affiche les 16 sorties Sharm sur sujets simples, les 16 paires Qwen original / Sharm et les diagnostics complémentaires. Chaque taille est rattachée au composant : Qwen3-VL 4B pour le texte, DiT Qwen-Image-2.1 7,1B pour la génération. Le lexique explique les formats et réglages.
+**[Révision HF `e6ef25ce358f400781a9cd3c3e0fb8068312b599`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/e6ef25ce358f400781a9cd3c3e0fb8068312b599).** Le README affiche les 16 sorties Sharm sur sujets simples, les 16 paires Qwen original / Sharm et les diagnostics complémentaires. Chaque taille est rattachée au composant : Qwen3-VL 4B pour le texte, DiT Qwen-Image-2.1 7,1B pour la génération. Le lexique explique les formats et réglages.
 
 Les 52 fichiers du payload ont été vérifiés sur cette révision immuable ; les 170 autres fichiers préexistants sont conservés. Les poids et le loader restent identiques à `a0c0e168`. La carte, le manifeste et les preuves de contrôle ont changé. Deux générations réelles ont été rejouées avec le loader exact : leurs PNG sont identiques octet pour octet aux deux contrôles d'origine, avec les mêmes limites de transparence.
 
-[Résumé signé](fp8-812304af8f90/summary.json) · [Publication vérifiée](fp8-812304af8f90/publication-status.json) · [Contrôle GPU](fp8-812304af8f90/fp8-validation.json) · [Revue identifiée](fp8-812304af8f90/fp8-visual-review.json) · [SHA des preuves](fp8-812304af8f90/manifest.json).
+[Résumé signé](fp8-e6ef25ce358f/summary.json) · [Publication vérifiée](fp8-e6ef25ce358f/publication-status.json) · [Contrôle GPU](fp8-e6ef25ce358f/fp8-validation.json) · [Revue identifiée](fp8-e6ef25ce358f/fp8-visual-review.json) · [SHA des preuves](fp8-e6ef25ce358f/manifest.json).
 
 ## Comparatifs avant / après
 

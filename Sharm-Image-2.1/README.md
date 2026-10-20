@@ -41,7 +41,7 @@ Le style **pixel art** concerne la grille visible, les contours et la palette. L
 
 ## Base publiée : text encoder et DiT FP8
 
-Le [README HF détaillé, révision `812304af`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/812304af8f902f6ab0138b66b4b8b336125780be) affiche les sorties Sharm généralistes, toutes les paires original/Sharm et les diagnostics. Cette révision conserve les poids et le loader de `a0c0e168` et renouvelle leur vérification GPU.
+Le [README HF détaillé, révision `e6ef25ce`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/e6ef25ce358f400781a9cd3c3e0fb8068312b599) affiche les sorties Sharm généralistes, toutes les paires original/Sharm et les diagnostics. Cette révision conserve les poids et le loader de `a0c0e168` et renouvelle leur vérification GPU.
 
 La révision [HF `a0c0e168097024cecd8c43f68004d1bedbab32df`](https://huggingface.co/ethanzxv/Sharm-Image-2.1-VL4B-FP8/tree/a0c0e168097024cecd8c43f68004d1bedbab32df) contient le VL 4B FP8, le projecteur précédemment publié et le DiT en FP8 E4M3 avec échelles par ligne. Les 232 couches linéaires éligibles du DiT utilisent aussi un calcul FP8 natif sur la RTX 5060 Ti ; normes, biais, VAE et projecteur conservent leur précision. Les anciens shards BF16 du DiT ont été retirés de cette révision.
 

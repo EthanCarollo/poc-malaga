@@ -1,0 +1,23 @@
+{
+  "schema": 2,
+  "model": "Sharm Image Base 2.1 VL4B and DiT FP8",
+  "outcome": "published",
+  "hf_repo": "ethanzxv/Sharm-Image-2.1-VL4B-FP8",
+  "hf_revision": "e6ef25ce358f400781a9cd3c3e0fb8068312b599",
+  "private": true,
+  "source_revision": "1e912f5a1e5df40bdaf927abf3e4220d73781321",
+  "projector_sha256": "a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883",
+  "spatial_candidate_used": false,
+  "dit_fp8_modules": 232,
+  "dit_fp8_parameters": 7115112448,
+  "native_fp8_verified": true,
+  "gpu_peak_gib": 8.946229934692383,
+  "rgba_generations": 2,
+  "transparency_quality_passed": false,
+  "spatial_quality_validated": false,
+  "review_method": "agent_visual_review",
+  "human_statistical_evaluation": false,
+  "notebook_sha256": "d34a7238f6e9b621760700cc3217a57f46ef6c2fae2123adb4510d4908a2903d",
+  "git_parent_revision": "15f561a52f2c620605a9a20181f1aec781e65949",
+  "scope": "Verified original-projector FP8 inference export; known largely opaque backgrounds"
+}

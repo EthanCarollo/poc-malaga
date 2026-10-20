@@ -1,0 +1,1209 @@
+{
+  "passed": true,
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "projector_sha256": "a414685b8f1c0b305ffeb0dc286afb47b168fc03a5be9d2832ff820fec678883",
+  "release_manifest_sha256": "66ab64cc0ad1e050a8d38a643fdc8cc94b9ea5dc1dd1821061999496573706b8",
+  "payload_files_verified": 45,
+  "encoder_audits": [
+    {
+      "fp8_parameters": 3633315840,
+      "other_parameters": 389374016,
+      "quantization_config": {
+        "quant_method": "fp8",
+        "modules_to_not_convert": [
+          "lm_head",
+          "model.visual"
+        ],
+        "modules_to_convert": null,
+        "activation_scheme": "dynamic",
+        "weight_block_size": [
+          128,
+          128
+        ],
+        "dequantize": false,
+        "scale_fmt": "float"
+      }
+    },
+    {
+      "fp8_parameters": 3633315840,
+      "other_parameters": 389374016,
+      "quantization_config": {
+        "quant_method": "fp8",
+        "modules_to_not_convert": [
+          "lm_head",
+          "model.visual"
+        ],
+        "modules_to_convert": null,
+        "activation_scheme": "dynamic",
+        "weight_block_size": [
+          128,
+          128
+        ],
+        "dequantize": false,
+        "scale_fmt": "float"
+      }
+    },
+    {
+      "fp8_parameters": 3633315840,
+      "other_parameters": 389374016,
+      "quantization_config": {
+        "quant_method": "fp8",
+        "modules_to_not_convert": [
+          "lm_head",
+          "model.visual"
+        ],
+        "modules_to_convert": null,
+        "activation_scheme": "dynamic",
+        "weight_block_size": [
+          128,
+          128
+        ],
+        "dequantize": false,
+        "scale_fmt": "float"
+      }
+    },
+    {
+      "fp8_parameters": 3633315840,
+      "other_parameters": 389374016,
+      "quantization_config": {
+        "quant_method": "fp8",
+        "modules_to_not_convert": [
+          "lm_head",
+          "model.visual"
+        ],
+        "modules_to_convert": null,
+        "activation_scheme": "dynamic",
+        "weight_block_size": [
+          128,
+          128
+        ],
+        "dequantize": false,
+        "scale_fmt": "float"
+      }
+    }
+  ],
+  "dit_audits": [
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 232,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 464,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 696,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 928,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1160,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1392,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1624,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1856,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2088,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2320,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2552,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2784,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3016,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3248,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3480,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3712,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3944,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4176,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4408,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4640,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4872,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5104,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5336,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5568,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5800,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6032,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6264,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6496,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6728,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6960,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7192,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7424,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7656,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7888,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8120,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8352,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8584,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8816,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9048,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9280,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9512,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9744,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9976,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10208,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10440,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10672,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10904,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11136,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11368,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11600,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11832,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12064,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12296,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12528,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12760,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12992,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13224,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13456,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13688,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13920,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 232,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 464,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 696,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 928,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1160,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1392,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1624,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 1856,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2088,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2320,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2552,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 2784,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3016,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3248,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3480,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3712,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 3944,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4176,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4408,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4640,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 4872,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5104,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5336,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5568,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 5800,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6032,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6264,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6496,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6728,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 6960,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7192,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7424,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7656,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 7888,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8120,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8352,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8584,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 8816,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9048,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9280,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9512,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9744,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 9976,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10208,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10440,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10672,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 10904,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11136,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11368,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11600,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 11832,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12064,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12296,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12528,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12760,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 12992,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13224,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13456,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13688,
+      "bf16_fallback_calls": 0
+    },
+    {
+      "modules": 232,
+      "weight_dtypes": [
+        "torch.float8_e4m3fn"
+      ],
+      "fp8_parameters": 7115112448,
+      "native_fp8_calls": 13920,
+      "bf16_fallback_calls": 0
+    }
+  ],
+  "generations": [
+    {
+      "prompt": "A single red fox, full body, clean detailed illustration, isolated on a transparent background.",
+      "seed": 1000,
+      "steps": 30,
+      "cfg": 3.0,
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        245,
+        255
+      ],
+      "seconds": 42.73008015699452,
+      "gpu_peak_gib": 8.94621467590332,
+      "file_name": "validation/fp8-1.png",
+      "image_sha256": "df2e189c2df1d5f5660021110d5dd5258ed6b44201c3c03e94033adc8acf8e6b"
+    },
+    {
+      "prompt": "A single blue dragon, complete body, crisp pixel art sprite, isolated on a transparent background.",
+      "seed": 1001,
+      "steps": 30,
+      "cfg": 3.0,
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        64,
+        255
+      ],
+      "seconds": 23.214558758001658,
+      "gpu_peak_gib": 8.946229934692383,
+      "file_name": "validation/fp8-2.png",
+      "image_sha256": "9709e3005baaa10256458dfa77e0ba1951415af5e8b31d07e69aec9fad0522b9"
+    }
+  ],
+  "images": {
+    "validation/fp8-1-preview.png": "a994a6215a15e45ffdeeffb363ca7cabe55e50a1125309c7b4235b0d52c7d8e4",
+    "validation/fp8-1.png": "df2e189c2df1d5f5660021110d5dd5258ed6b44201c3c03e94033adc8acf8e6b",
+    "validation/fp8-2-preview.png": "f14d629ec3efd69bc57f47c03771922d82ba877b70f0fb005c7cfc9daf7e2f16",
+    "validation/fp8-2.png": "9709e3005baaa10256458dfa77e0ba1951415af5e8b31d07e69aec9fad0522b9"
+  }
+}
