@@ -1,29 +1,29 @@
-# Modèle de base / modèle Sharm actuel
+# Qwen original et Sharm actuel : 16 paires
 
-**16 paires, 32 PNG originaux**, tous conservés. Référence : `Qwen/Qwen-Image-2.1` à `d26bb612`, encodeur 8B BF16 et vrai DiT BF16. Modèle actuel : Sharm Image à `a0c0e168`, encodeur 4B FP8, projecteur `a414685b` et DiT FP8 natif. Aucun candidat spatial refusé, aucun LoRA.
+Chaque planche montre le **même prompt, la même graine et le même bruit de départ**. À gauche : Qwen Image 2.1 original, encodeur de texte 8B BF16 et générateur BF16. À droite : Sharm, encodeur Qwen3-VL 4B FP8, projecteur et générateur FP8.
 
-Le protocole fixe avant génération huit prompts de validation : quatre relations (gauche, droite, dessus, dessous) × français/anglais, deux graines, 512 px, 30 pas, **CFG 1**, sans prompt négatif ni KV cache. Le bruit initial est sauvegardé et identique pour chaque paire. Les conditionnements sont volontairement différents : ils proviennent des deux encodeurs comparés.
+Le test contient 8 consignes (gauche, droite, dessus, dessous en français et en anglais) et 2 graines par consigne : **16 paires, 32 PNG**, 512 × 512, 30 étapes.
 
-Les vraies features 8B BF16 pré-calculées sont réutilisées, avec identité d'encodeur, index, tokens et empreintes enregistrés. Leur convention avant RMSNorm correspond au pipeline Qwen officiel de la révision Diffusers figée. Cela évite de retélécharger les poids 8B. Le vrai DiT de référence reste intégralement BF16 : il passe sur GPU pour débruiter, puis sur CPU pour laisser le VAE décoder. **Ces conditions ne permettent pas une comparaison complète de vitesse ou de VRAM des deux modèles.**
+**Résultat observé :** Sharm fusionne ou oublie parfois des objets demandés. Qwen original conserve plus souvent plusieurs silhouettes dans cet échantillon, mais se trompe aussi sur les identités, le nombre et les relations. La précision des positions n’est validée pour aucun modèle.
 
-[Galerie à taille native](gallery.html) · [Protocole](protocol.json) · [Sources et identités](sources.json) · [Audits des vrais dtypes](loader-audits.json) · [Écarts numériques](metrics.json) · [Revue identifiée](visual-review.json).
+Ce test change plusieurs composants à la fois ; il ne permet pas d’attribuer l’écart au seul format FP8. La MSE est une différence de pixels, pas un pourcentage d’erreurs de placement. Revue identifiée comme agent ; pas d’évaluation humaine statistique.
 
-Les MSE d'images et d'embeddings sont des différences numériques, sans vérité terrain. Les PNG ne sont pas des annotations de positions et l'enseignant n'est pas une vérité terrain. La revue par agent et la validation humaine statistique restent distinctes. Les cas difficiles sont conservés ; aucune promesse de positions parfaites n'est faite. Les PNG RGBA restent inchangés, les damiers sont uniquement des aperçus.
+[Galerie interactive](gallery.html) · [Prompts et réglages](protocol.json) · [Mesures](metrics.json) · [Revue complète](visual-review.json) · [SHA-256](manifest.json).
 
 ## Toutes les paires
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-01.png)
+![Prompts 1 et 2](sheets/pairs-01.png)
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-02.png)
+![Prompts 3 et 4](sheets/pairs-02.png)
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-03.png)
+![Prompts 5 et 6](sheets/pairs-03.png)
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-04.png)
+![Prompts 7 et 8](sheets/pairs-04.png)
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-05.png)
+![Prompts 9 et 10](sheets/pairs-05.png)
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-06.png)
+![Prompts 11 et 12](sheets/pairs-06.png)
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-07.png)
+![Prompts 13 et 14](sheets/pairs-07.png)
 
-![Original Qwen base à gauche, Sharm actuel à droite](sheets/pairs-08.png)
+![Prompts 15 et 16](sheets/pairs-08.png)
